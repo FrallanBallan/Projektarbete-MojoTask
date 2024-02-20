@@ -19,27 +19,160 @@
 
 /* Fonts */
 .roboto-regular {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .lato-regular {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .lato-bold {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
 .montserrat-heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
 /* Root Styles end */
+body {
+  margin: 0;
+}
+
+/* Logo Styles Angelo start */
+#Layer_2 {
+  background-color: var(--_successColor);
+  width: 150px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.4rem;
+}
+/* Logo Styles end */
+/* Login Styles Angelo start */
+.DaddyBox {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--_bgColor);
+}
+.DaddyBox .Login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50vh;
+  width: 20%;
+  border: solid rgb(223, 223, 223) 1px;
+  border-radius: var(--_borderRm);
+  padding: 0.3rem;
+}
+.DaddyBox .Login-form h1 {
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+.DaddyBox .Login-form h2 {
+  font-size: 28px;
+  margin: 0;
+}
+.DaddyBox .Login-form input {
+  padding: 0.4rem;
+  width: 70%;
+  border: solid rgb(223, 223, 223) 1px;
+}
+.DaddyBox .Login-form input::placeholder {
+  opacity: 0.7;
+}
+.DaddyBox .Login-form button {
+  color: rgb(232, 232, 232);
+  background-color: var(--_primaryColor);
+  border: none;
+  border-radius: var(--_borderRs);
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+.DaddyBox .Login-form button:hover {
+  background-color: #967cff;
+  color: rgb(220, 220, 220);
+  cursor: pointer;
+  scale: 1.02;
+}
+.DaddyBox .Login-form button:active {
+  background-color: #a892ff;
+  color: rgb(220, 220, 220);
+  scale: 0.97;
+}
+.DaddyBox .Login-form #LoginBtn {
+  background-color: black;
+}
+.DaddyBox .Login-form #LoginBtn:hover {
+  background-color: rgb(44, 44, 44);
+  scale: 1.02;
+}
+.DaddyBox .Login-form #LoginBtn:active {
+  background-color: rgb(67, 67, 67);
+  scale: 0.97;
+}
+/* Login Styles end */
+/* CreateAccount Styles start */
+.DaddyBox .CreateAccount-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50vh;
+  width: 20%;
+  border: solid rgb(223, 223, 223) 1px;
+  border-radius: var(--_borderRm);
+  padding: 0.3rem;
+  display: none;
+}
+.DaddyBox .CreateAccount-form h2 {
+  font-size: 28px;
+  margin: 0;
+}
+.DaddyBox .CreateAccount-form input {
+  padding: 0.4rem;
+  width: 70%;
+  border: solid rgb(223, 223, 223) 1px;
+}
+.DaddyBox .CreateAccount-form input::placeholder {
+  opacity: 0.7;
+}
+.DaddyBox .CreateAccount-form button {
+  color: rgb(232, 232, 232);
+  background-color: var(--_primaryColor);
+  border: none;
+  border-radius: var(--_borderRs);
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+.DaddyBox .CreateAccount-form button:hover {
+  background-color: #967cff;
+  color: rgb(220, 220, 220);
+  cursor: pointer;
+  scale: 1.02;
+}
+.DaddyBox .CreateAccount-form button:active {
+  background-color: #a892ff;
+  color: rgb(220, 220, 220);
+  scale: 0.97;
+}
+.DaddyBox .CreateAccount-form #alredyaccount {
+  background: none;
+  color: black;
+  text-decoration: underline;
+}
+
+/* CreateAccount Styles end */
