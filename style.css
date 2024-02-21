@@ -54,6 +54,33 @@ body {
 }
 /* Root Styles end */
 
+/* Button Styling */
+.btn {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border: none;
+  outline: none;
+  border-radius: var(--_borderRm);
+  padding: 16px;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--_primaryColor);
+  margin-inline: 10px;
+}
+
+.logOutBtn {
+  margin-top: auto;
+  transform: translateY(-16px);
+}
+
+.logOutBtn:hover {
+  box-shadow: var(--_spreadShadow);
+}
+/* Button Styling */
+
 /* Logo Styles Angelo start */
 #Layer_2 {
   background-color: var(--_successColor);
@@ -258,9 +285,11 @@ body {
 .tabContainer {
   display: flex;
   flex-direction: column;
+  background: white;
+  box-shadow: var(--_boxShadow);
   height: 100%;
   gap: 4px;
-  justify-items: flex-start;
+  /* justify-items: flex-start; */
 }
 
 .tab {
@@ -311,62 +340,78 @@ body {
 
 /* Main container styling start Frans Simon */
 
-.homeContainer {
+.contentContainer {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 48px;
-  border: solid black 1px;
-  padding: 32px;
-}
-.homeCardContainer {
-    min-height: 33%;
-    width: 100%;
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-.homeCard {
-    height: 100%;
-    width: 100%;
-    background: var(--_primaryColor);
-}
-.divider {
-    width: 100%;
-    background: var(--_textColor);
-    opacity: 0.6;
-    height: 1px;
+  /* border: solid black 1px; */
+  padding: 32px 32px 32px 56px;
 }
 
+/* Home tab styling start */
+.homeCardContainer {
+  min-height: 33%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.homeCard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--_secondaryColor);
+  justify-content: center;
+  border-radius: var(--_borderRm);
+  background: var(--_primaryColor);
+  cursor: pointer;
+}
+
+.homeCard i {
+  font-size: 64px;
+}
+.divider {
+  width: 100%;
+  background: var(--_textColor);
+  opacity: 0.6;
+  height: 1px;
+}
+
+.homeOverviewContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  min-height: 33%;
+  /* padding: 32px; */
+  place-content: center;
+  align-content: center;
+}
+
+.homeOverviewContainer .btn {
+  min-width: 40%;
+}
+
+.overviewList {
+  list-style: circle;
+  margin-top: 24px;
+  margin-left: 24px;
+}
+
+.overviewList li {
+  margin-bottom: 16px;
+}
+/* Home tab styling end */
+
+/* Todo tab styling start */
+
+/* Todo tab styling end */
 
 /* Main container styling end Frans Simon */
 
 /* main styling end Simon/Frans */
 /* Homepage stylijg end */
-
-/* Button Styling */
-.btn {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    border: none;
-    outline: none;
-    border-radius: var(--_borderRm);
-    padding: 16px;   
-}
-
-.primary {
-    background: var(--_primaryColor);
-    margin-inline:  10px;
-}
-
-.logOutBtn {
-    margin-top: 150px;  
-}
-
-.logOutBtn:hover {
-    cursor: pointer;
-    box-shadow: var(--_spreadShadow);
-}
-/* Button Styling */
