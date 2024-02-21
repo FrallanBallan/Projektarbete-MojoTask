@@ -6,6 +6,7 @@
   --_successColor: #a3da5d;
   --_warningColor: #ff7a00;
   --_bgColor: #f2f2f3;
+  --_blueishColor: #46a2ff;
   --_textColor: rgb(28, 28, 28);
 
   /* Box shadown */
@@ -246,9 +247,76 @@ body {
 /* Navbar Simon/frans end */
 
 /* main styling start Simon/Frans */
+
+/* Tab Styling start Frans/simon */
 .gridContainer {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 150px 1fr;
+  height: calc(100vh - 100px);
 }
+
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 4px;
+  justify-items: stretch;
+}
+
+.tab {
+  color: var(--_textColor);
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 90%;
+  height: 150px;
+  background: var(--_primaryColor);
+  border-radius: 0 40% 40% 0;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 4px;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--_boxShadow);
+  transition: all 0.3s ease-in-out;
+}
+
+.tab:first-of-type {
+  background: var(--_secondaryColor);
+}
+.tab:nth-of-type(2) {
+  background: var(--_alertColor);
+}
+.tab:nth-of-type(4) {
+  background: var(--_warningColor);
+}
+.tab:nth-of-type(5) {
+  background: var(--_successColor);
+}
+.tab:nth-of-type(6) {
+  background: var(--_blueishColor);
+}
+
+.tab:hover {
+  width: 100%;
+  border-radius: 0 10% 10% 0;
+}
+
+.tab i {
+  font-size: 24px;
+}
+
+/* Tab Styling end Frans/simon */
+
+/* Main container styling start Frans Simon */
+
+.mainContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Main container styling end Frans Simon */
+
 /* main styling end Simon/Frans */
 /* Homepage stylijg end */
