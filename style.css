@@ -260,7 +260,7 @@ body {
   flex-direction: column;
   height: 100%;
   gap: 4px;
-  justify-items: stretch;
+  justify-items: flex-start;
 }
 
 .tab {
@@ -311,12 +311,62 @@ body {
 
 /* Main container styling start Frans Simon */
 
-.mainContainer {
+.homeContainer {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  border: solid black 1px;
+  padding: 32px;
 }
+.homeCardContainer {
+    min-height: 33%;
+    width: 100%;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+.homeCard {
+    height: 100%;
+    width: 100%;
+    background: var(--_primaryColor);
+}
+.divider {
+    width: 100%;
+    background: var(--_textColor);
+    opacity: 0.6;
+    height: 1px;
+}
+
 
 /* Main container styling end Frans Simon */
 
 /* main styling end Simon/Frans */
 /* Homepage stylijg end */
+
+/* Button Styling */
+.btn {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: none;
+    outline: none;
+    border-radius: var(--_borderRm);
+    padding: 16px;   
+}
+
+.primary {
+    background: var(--_primaryColor);
+    margin-inline:  10px;
+}
+
+.logOutBtn {
+    margin-top: 150px;  
+}
+
+.logOutBtn:hover {
+    cursor: pointer;
+    box-shadow: var(--_spreadShadow);
+}
+/* Button Styling */
