@@ -299,7 +299,7 @@ body {
   font-weight: 400;
   font-style: normal;
   width: 90%;
-  height: 150px;
+  height: 20%;
   background: var(--_primaryColor);
   border-radius: 0 40% 40% 0;
   display: flex;
@@ -408,6 +408,57 @@ body {
 /* Home tab styling end */
 
 /* Todo tab styling start */
+
+.homeTodoTab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.createTodo {
+  position: relative;
+  top: 0;
+  background: #fff;
+
+}
+
+.createTodo i {
+  color: var(--_primaryColor);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.card {
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    border-radius: var(--_borderRm);
+    box-shadow: var(--_boxShadow);
+}
+
+.unfinishedDiv{
+  display: flex;
+  gap: 10px;
+}
+
+.unfinished {
+  background: var(--_secondaryColor);
+
+}
+
+.finishedDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.finished {
+  background: var(--_successColor);
+
+}
 
 /* Todo tab styling end */
 
