@@ -47,7 +47,8 @@ body {
   font-weight: 700;
   font-style: normal;
 }
-* {
+/* Root Styles end */
+body {
   margin: 0;
   padding: 0;
   outline: none;
@@ -113,7 +114,7 @@ body {
   right: 0;
   padding: 0.4rem;
 }
-/* Logo Styles end */
+/* Logo Styles end Angelo*/
 /* Login Styles Angelo start */
 .DaddyBox {
   height: 100vh;
@@ -122,6 +123,9 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--_bgColor);
+}
+.DaddyBoxjr {
+  width: 100%;
 }
 .DaddyBox .Login-form {
   display: flex;
@@ -183,8 +187,8 @@ body {
   background-color: rgb(67, 67, 67);
   scale: 0.97;
 }
-/* Login Styles end */
-/* CreateAccount Styles start */
+/* Login Styles end Angelo*/
+/* CreateAccount Styles start Angelo*/
 .DaddyBox .CreateAccount-form {
   display: flex;
   flex-direction: column;
