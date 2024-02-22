@@ -50,6 +50,8 @@ body {
 * {
   margin: 0;
   padding: 0;
+  outline: none;
+  border: none;
   box-sizing: border-box;
 }
 /* Root Styles end */
@@ -72,12 +74,33 @@ body {
 }
 
 .logOutBtn {
-  margin-top: auto;
-  transform: translateY(-16px);
+  margin-top: 16px;
+  /* transform: translateY(-16px); */
 }
 
 .logOutBtn:hover {
   box-shadow: var(--_spreadShadow);
+}
+
+.removeBtn {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  color: var(--_alertColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-10%, 10%);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  scale: 1.1;
 }
 /* Button Styling */
 
@@ -250,6 +273,11 @@ body {
   display: flex;
   gap: 16px;
 }
+
+.linkList li:last-child {
+  margin-left: 32px;
+}
+
 .linkList a {
   text-decoration: none;
   color: var(--_textColor);
@@ -271,6 +299,7 @@ body {
 .navLink:hover i {
   color: var(--_primaryColor);
 }
+
 /* Navbar Simon/frans end */
 
 /* main styling start Simon/Frans */
@@ -289,7 +318,8 @@ body {
   box-shadow: var(--_boxShadow);
   height: 100%;
   gap: 4px;
-  /* justify-items: flex-start; */
+  padding-block: 32px 12px;
+  justify-items: stretch;
 }
 
 .tab {
@@ -299,7 +329,8 @@ body {
   font-weight: 400;
   font-style: normal;
   width: 90%;
-  height: 20%;
+  flex-grow: 1;
+  /* height: 20%; */
   background: var(--_primaryColor);
   border-radius: 0 40% 40% 0;
   display: flex;
@@ -348,6 +379,7 @@ body {
   gap: 48px;
   /* border: solid black 1px; */
   padding: 32px 32px 32px 56px;
+  position: relative;
 }
 
 /* Home tab styling start */
@@ -414,52 +446,120 @@ body {
   flex-direction: column;
   gap: 24px;
 }
+
+.homeTodoTab h2,
+.homeTodoTab h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
 .createTodo {
   position: relative;
   top: 0;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
+.createTodo p {
+  font-size: 12px;
+  color: var(--_textColor);
+  margin-top: 12px;
 }
 
 .createTodo i {
   color: var(--_primaryColor);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-size: 32px;
-  font-weight: 400;
-  opacity: 0.8;
 }
 
 .card {
-    height: 150px;
-    width: 150px;
-    cursor: pointer;
-    border-radius: var(--_borderRm);
-    box-shadow: var(--_boxShadow);
+  height: 150px;
+  width: 150px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+  border-radius: var(--_borderRm);
+  box-shadow: var(--_boxShadow);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.unfinishedDiv{
+.todoCategory {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translate(20%, 20%);
+  background: var(--_primaryColor);
+  color: var(--_textColor);
+}
+
+.todoCardContainer {
   display: flex;
   gap: 10px;
 }
 
 .unfinished {
   background: var(--_secondaryColor);
-
-}
-
-.finishedDiv {
-  display: flex;
-  gap: 10px;
 }
 
 .finished {
   background: var(--_successColor);
-
+}
+/* Todo Popup start */
+.todoInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 400px;
+  padding: 32px;
+  border-radius: var(--_borderRl);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
 }
 
+.todoInfo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.todoInfo input,
+.todoInfo select {
+  padding: 8px 16px;
+  border-radius: var(--_borderRs);
+  background: var(--_bgColor);
+}
+
+.todoInfo .statusTodoInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* Todo Popup End */
 /* Todo tab styling end */
 
 /* Main container styling end Frans Simon */
