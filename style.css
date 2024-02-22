@@ -22,6 +22,14 @@ body {
   background: var(--_bgColor);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
 /* Fonts */
 .roboto-regular {
   font-family: 'Roboto', sans-serif;
