@@ -61,12 +61,9 @@ function showHome() {
   weatherTab.removeAttribute("style");
   //removing styles and content
 
-  homeTab.style.width = "100%";
+  homeTab.style.width = "110%";
   homeTab.style.borderRadius = "0% 10% 10% 0%";
 
-  todoList.forEach((todo) => {
-    console.log(todo);
-  });
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
   <div class="homeCard">
@@ -95,7 +92,7 @@ function showHome() {
       <li>Something</li>
       <li>Something</li>
     </ul>
-    <button class="btn primary">See all</button>
+    <button class="btn primary" onclick="showTodos()">See all</button>
   </div>
   <div class="habitOverview">
     <h3>Habits overview</h3>
@@ -110,6 +107,16 @@ function showHome() {
   </div>
 </div>
   `;
+  // Render li from todoList and show on home page -start
+  let todoUl = document.querySelector(".overviewList");
+  todoList.forEach((todo) => {
+    console.log(todo);
+
+    let todoLi = document.createElement("li");
+    todoLi.innerText = todo.title;
+    todoUl.append(todoLi);
+  });
+  // Render li from todoList and show on home page -end
 }
 
 function showTodos() {
@@ -121,7 +128,7 @@ function showTodos() {
   calenderTab.removeAttribute("style");
   weatherTab.removeAttribute("style");
   //removing styles and content
-  todoTab.style.width = "100%";
+  todoTab.style.width = "110%";
   todoTab.style.borderRadius = "0% 10% 10% 0%";
   contentContainer.innerHTML = `
   <div class="homeTodoTab">
@@ -144,26 +151,26 @@ function showTodos() {
 `;
 
   let todoContainerUnfinished = document.querySelector(
-    '#todoContainerUnfinished'
+    "#todoContainerUnfinished"
   );
   let todoCardContainerFinished = document.querySelector(
-    '#todoCardContainerFinished'
+    "#todoCardContainerFinished"
   );
 
   // Print the todo Cards from todoList that gets from local storage start
   todoList.forEach((todoObject) => {
     //New Verson
-    let todoCard = document.createElement('div');
-    todoCard.classList.add('card');
-    let todoTitle = document.createElement('p');
+    let todoCard = document.createElement("div");
+    todoCard.classList.add("card");
+    let todoTitle = document.createElement("p");
     todoTitle.innerText = todoObject.title;
-    let todoCategory = document.createElement('div');
-    todoCategory.classList.add('todoCategory');
-    if (todoObject.category === 'Home') {
+    let todoCategory = document.createElement("div");
+    todoCategory.classList.add("todoCategory");
+    if (todoObject.category === "Home") {
       todoCategory.innerHTML = `<i class="fa-solid fa-house"></i>`;
-    } else if (todoObject.category === 'School') {
+    } else if (todoObject.category === "School") {
       todoCategory.innerHTML = `<i class="fa-solid fa-school"></i>`;
-    } else if (todoObject.category === 'Training') {
+    } else if (todoObject.category === "Training") {
       todoCategory.innerHTML = `<i class="fa-solid fa-dumbbell"></i>`;
     } else {
       todoCategory.innerHTML = `<i class="fa-solid fa-hand-sparkles"></i>`;
@@ -176,21 +183,21 @@ function showTodos() {
 
     todoCard.append(todoTitle, todoCategory);
 
-    if (todoObject.status === 'unfinished') {
-      todoCard.classList.add('unfinished');
+    if (todoObject.status === "unfinished") {
+      todoCard.classList.add("unfinished");
       todoContainerUnfinished.append(todoCard);
     } else {
-      todoCard.classList.add('finished');
+      todoCard.classList.add("finished");
       todoCardContainerFinished.append(todoCard);
     }
   });
   // Print the todo Cards from todoList that gets from local storage end
 
   // add eventlistener for removing todoCards start
-  let removeBtns = document.querySelectorAll('.removeBtn');
+  let removeBtns = document.querySelectorAll(".removeBtn");
 
   Array.from(removeBtns).forEach((removeBtn) => {
-    removeBtn.addEventListener('click', () => {
+    removeBtn.addEventListener("click", () => {
       todoList.forEach((todoObject) => {
         removeBtn.parentElement.remove();
 
@@ -220,7 +227,7 @@ function showHabits() {
   calenderTab.removeAttribute("style");
   weatherTab.removeAttribute("style");
   //removing styles and content
-  habitsTab.style.width = "100%";
+  habitsTab.style.width = "110%";
   habitsTab.style.borderRadius = "0% 10% 10% 0%";
 
   contentContainer.innerHTML = `
@@ -261,7 +268,7 @@ function showTimer() {
   calenderTab.removeAttribute("style");
   weatherTab.removeAttribute("style");
   //removing styles and content
-  timerTab.style.width = "100%";
+  timerTab.style.width = "110%";
   timerTab.style.borderRadius = "0% 10% 10% 0%";
   let test = document.createElement("h1");
   test.innerHTML = "estoy testo timer";
@@ -278,7 +285,7 @@ function showCalender() {
   homeTab.removeAttribute("style");
   weatherTab.removeAttribute("style");
   //removing styles and content
-  calenderTab.style.width = "100%";
+  calenderTab.style.width = "110%";
   calenderTab.style.borderRadius = "0% 10% 10% 0%";
   let test = document.createElement("h1");
   test.innerHTML = "estoy testo caldendoro";
@@ -295,7 +302,7 @@ function showWeather() {
   calenderTab.removeAttribute("style");
   homeTab.removeAttribute("style");
   //removing styles and content
-  weatherTab.style.width = "100%";
+  weatherTab.style.width = "110%";
   weatherTab.style.borderRadius = "0% 10% 10% 0%";
   let test = document.createElement("h1");
   test.innerHTML = "estoy testo hace calor?";
@@ -420,7 +427,7 @@ function saveTodoData() {
 }
 
 function getTodoData() {
-  todoList = JSON.parse(localStorage.getItem('todoData'));
+  todoList = JSON.parse(localStorage.getItem("todoData"));
 }
 
 getTodoData();

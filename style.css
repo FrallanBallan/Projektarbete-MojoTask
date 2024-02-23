@@ -321,6 +321,7 @@ body {
   display: grid;
   grid-template-columns: 150px 1fr;
   height: calc(100vh - 100px);
+  /* grid-template-rows: 1fr; */
 }
 
 .tabContainer {
@@ -332,6 +333,8 @@ body {
   gap: 4px;
   padding-block: 32px 12px;
   justify-items: stretch;
+  
+  
 }
 
 .tab {
@@ -343,6 +346,7 @@ body {
   width: 90%;
   flex-grow: 1;
   /* height: 20%; */
+  
   background: var(--_primaryColor);
   border-radius: 0 20% 20% 0;
   display: flex;
