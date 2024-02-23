@@ -49,7 +49,7 @@ let calenderTab = document.querySelector("#calenderTab");
 let weatherTab = document.querySelector("#weatherTab");
 
 // Global Arrays
-let todoList = [];
+let todoList = []; // JSON.parse(localStorage.getItem('links'));
 
 function showHome() {
   //removing styles and content
@@ -133,30 +133,82 @@ function showTodos() {
   </div>
   <div class="divider"></div>
   <h3>Unfinished</h3>
-  <div class="todoCardContainer">
-    <div class="unfinished card">
-      <button class="removeBtn" onclick="removeTodo()">
-        <i class="fa-regular fa-trash-can"></i>
-      </button>
-      <div class="todoCategory"><i class="fa-solid fa-house"></i></div>
-      <p>Your Todo</p>
-
-    </div>
+  <div class="todoCardContainer" id="todoContainerUnfinished">
   </div>
   <div class="divider"></div>
   <h3>Finished</h3>
-  <div class="todoCardContainer">
-    <div class="finished card">
-      <button class="removeBtn" onclick="removeTodo()">
-        <i class="fa-regular fa-trash-can"></i>
-      </button>
-      <div class="todoCategory"><i class="fa-solid fa-house"></i></div>
-      <p>Your Todo</p>
-    </div>
+  <div class="todoCardContainer" id="todoCardContainerFinished">
+
   </div>
 </div>
+`;
 
-  `;
+  let todoContainerUnfinished = document.querySelector(
+    '#todoContainerUnfinished'
+  );
+  let todoCardContainerFinished = document.querySelector(
+    '#todoCardContainerFinished'
+  );
+
+  // Print the todo Cards from todoList that gets from local storage start
+  todoList.forEach((todoObject) => {
+    //New Verson
+    let todoCard = document.createElement('div');
+    todoCard.classList.add('card');
+    let todoTitle = document.createElement('p');
+    todoTitle.innerText = todoObject.title;
+    let todoCategory = document.createElement('div');
+    todoCategory.classList.add('todoCategory');
+    if (todoObject.category === 'Home') {
+      todoCategory.innerHTML = `<i class="fa-solid fa-house"></i>`;
+    } else if (todoObject.category === 'School') {
+      todoCategory.innerHTML = `<i class="fa-solid fa-school"></i>`;
+    } else if (todoObject.category === 'Training') {
+      todoCategory.innerHTML = `<i class="fa-solid fa-dumbbell"></i>`;
+    } else {
+      todoCategory.innerHTML = `<i class="fa-solid fa-hand-sparkles"></i>`;
+    }
+
+    todoCard.innerHTML += `
+    <button class="removeBtn">
+    <i class="fa-regular fa-trash-can"></i>
+    </button>`;
+
+    todoCard.append(todoTitle, todoCategory);
+
+    if (todoObject.status === 'unfinished') {
+      todoCard.classList.add('unfinished');
+      todoContainerUnfinished.append(todoCard);
+    } else {
+      todoCard.classList.add('finished');
+      todoCardContainerFinished.append(todoCard);
+    }
+  });
+  // Print the todo Cards from todoList that gets from local storage end
+
+  // add eventlistener for removing todoCards start
+  let removeBtns = document.querySelectorAll('.removeBtn');
+
+  Array.from(removeBtns).forEach((removeBtn) => {
+    removeBtn.addEventListener('click', () => {
+      todoList.forEach((todoObject) => {
+        removeBtn.parentElement.remove();
+
+        let indexToRemove = Array.from(todoCard.parentElement.children).indexOf(
+          todoCard
+        );
+
+        if (indexToRemove !== -1) {
+          todoList.splice(indexToRemove, 1);
+        }
+      });
+      // console.log(todoList.indexOf((x) => x.title === todoTitle));
+      // LETA EFTER MATCHANDE TITEL OCH FÅ FRAM INDEX FÖR ATT KUNNA TA BORT
+    });
+    console.log(todoList);
+  });
+
+  // add eventlistener for removing todoCards end
 }
 
 function showHabits() {
@@ -352,9 +404,23 @@ function createTodo() {
 
 // Funktioner som genererar content- end
 
+// Remove funktion för todoCards
+
+function removeTodo() {
+  console.log(this.parent);
+}
+
+// Remove Funktion för todoCards end
+
 // Funktioner för att spara i Local Storage
 
 function saveTodoData() {
   console.log(todoList);
   localStorage.setItem("todoData", JSON.stringify(todoList));
 }
+
+function getTodoData() {
+  todoList = JSON.parse(localStorage.getItem('todoData'));
+}
+
+getTodoData();
