@@ -40,29 +40,33 @@
 
 //Globals
 
-let contentContainer = document.querySelector('.contentContainer');
-let homeTab = document.querySelector('#homeTab');
-let todoTab = document.querySelector('#todoTab');
-let habitsTab = document.querySelector('#habitsTab');
-let timerTab = document.querySelector('#timerTab');
-let calenderTab = document.querySelector('#calenderTab');
-let weatherTab = document.querySelector('#weatherTab');
+let contentContainer = document.querySelector(".contentContainer");
+let homeTab = document.querySelector("#homeTab");
+let todoTab = document.querySelector("#todoTab");
+let habitsTab = document.querySelector("#habitsTab");
+let timerTab = document.querySelector("#timerTab");
+let calenderTab = document.querySelector("#calenderTab");
+let weatherTab = document.querySelector("#weatherTab");
 
 // Global Arrays
 let todoList = [];
 
 function showHome() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
 
-  homeTab.style.width = '100%';
-  homeTab.style.borderRadius = '0% 10% 10% 0%';
+  homeTab.style.width = "100%";
+  homeTab.style.borderRadius = "0% 10% 10% 0%";
+
+  todoList.forEach((todo) => {
+    console.log(todo);
+  });
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
   <div class="homeCard">
@@ -110,15 +114,15 @@ function showHome() {
 
 function showTodos() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  homeTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  homeTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
-  todoTab.style.width = '100%';
-  todoTab.style.borderRadius = '0% 10% 10% 0%';
+  todoTab.style.width = "100%";
+  todoTab.style.borderRadius = "0% 10% 10% 0%";
   contentContainer.innerHTML = `
   <div class="homeTodoTab">
   <h2>Your todo's</h2>
@@ -157,15 +161,15 @@ function showTodos() {
 
 function showHabits() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  homeTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
-  habitsTab.style.width = '100%';
-  habitsTab.style.borderRadius = '0% 10% 10% 0%';
+  habitsTab.style.width = "100%";
+  habitsTab.style.borderRadius = "0% 10% 10% 0%";
 
   contentContainer.innerHTML = `
   <div class="habitContainer">
@@ -198,51 +202,51 @@ function showHabits() {
 
 function showTimer() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  homeTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
-  timerTab.style.width = '100%';
-  timerTab.style.borderRadius = '0% 10% 10% 0%';
-  let test = document.createElement('h1');
-  test.innerHTML = 'estoy testo timer';
+  timerTab.style.width = "100%";
+  timerTab.style.borderRadius = "0% 10% 10% 0%";
+  let test = document.createElement("h1");
+  test.innerHTML = "estoy testo timer";
 
   contentContainer.append(test);
 }
 
 function showCalender() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  homeTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
-  calenderTab.style.width = '100%';
-  calenderTab.style.borderRadius = '0% 10% 10% 0%';
-  let test = document.createElement('h1');
-  test.innerHTML = 'estoy testo caldendoro';
+  calenderTab.style.width = "100%";
+  calenderTab.style.borderRadius = "0% 10% 10% 0%";
+  let test = document.createElement("h1");
+  test.innerHTML = "estoy testo caldendoro";
 
   contentContainer.append(test);
 }
 
 function showWeather() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  homeTab.removeAttribute("style");
   //removing styles and content
-  weatherTab.style.width = '100%';
-  weatherTab.style.borderRadius = '0% 10% 10% 0%';
-  let test = document.createElement('h1');
-  test.innerHTML = 'estoy testo hace calor?';
+  weatherTab.style.width = "100%";
+  weatherTab.style.borderRadius = "0% 10% 10% 0%";
+  let test = document.createElement("h1");
+  test.innerHTML = "estoy testo hace calor?";
 
   contentContainer.append(test);
 }
@@ -253,7 +257,7 @@ function showLogout() {}
 
 // Funktioner som genererar content- start
 function createTodo() {
-  contentContainer.innerHTML = '';
+  contentContainer.innerHTML = "";
 
   contentContainer.innerHTML = `
   <div class="todoInfo">
@@ -312,35 +316,36 @@ function createTodo() {
 
   `;
 
-  let categoryChoice = document.querySelector('#categoryChoice');
+  let categoryChoice = document.querySelector("#categoryChoice");
   console.log(categoryChoice);
 
-  let saveBtn = document.querySelector('#saveBtn');
+  let saveBtn = document.querySelector("#saveBtn");
 
-  saveBtn.addEventListener('click', () => {
+  saveBtn.addEventListener("click", () => {
     let todoObject = {};
     if (
-      document.querySelector('#whatTodo').value &&
-      document.querySelector('#descTodo').value &&
-      document.querySelector('#deadlineTodo').value &&
-      document.querySelector('#categoryChoice').value &&
+      document.querySelector("#whatTodo").value &&
+      document.querySelector("#descTodo").value &&
+      document.querySelector("#deadlineTodo").value &&
+      document.querySelector("#categoryChoice").value &&
       document.querySelector('input[name="TodoChoice"]:checked').value &&
-      document.querySelector('#categoryChoice').value !== 'Choose one'
+      document.querySelector("#categoryChoice").value !== "Choose one"
     ) {
-      todoObject.title = document.querySelector('#whatTodo').value;
-      todoObject.desc = document.querySelector('#descTodo').value;
-      todoObject.deadline = document.querySelector('#deadlineTodo').value;
-      todoObject.category = document.querySelector('#categoryChoice').value;
+      todoObject.id = "testPerson";
+      todoObject.title = document.querySelector("#whatTodo").value;
+      todoObject.desc = document.querySelector("#descTodo").value;
+      todoObject.deadline = document.querySelector("#deadlineTodo").value;
+      todoObject.category = document.querySelector("#categoryChoice").value;
       todoObject.status = document.querySelector(
         'input[name="TodoChoice"]:checked'
       ).value;
       console.log(todoObject);
       todoList.push(todoObject);
       saveTodoData();
-      alert('A new Todo has been added!');
+      alert("A new Todo has been added!");
       showTodos();
     } else {
-      alert('Check to make sure all fields has been filled!');
+      alert("Check to make sure all fields has been filled!");
     }
   });
 }
@@ -351,5 +356,5 @@ function createTodo() {
 
 function saveTodoData() {
   console.log(todoList);
-  localStorage.setItem('todoData', JSON.stringify(todoList));
+  localStorage.setItem("todoData", JSON.stringify(todoList));
 }
