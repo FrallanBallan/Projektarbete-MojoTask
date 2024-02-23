@@ -86,11 +86,7 @@ function showHome() {
   <div class="todoOverview">
     <h3>Todo's overview</h3>
     <ul class="overviewList todo">
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
+   
     </ul>
     <button class="btn primary" onclick="showTodos()">See all</button>
   </div>
@@ -103,7 +99,7 @@ function showHome() {
       <li>Something</li>
       <li>Something</li>
     </ul>
-    <button class="btn primary">See all</button>
+    <button class="btn primary" onclick="showHabits()">See all</button>
   </div>
 </div>
   `;
@@ -430,3 +426,4 @@ function getTodoData() {
 }
 
 getTodoData();
+showHome();
