@@ -147,6 +147,7 @@ function showTodos() {
   );
 
   // Print the todo Cards from todoList that gets from local storage start
+
   todoList.forEach((todoObject) => {
     //New Verson
     let todoCard = document.createElement('div');
@@ -188,20 +189,18 @@ function showTodos() {
   Array.from(removeBtns).forEach((removeBtn) => {
     removeBtn.addEventListener('click', () => {
       todoList.forEach((todoObject) => {
-        removeBtn.parentElement.remove();
-
-        let indexToRemove = Array.from(todoCard.parentElement.children).indexOf(
-          todoCard
-        );
-
-        if (indexToRemove !== -1) {
-          todoList.splice(indexToRemove, 1);
+        if (removeBtn.parentElement.innerHTML.includes(todoObject.title)) {
+          let index = todoList.findIndex((todoObject) =>
+            removeBtn.parentElement.innerHTML.includes(todoObject.title)
+          );
+          todoList.splice(index, 1);
         }
+        removeBtn.parentElement.remove();
+        // console.log(todoObject.index());
+        saveTodoData();
       });
-      // console.log(todoList.indexOf((x) => x.title === todoTitle));
-      // LETA EFTER MATCHANDE TITEL OCH FÅ FRAM INDEX FÖR ATT KUNNA TA BORT
     });
-    console.log(todoList);
+    // console.log(todoList);
   });
 
   // add eventlistener for removing todoCards end
@@ -410,7 +409,7 @@ function removeTodo() {
 // Funktioner för att spara i Local Storage
 
 function saveTodoData() {
-  console.log(todoList);
+  // console.log(todoList);
   localStorage.setItem('todoData', JSON.stringify(todoList));
 }
 
