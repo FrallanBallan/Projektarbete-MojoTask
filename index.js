@@ -60,12 +60,49 @@ function showHome() {
 
   homeTab.style.width = "100%";
   homeTab.style.borderRadius = "0% 10% 10% 0%";
-  let test = document.createElement("h1");
-  test.innerHTML = "estoy testo home";
-  // this.style.width = "100%";
-  console.log(this);
-
-  contentContainer.append(test);
+  contentContainer.innerHTML = `
+  <div class="homeCardContainer">
+  <div class="homeCard">
+    <i class="fa-solid fa-pen-to-square"></i>
+  </div>
+  <div class="homeCard">
+    <i class="fa-solid fa-person-praying"></i>
+  </div>
+  <div class="homeCard">
+    <h3 class="montserrat-heading">Todays Weather</h3>
+    <div class="weatherIcon">
+      <i class="fa-solid fa-cloud-sun-rain"></i>
+    </div>
+    <h4 class="montserrat-heading">Temperture:</h4>
+    <h4 class="montserrat-heading">Location:</h4>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="homeOverviewContainer">
+  <div class="todoOverview">
+    <h3>Todo's overview</h3>
+    <ul class="overviewList todo">
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+    </ul>
+    <button class="btn primary">See all</button>
+  </div>
+  <div class="habitOverview">
+    <h3>Habits overview</h3>
+    <ul class="overviewList habits">
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+    </ul>
+    <button class="btn primary">See all</button>
+  </div>
+</div>
+  `;
 }
 
 function showTodos() {
@@ -79,10 +116,40 @@ function showTodos() {
   //removing styles and content
   todoTab.style.width = "100%";
   todoTab.style.borderRadius = "0% 10% 10% 0%";
-  let test = document.createElement("h1");
-  test.innerHTML = "estoy testo todo";
+  contentContainer.innerHTML = `
+  <div class="homeTodoTab">
+  <h2>Your todo's</h2>
+  <div class="divider"></div>
+  <div class="createTodo card" onclick="createTodo()">
+    <i class="fa-solid fa-plus"></i>
+    <p>Create Todo</p>
+  </div>
+  <div class="divider"></div>
+  <h3>Unfinished</h3>
+  <div class="todoCardContainer">
+    <div class="unfinished card">
+      <button class="removeBtn" onclick="removeTodo()">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+      <div class="todoCategory"><i class="fa-solid fa-house"></i></div>
+      <p>Your Todo</p>
 
-  contentContainer.append(test);
+    </div>
+  </div>
+  <div class="divider"></div>
+  <h3>Finished</h3>
+  <div class="todoCardContainer">
+    <div class="finished card">
+      <button class="removeBtn" onclick="removeTodo()">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+      <div class="todoCategory"><i class="fa-solid fa-house"></i></div>
+      <p>Your Todo</p>
+    </div>
+  </div>
+</div>
+
+  `;
 }
 
 function showHabits() {
@@ -96,10 +163,34 @@ function showHabits() {
   //removing styles and content
   habitsTab.style.width = "100%";
   habitsTab.style.borderRadius = "0% 10% 10% 0%";
-  let test = document.createElement("h1");
-  test.innerHTML = "estoy testo habits";
 
-  contentContainer.append(test);
+  contentContainer.innerHTML = `
+  <div class="habitContainer">
+    <div class="habitHeader">
+        <h2>Your Habits</h2>
+        <button class="btn primary"><i class="fa-solid fa-plus"></i>Add Habits</button>
+    </div>
+    <div class="habitCardContainer">
+        <div class="habitCard">
+            <h3>Habit?</h3>
+            <h4>Uncompleted</h4>
+        </div>
+        <div class="habitCard">
+            <h3>Habit?</h3>
+            <h4>Uncompleted</h4>
+        </div>
+        <div class="habitCard">
+            <h3>Habit?</h3>
+            <h4>Uncompleted</h4>
+        </div>
+        <div class="habitCard">
+            <h3>Habit?</h3>
+            <h4>Uncompleted</h4>
+        </div>
+
+    </div>
+</div>
+  `;
 }
 
 function showTimer() {
@@ -156,3 +247,66 @@ function showWeather() {
 function showLogout() {}
 
 // Funktioner för sidorientering - End Frans
+
+// Funktioner som genererar content- start
+function createTodo() {
+  contentContainer.innerHTML = "";
+  contentContainer.innerHTML = `
+  <div class="todoInfo">
+  <div>
+    <label for="whatTodo">What is your Todo?</label>
+    <input
+      type="text"
+      name="whatTodo"
+      id="whatTodo"
+      placeholder="Write your todo!"
+    />
+  </div>
+  <div>
+    <label for="descTodo">Describe it</label>
+    <input
+      type="text"
+      name="descTodo"
+      id="descTodo"
+      placeholder="Describe your todo"
+    />
+  </div>
+  <div>
+    <label for="deadlineTodo">Deadline?</label>
+    <input type="date" name="deadlineTodo" id="deadlineTodo" />
+  </div>
+  <div>
+    <label for="timeTodo">Time estimate?</label>
+    <input
+      type="number"
+      name="timeTodo"
+      id="timeTodo"
+      placeholder="Write in minutes!"
+    />
+  </div>
+
+  <div class="categoryInfoTodo">
+    <label for="categoryChoice">Category</label>
+    <select name="categoryChoice" id="categoryChoice">
+      <option value="Choose one">Choose one</option>
+      <option value="Home">Choose one</option>
+      <option value="Training">Training</option>
+      <option value="School">School</option>
+      <option value="Chores">Chores</option>
+    </select>
+  </div>
+
+  <div class="statusTodoInfo">
+    <label for="unfinishedTodoChoice">Unfinished</label>
+    <input type="radio" name="TodoChoice" id="unfinishedTodoChoice" />
+    <label for="finishedTodoChoice">Finished</label>
+    <input type="radio" name="TodoChoice" id="finishedTodoChoice" />
+  </div>
+
+  <button class="btn primary">Save</button>
+</div>
+
+  `;
+}
+
+// Funktioner som genererar content- end
