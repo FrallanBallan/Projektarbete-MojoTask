@@ -97,6 +97,12 @@ body {
 .DaddyBox .Login-form input::placeholder {
   opacity: 0.7;
 }
+.DaddyBox .Login-form #error {
+  color: var(--_alertColor);
+  text-decoration: underline;
+  font-size: 0.8rem;
+  margin: 0;
+}
 .DaddyBox .Login-form button {
   color: rgb(232, 232, 232);
   background-color: var(--_primaryColor);
@@ -149,8 +155,17 @@ body {
   width: 70%;
   border: solid rgb(223, 223, 223) 1px;
 }
+.DaddyBox .CreateAccount-form input.errorInput {
+  border: solid 1px var(--_alertColor);
+}
 .DaddyBox .CreateAccount-form input::placeholder {
   opacity: 0.7;
+}
+.DaddyBox .CreateAccount-form .felmeddelande {
+  color: var(--_alertColor);
+  text-decoration: underline;
+  font-size: 0.8rem;
+  margin: 0;
 }
 .DaddyBox .CreateAccount-form button {
   color: rgb(232, 232, 232);
@@ -190,6 +205,6 @@ body {
 }
 .focuss {
   transition: 0.7s ease-in-out;
-  transform: translateX(185%);
+  transform: translateX(190%);
 }
 /*Animation Login styles end Angelo*/
