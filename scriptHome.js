@@ -171,99 +171,48 @@ function renderCategoryFilter(filterTodosContainer) {
     filterContainer.append(label);
 
     input.addEventListener('change', () => {
-      renderFilterdcategorys();
+      let catergoryChoices = Array.from(
+        document.getElementsByName('filterTodos')
+      );
+      let filterArray = [];
+      catergoryChoices.forEach((category) => {
+        if (category.checked) {
+          filterArray.push(category.value);
+          //   console.log(filterString);
+        }
+      });
+      console.log(filterArray);
+      let todoLists = document.querySelectorAll('.todoCategory');
+      console.log(todoLists);
+      if (filterArray.length > 0) {
+        filterArray.forEach((filter) => {
+          todoList.forEach((todo) => {
+            if (todo.category.includes(filter)) {
+              renderFilterdSearch(filterArray);
+            }
+          });
+        });
+      } else {
+        showTodos();
+      }
     });
   });
   filterTodosContainer.append(filterContainer);
 }
 
 // Render when filterd on category
-function renderFilterdcategorys() {
-  let catergoryChoices = Array.from(document.getElementsByName('filterTodos'));
-  let filterArray = [];
-  catergoryChoices.forEach((category) => {
-    if (category.checked) {
-      filterArray.push(category.value);
-      //   console.log(filterString);
-    }
-  });
-  console.log(filterArray);
-  let todoLists = document.querySelectorAll('.todoCategory');
-  console.log(todoLists);
-  if (filterArray.length > 0) {
-    filterArray.forEach((filter) => {
-      todoList.forEach((todo) => {
-        if (todo.category.includes(filter)) {
-          renderFilterdSearch(filterArray);
-        }
-      });
-    });
-  } else {
-    showTodos();
-  }
-
-  // todoCategory.innerHTML === category.value
-}
 
 function renderFilterdSearch(filterArray) {
-  let todoContainerUnfinished = document.querySelector(
-    '#todoContainerUnfinished'
-  );
-  let todoCardContainerFinished = document.querySelector(
-    '#todoCardContainerFinished'
-  );
-  todoContainerUnfinished.innerHTML = '';
-  todoCardContainerFinished.innerHTML = '';
-
-  todoList.forEach((todoObject) => {
+  console.log(filterArray);
+  let filterdArray = [];
+  todoList.forEach((todo) => {
     filterArray.forEach((filter) => {
-      if (todoObject.category.includes(filter)) {
-        let result = [];
-        result.push(todoObject);
-        console.log(result);
-        let todoCard = document.createElement('div');
-        todoCard.classList.add('card');
-        let todoTitle = document.createElement('p');
-        todoTitle.innerText = todoObject.title;
-        let todoCategory = document.createElement('div');
-        todoCategory.classList.add('todoCategory');
-        if (todoObject.category === 'Home') {
-          todoCategory.innerHTML = `<i class="fa-solid fa-house"></i>`;
-        } else if (todoObject.category === 'School') {
-          todoCategory.innerHTML = `<i class="fa-solid fa-school"></i>`;
-        } else if (todoObject.category === 'Training') {
-          todoCategory.innerHTML = `<i class="fa-solid fa-dumbbell"></i>`;
-        } else {
-          todoCategory.innerHTML = `<i class="fa-solid fa-hand-sparkles"></i>`;
-        }
-
-        todoCard.innerHTML += `
-        <button class="removeBtn">
-        <i class="fa-regular fa-trash-can"></i>
-        </button>`;
-
-        todoCard.append(todoTitle, todoCategory);
-
-        if (todoObject.status === 'unfinished') {
-          todoCard.classList.add('unfinished');
-          todoContainerUnfinished.append(todoCard);
-        } else {
-          todoCard.classList.add('finished');
-          todoCardContainerFinished.append(todoCard);
-        }
+      if (todo.category.includes(filter)) {
+        filterdArray.push(todo);
       }
     });
-
-    //New Verson
   });
-  // add eventlistener for removing todoCards start
-  let removeBtns = document.querySelectorAll('.removeBtn');
-  Array.from(removeBtns).forEach((removeBtn) => {
-    removeBtn.addEventListener('click', () => {
-      removeTodo(removeBtn);
-    });
-    // console.log(todoList);
-  });
+  printTodosOnPage(filterdArray);
 }
 
 function printTodosOnPage(list) {
