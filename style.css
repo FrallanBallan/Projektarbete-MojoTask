@@ -126,7 +126,7 @@ body {
 /* Login Styles Angelo start */
 .DaddyBox {
   height: 100vh;
-  width: 100dvw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,9 +141,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   height: 50vh;
-  width: 20%;
-  min-width: 250px;
-  /* max-width: 80%; */
+  width: 40%;
   border: solid rgb(223, 223, 223) 1px;
   border-radius: var(--_borderRm);
   padding: 0.3rem;
@@ -208,14 +206,11 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  /* height: 50vh; */
-  min-width: 250px;
-  /* width: 20%; */
-
+  height: 50vh;
+  width: 40%;
   border: solid rgb(223, 223, 223) 1px;
   border-radius: var(--_borderRm);
-  /* padding: 0.3rem; */
-  /* display: none; */
+  padding: 0.3rem;
 }
 .DaddyBox .CreateAccount-form h2 {
   font-size: 28px;
@@ -262,8 +257,23 @@ body {
   color: black;
   text-decoration: underline;
 }
+/* CreateAccount Styles end Angelo*/
+/*Animation Login styles start Angelo*/
+.hidden {
+  transform: translatex(70%);
+  visibility: hidden;
+  transition: 0s ease-in-out;
+}
 
-/* CreateAccount Styles end */
+.focus {
+  transition: 0.7s ease-in-out;
+  transform: translateX(-45%);
+}
+.focuss {
+  transition: 0.7s ease-in-out;
+  transform: translateX(190%);
+}
+/*Animation Login styles end Angelo*/
 
 /* Home page styling start */
 
