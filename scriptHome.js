@@ -47,16 +47,16 @@ function showHome() {
 </div>
 <div class="divider"></div>
 <div class="homeOverviewContainer">
-  <div class="todoOverview">
+  <div class="todoOverview" >
     <h3>Todo's overview</h3>
-    <ul class="overviewList todo">
+    <ul class="overviewList todo" id="todoOverviewUl">
    
     </ul>
     <button class="btn primary" onclick="showTodos()">See all</button>
   </div>
   <div class="habitOverview">
     <h3>Habits overview</h3>
-    <ul class="overviewList habits">
+    <ul class="overviewList habits" id="habitOverviewUl">
       <li>Something</li>
       <li>Something</li>
       <li>Something</li>
@@ -68,7 +68,7 @@ function showHome() {
 </div>
   `;
   // Render li from todoList and show on home page -start
-  let todoUl = document.querySelector(".overviewList");
+  let todoUl = document.querySelector("#todoOverviewUl");
   todoList.forEach((todo) => {
     console.log(todo);
 
@@ -77,6 +77,12 @@ function showHome() {
     todoUl.append(todoLi);
   });
   // Render li from todoList and show on home page -end
+
+  //render li from HabitList and show on home page -start
+
+  let habitUl = document.querySelector("overviewList habits");
+
+  //render li from HabitList and show on home page -end
 }
 
 function showTodos() {
