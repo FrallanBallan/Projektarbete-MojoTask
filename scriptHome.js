@@ -60,11 +60,7 @@ function showHome() {
   <div class="habitOverview">
     <h3>Habits overview</h3>
     <ul class="overviewList habits" id="habitOverviewUl">
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
+
     </ul>
     <button class="btn primary" onclick="showHabits()">See all</button>
   </div>
@@ -83,7 +79,12 @@ function showHome() {
 
   //render li from HabitList and show on home page -start
 
-  let habitUl = document.querySelector('overviewList habits');
+  let habitUl = document.querySelector('#habitOverviewUl');
+  habitList.forEach((habit) => {
+    let habitLi = document.createElement('li');
+    habitLi.innerText = habit.title;
+    habitUl.append(habitLi);
+  });
 
   //render li from HabitList and show on home page -end
 }
@@ -295,11 +296,24 @@ function showHabits() {
     let habitCard = document.createElement('div');
     habitCard.classList.add('habitCard');
 
+    let doneHabit = document.createElement('div');
+    doneHabit.classList.add('doneHabit');
+    doneHabit.innerHTML = `<i class="fa-solid fa-thumbs-up"></i>`;
+
+    let waitingHabit = document.createElement('div');
+    waitingHabit.classList.add('waitingHabit');
+    waitingHabit.innerHTML = `<i class="fa-solid fa-thumbs-down"></i>`;
+
     let habitTitle = document.createElement('p');
     habitTitle.innerText = habitObject.title;
 
     let habitCategory = document.createElement('p');
     habitCategory.innerText = habitObject.desc;
+
+    habitCard.innerHTML += `
+            <button class="removeBtn">
+            <i class="fa-regular fa-trash-can"></i>
+            </button>`;
 
     habitCard.style.backgroundImage = habitObject.background;
 
@@ -318,8 +332,16 @@ function showHabits() {
     }
     console.log(habitObject.category);
 
-    habitCard.append(habitTitle, habitCategory);
+    habitCard.append(habitTitle, habitCategory, doneHabit, waitingHabit);
     habitCardContainer.append(habitCard);
+  });
+  // add eventlistener for removing habitCards start
+  let removeBtns = document.querySelectorAll('.removeBtn');
+  Array.from(removeBtns).forEach((removeBtn) => {
+    removeBtn.addEventListener('click', () => {
+      removeHabit(removeBtn);
+    });
+    // console.log(todoList);
   });
 }
 
@@ -553,6 +575,19 @@ function removeTodo(removeBtn) {
     removeBtn.parentElement.remove();
     // console.log(todoObject.index());
     saveTodoData();
+  });
+}
+function removeHabit(removeBtn) {
+  habitList.forEach((todoObject) => {
+    if (removeBtn.parentElement.innerHTML.includes(todoObject.title)) {
+      let index = todoList.findIndex((todoObject) =>
+        removeBtn.parentElement.innerHTML.includes(todoObject.title)
+      );
+      habitList.splice(index, 1);
+    }
+    removeBtn.parentElement.remove();
+    // console.log(todoObject.index());
+    saveHabitData();
   });
 }
 

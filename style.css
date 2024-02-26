@@ -639,6 +639,7 @@ body {
   padding-block-start: 48px;
 }
 .habitCard {
+  position: relative;
   height: 300px;
   width: 100%;
   background-image: url(https://source.unsplash.com/random);
