@@ -11,8 +11,11 @@ let calenderTab = document.querySelector('#calenderTab');
 let weatherTab = document.querySelector('#weatherTab');
 
 // Global Arrays
-let todoList = []; // JSON.parse(localStorage.getItem('links'));
-let habitList = [];
+let localTodos = localStorage.getItem('todoData');
+let todoList = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(localStorage.getItem('links'));
+
+let localHabits = localStorage.getItem('habitData');
+let habitList = localHabits ? JSON.parse(localHabits) : [];
 
 function showHome() {
   //removing styles and content
@@ -346,6 +349,7 @@ function showHabits() {
   `;
 
   let habitCardContainer = document.querySelector('.habitCardContainer');
+  console.log(habitList);
 
   habitList.forEach((habitObject) => {
     console.log(habitObject);
@@ -635,6 +639,6 @@ function getHabitData() {
   habitList = JSON.parse(localStorage.getItem('habitData'));
 }
 
-getHabitData();
-getTodoData();
+// getHabitData();
+// getTodoData();
 showHome();
