@@ -60,11 +60,7 @@ function showHome() {
   <div class="habitOverview">
     <h3>Habits overview</h3>
     <ul class="overviewList habits" id="habitOverviewUl">
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
-      <li>Something</li>
+
     </ul>
     <button class="btn primary" onclick="showHabits()">See all</button>
   </div>
@@ -83,7 +79,12 @@ function showHome() {
 
   //render li from HabitList and show on home page -start
 
-  let habitUl = document.querySelector("overviewList habits");
+  let habitUl = document.querySelector("#habitOverviewUl");
+  habitList.forEach((habit) => {
+    let habitLi = document.createElement("li");
+    habitLi.innerText = habit.title;
+    habitUl.append(habitLi);
+  });
 
   //render li from HabitList and show on home page -end
 }
@@ -356,6 +357,9 @@ function showHabits() {
 
     let habitCard = document.createElement("div");
     habitCard.classList.add("habitCard");
+
+    habitCard.innerHTML = `<i class="fa-solid fa-thumbs-up"></i>`;
+    // habitCard.innerHTML = `<i class="fa-solid fa-thumbs-down"></i>`;
 
     let habitTitle = document.createElement("p");
     habitTitle.innerText = habitObject.title;
