@@ -120,22 +120,10 @@ function showTodos() {
   </div>
 </div>
 `;
-
-  //   let todoContainerUnfinished = document.querySelector(
-  //     '#todoContainerUnfinished'
-  //   );
-  //   let todoCardContainerFinished = document.querySelector(
-  //     '#todoCardContainerFinished'
-  //   );
-
   let filterTodosContainer = document.querySelector('.todoTitleFilter');
-
-  // Print the todo Cards from todoList that gets from local storage start
-
   // Create filter categorys
   renderCategoryFilter(filterTodosContainer);
   // Create filter categorys end.
-
   printTodosOnPage(todoList);
 
   // add eventlistener for removing todoCards end
@@ -197,6 +185,7 @@ function renderCategoryFilter(filterTodosContainer) {
       }
     });
   });
+
   filterTodosContainer.append(filterContainer);
 }
 
