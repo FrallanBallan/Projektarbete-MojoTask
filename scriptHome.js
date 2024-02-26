@@ -29,6 +29,7 @@ function showHome() {
 
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
+  
   <div class="homeCard">
     <i class="fa-solid fa-pen-to-square"></i>
   </div>
@@ -91,7 +92,9 @@ function showTodos() {
   todoTab.style.borderRadius = "0% 10% 10% 0%";
   contentContainer.innerHTML = `
   <div class="homeTodoTab">
-  <h2>Your todo's</h2>
+  <div class="todoTitleFilter">
+    <h2>Your todo's</h2>
+  </div>
   <div class="divider"></div>
   <div class="createTodo card" onclick="createTodo()">
     <i class="fa-solid fa-plus"></i>
@@ -109,17 +112,164 @@ function showTodos() {
 </div>
 `;
 
+  //   let todoContainerUnfinished = document.querySelector(
+  //     '#todoContainerUnfinished'
+  //   );
+  //   let todoCardContainerFinished = document.querySelector(
+  //     '#todoCardContainerFinished'
+  //   );
+
+  let filterTodosContainer = document.querySelector(".todoTitleFilter");
+
+  // Print the todo Cards from todoList that gets from local storage start
+
+  // Create filter categorys
+  renderCategoryFilter(filterTodosContainer);
+  // Create filter categorys end.
+
+  printTodosOnPage(todoList);
+
+  // add eventlistener for removing todoCards end
+}
+
+//Render categorys
+function renderCategoryFilter(filterTodosContainer) {
+  let filterContainer = document.createElement("div");
+  let filterList = [
+    { icon: `<i class="fa-solid fa-house"></i>`, value: "Home" },
+    { icon: `<i class="fa-solid fa-school"></i>`, value: "School" },
+    { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: "Training" },
+    { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: "Chores" },
+  ];
+
+  filterList.forEach((category) => {
+    let input = document.createElement("input");
+    input.type = "checkbox";
+
+    input.value = `${category.value}`;
+    input.id = `${category.value}`;
+    input.setAttribute("name", "filterTodos");
+    // creating label for checkbox
+    let label = document.createElement("label");
+
+    // assigning attributes for the created label tag
+    label.htmlFor = `${category.value}`;
+    label.innerHTML = `${category.icon}`;
+
+    // appending the created text to
+    // the created label tag
+    label.append(input);
+    filterContainer.append(label);
+
+    input.addEventListener("change", () => {
+      renderFilterdcategorys();
+    });
+  });
+  filterTodosContainer.append(filterContainer);
+}
+
+// Render when filterd on category
+function renderFilterdcategorys() {
+  let catergoryChoices = Array.from(document.getElementsByName("filterTodos"));
+  let filterArray = [];
+  catergoryChoices.forEach((category) => {
+    if (category.checked) {
+      filterArray.push(category.value);
+      //   console.log(filterString);
+    }
+  });
+  console.log(filterArray);
+  let todoLists = document.querySelectorAll(".todoCategory");
+  console.log(todoLists);
+  if (filterArray.length > 0) {
+    filterArray.forEach((filter) => {
+      todoList.forEach((todo) => {
+        if (todo.category.includes(filter)) {
+          renderFilterdSearch(filterArray);
+        }
+      });
+    });
+  } else {
+    showTodos();
+  }
+
+  // todoCategory.innerHTML === category.value
+}
+
+function renderFilterdSearch(filterArray) {
   let todoContainerUnfinished = document.querySelector(
     "#todoContainerUnfinished"
   );
   let todoCardContainerFinished = document.querySelector(
     "#todoCardContainerFinished"
   );
-
-  // Print the todo Cards from todoList that gets from local storage start
+  todoContainerUnfinished.innerHTML = "";
+  todoCardContainerFinished.innerHTML = "";
 
   todoList.forEach((todoObject) => {
+    filterArray.forEach((filter) => {
+      if (todoObject.category.includes(filter)) {
+        let result = [];
+        result.push(todoObject);
+        console.log(result);
+        let todoCard = document.createElement("div");
+        todoCard.classList.add("card");
+        let todoTitle = document.createElement("p");
+        todoTitle.innerText = todoObject.title;
+        let todoCategory = document.createElement("div");
+        todoCategory.classList.add("todoCategory");
+        if (todoObject.category === "Home") {
+          todoCategory.innerHTML = `<i class="fa-solid fa-house"></i>`;
+        } else if (todoObject.category === "School") {
+          todoCategory.innerHTML = `<i class="fa-solid fa-school"></i>`;
+        } else if (todoObject.category === "Training") {
+          todoCategory.innerHTML = `<i class="fa-solid fa-dumbbell"></i>`;
+        } else {
+          todoCategory.innerHTML = `<i class="fa-solid fa-hand-sparkles"></i>`;
+        }
+
+        todoCard.innerHTML += `
+        <button class="removeBtn">
+        <i class="fa-regular fa-trash-can"></i>
+        </button>`;
+
+        todoCard.append(todoTitle, todoCategory);
+
+        if (todoObject.status === "unfinished") {
+          todoCard.classList.add("unfinished");
+          todoContainerUnfinished.append(todoCard);
+        } else {
+          todoCard.classList.add("finished");
+          todoCardContainerFinished.append(todoCard);
+        }
+      }
+    });
+
     //New Verson
+  });
+  // add eventlistener for removing todoCards start
+  let removeBtns = document.querySelectorAll(".removeBtn");
+  Array.from(removeBtns).forEach((removeBtn) => {
+    removeBtn.addEventListener("click", () => {
+      removeTodo(removeBtn);
+    });
+    // console.log(todoList);
+  });
+}
+
+function printTodosOnPage(list) {
+  let todoContainerUnfinished = document.querySelector(
+    "#todoContainerUnfinished"
+  );
+  let todoCardContainerFinished = document.querySelector(
+    "#todoCardContainerFinished"
+  );
+  todoContainerUnfinished.innerHTML = "";
+  todoCardContainerFinished.innerHTML = "";
+
+  list.forEach((todoObject) => {
+    // filterArray.forEach((filter) => {
+    //   if (todoObject.category.includes(filter)) {
     let todoCard = document.createElement("div");
     todoCard.classList.add("card");
     let todoTitle = document.createElement("p");
@@ -137,9 +287,9 @@ function showTodos() {
     }
 
     todoCard.innerHTML += `
-    <button class="removeBtn">
-    <i class="fa-regular fa-trash-can"></i>
-    </button>`;
+            <button class="removeBtn">
+            <i class="fa-regular fa-trash-can"></i>
+            </button>`;
 
     todoCard.append(todoTitle, todoCategory);
 
@@ -150,30 +300,19 @@ function showTodos() {
       todoCard.classList.add("finished");
       todoCardContainerFinished.append(todoCard);
     }
-  });
-  // Print the todo Cards from todoList that gets from local storage end
+    //   }
+    // });
 
+    //New Verson
+  });
   // add eventlistener for removing todoCards start
   let removeBtns = document.querySelectorAll(".removeBtn");
-
   Array.from(removeBtns).forEach((removeBtn) => {
     removeBtn.addEventListener("click", () => {
-      todoList.forEach((todoObject) => {
-        if (removeBtn.parentElement.innerHTML.includes(todoObject.title)) {
-          let index = todoList.findIndex((todoObject) =>
-            removeBtn.parentElement.innerHTML.includes(todoObject.title)
-          );
-          todoList.splice(index, 1);
-        }
-        removeBtn.parentElement.remove();
-        // console.log(todoObject.index());
-        saveTodoData();
-      });
+      removeTodo(removeBtn);
     });
     // console.log(todoList);
   });
-
-  // add eventlistener for removing todoCards end
 }
 
 function showHabits() {
@@ -455,8 +594,18 @@ function createHabit() {
 
 // Remove funktion för todoCards
 
-function removeTodo() {
-  console.log(this.parent);
+function removeTodo(removeBtn) {
+  todoList.forEach((todoObject) => {
+    if (removeBtn.parentElement.innerHTML.includes(todoObject.title)) {
+      let index = todoList.findIndex((todoObject) =>
+        removeBtn.parentElement.innerHTML.includes(todoObject.title)
+      );
+      todoList.splice(index, 1);
+    }
+    removeBtn.parentElement.remove();
+    // console.log(todoObject.index());
+    saveTodoData();
+  });
 }
 
 // Remove Funktion för todoCards end

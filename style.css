@@ -421,6 +421,16 @@ body {
   position: relative;
 }
 
+.todoTitleFilter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todoTitleFilter > div > label {
+  margin-left: 16px;
+}
+
 /* Home tab styling start */
 .homeCardContainer {
   min-height: 33%;
