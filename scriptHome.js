@@ -1,7 +1,7 @@
 // -_-
 
 // Globals
-
+let habitContainer = document.querySelector('.habitCardContainer');
 let contentContainer = document.querySelector('.contentContainer');
 let homeTab = document.querySelector('#homeTab');
 let todoTab = document.querySelector('#todoTab');
@@ -12,6 +12,7 @@ let weatherTab = document.querySelector('#weatherTab');
 
 // Global Arrays
 let todoList = []; // JSON.parse(localStorage.getItem('links'));
+let habitList = [];
 
 function showHome() {
   //removing styles and content
@@ -330,29 +331,48 @@ function showHabits() {
   <div class="habitContainer">
     <div class="habitHeader">
         <h2>Your Habits</h2>
-        <button class="btn primary"><i class="fa-solid fa-plus"></i>Add Habits</button>
+        <button class="btn primary" onclick="createHabit()"><i class="fa-solid fa-plus"></i>Add Habits</button>
     </div>
     <div class="habitCardContainer">
-        <div class="habitCard">
-            <h3>Habit?</h3>
-            <h4>Uncompleted</h4>
-        </div>
-        <div class="habitCard">
-            <h3>Habit?</h3>
-            <h4>Uncompleted</h4>
-        </div>
-        <div class="habitCard">
-            <h3>Habit?</h3>
-            <h4>Uncompleted</h4>
-        </div>
-        <div class="habitCard">
-            <h3>Habit?</h3>
-            <h4>Uncompleted</h4>
-        </div>
 
     </div>
 </div>
   `;
+
+  let habitCardContainer = document.querySelector('.habitCardContainer');
+
+  habitList.forEach((habitObject) => {
+    console.log(habitObject);
+
+    let habitCard = document.createElement('div');
+    habitCard.classList.add('habitCard');
+
+    let habitTitle = document.createElement('p');
+    habitTitle.innerText = habitObject.title;
+
+    let habitCategory = document.createElement('p');
+    habitCategory.innerText = habitObject.desc;
+
+    habitCard.style.backgroundImage = habitObject.background;
+
+    if (habitObject.category === 'Training') {
+      habitCard.style.backgroundImage =
+        "url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+    } else if (habitObject.category === 'Mindfullness') {
+      habitCard.style.backgroundImage =
+        "url('https://images.unsplash.com/photo-1611800065908-233b597db552?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+    } else if (habitObject.category === 'Cleaning') {
+      habitCard.style.backgroundImage =
+        "url('https://plus.unsplash.com/premium_photo-1661662917928-b1a42a08d094?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+    } else {
+      habitCard.style.backgroundImage =
+        "url('https://images.unsplash.com/photo-1610312856669-2cee66b2949c?q=80&w=1905&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+    }
+    console.log(habitObject.category);
+
+    habitCard.append(habitTitle, habitCategory);
+    habitCardContainer.append(habitCard);
+  });
 }
 
 function showTimer() {
@@ -505,6 +525,71 @@ function createTodo() {
   });
 }
 
+function createHabit() {
+  contentContainer.innerHTML = '';
+  contentContainer.innerHTML = `
+  <div class = "habitInfo">
+  <div> 
+    <label for="whatHabit"> What is your Habit:</label>
+    <input
+      type = "text"
+      name = "whatHabit"
+      id = "whatHabit"
+      placeholder = "Write the title of your habit"
+      />
+    </div>
+    <div>
+      <label for="descHabit">Describe it:</label>
+      <input
+      type="text"
+      name="descHabit"
+      id="descHabit"
+      placeholder="Describe your habit"
+    />
+  </div>
+
+  <div class="categoryInfoHabit">
+    <label for="categoryChoice">Habit type:</label>
+    <select name="categoryChoiceHabit" id="categoryChoiceHabit">
+      <option value="Choose one">Choose one</option>
+      <option value="Training">Training</option>
+      <option value="Mindfullness">Mindfullness</option>
+      <option value="Cleaning">Cleaning</option>
+      <option value="Ultra masculine workout for dudemen">Ultra masculine workout for dudemen</option>
+    </select>
+  </div>
+  <button class="btn primary" id="saveBtnHabit" >Save</button>
+  `;
+
+  // let categoryChoiceHabit = document.querySelector("#categoryChoiceHabit");
+
+  let saveBtn = document.querySelector('#saveBtnHabit');
+
+  saveBtn.addEventListener('click', () => {
+    let habitObject = {};
+    if (
+      document.querySelector('#whatHabit').value &&
+      document.querySelector('#descHabit').value &&
+      document.querySelector('#categoryChoiceHabit').value &&
+      document.querySelector('#categoryChoiceHabit').value !== 'Choose one'
+    ) {
+      habitObject.id = 'testPersone';
+      habitObject.title = document.querySelector('#whatHabit').value;
+      habitObject.desc = document.querySelector('#descHabit').value;
+      habitObject.category = document.querySelector(
+        '#categoryChoiceHabit'
+      ).value;
+    }
+
+    habitList.push(habitObject);
+    saveHabitData();
+    alert('A new Habit has been added');
+    showHabits();
+
+    console.log(habitObject, habitList);
+  });
+}
+
 // Funktioner som genererar content- end
 
 // Remove funktion för todoCards
@@ -536,5 +621,14 @@ function getTodoData() {
   todoList = JSON.parse(localStorage.getItem('todoData'));
 }
 
+function saveHabitData() {
+  localStorage.setItem('habitData', JSON.stringify(habitList));
+}
+
+function getHabitData() {
+  habitList = JSON.parse(localStorage.getItem('habitData'));
+}
+
+getHabitData();
 getTodoData();
 showHome();

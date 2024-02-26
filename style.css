@@ -659,6 +659,10 @@ body {
   border-radius: var(--_borderRm);
   box-shadow: var(--_boxShadow);
 }
+
+.habitInfo {
+  border: 2px solid black;
+}
 /* Habit Styiling end */
 
 /* Main container styling end Frans Simon */
