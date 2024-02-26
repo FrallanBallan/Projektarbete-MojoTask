@@ -1,4 +1,3 @@
-//Login - createAccount start - Angelo divarna;
 //Login - createAccount start - Angelo
 //divarna
 let LoginForm = document.querySelector('.Login-form');
@@ -7,7 +6,6 @@ let CreateForm = document.querySelector('.CreateAccount-form');
 let BtnToCreate = document.querySelector('#CreateBtn');
 let CreateAccountBtn = document.querySelector('#CreateAccountBtn');
 let AlreadyAccountBtn = document.querySelector('#alredyaccount');
-
 let LoggainBtn = document.querySelector('#LoginBtn');
 //inputs
 let Newuser = document.querySelector('#Createusername');
@@ -43,11 +41,11 @@ function LoginClose() {
 }
 //funktionen som öppnar tillbaka Login och stänger create
 function LoginOpen() {
+  CreateForm.classList.add('hidden');
+  CreateForm.classList.remove('focus');
+
   LoginForm.classList.add('focuss');
   LoginForm.classList.remove('hidden');
-
-  CreateForm.classList.remove('focus');
-  CreateForm.classList.add('hidden');
   NollställLogin();
 }
 //knappen som man går till CreateAccountform för att skapa ett konto
@@ -56,7 +54,6 @@ BtnToCreate.addEventListener('click', () => {
 });
 //knappen som man skapar ett konto på
 CreateAccountBtn.addEventListener('click', () => {
-  LoginOpen();
   //om lösen input och reapeatlösen input matchar gå vidare
   if (NewLösen.value === RepeatLösen.value) {
     if (
@@ -100,6 +97,8 @@ LoggainBtn.addEventListener('click', () => {
     p.innerText = 'Felaktigt användarnamn eller lösenord!';
   }
 });
+
+//Login - CreateAccount End Angelo
 
 // Login - CreateAccount End Angelo
 
@@ -180,7 +179,6 @@ function showHome() {
     todoUl.append(todoLi);
   });
   // Render li from todoList and show on home page -end
-  NollställLogin();
 }
 
 function showTodos() {
