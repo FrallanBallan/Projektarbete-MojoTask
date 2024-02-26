@@ -1,0 +1,31 @@
+<div class="homeTodoTab">
+  <h2>Your todo's</h2>
+  <div class="divider"></div>
+  <div class="createTodo card" onclick="createTodo()">
+    <i class="fa-solid fa-plus"></i>
+    <p>Create Todo</p>
+  </div>
+  <div class="divider"></div>
+  <h3>Unfinished</h3>
+  <div class="todoCardContainer">
+    <div class="unfinished card">
+      <button class="removeBtn" onclick="removeTodo()">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+      <div class="todoCategory"><i class="fa-solid fa-house"></i></div>
+      <p>Your Todo</p>
+      <!--${todo.item.todo} -->
+    </div>
+  </div>
+  <div class="divider"></div>
+  <h3>Finished</h3>
+  <div class="todoCardContainer">
+    <div class="finished card">
+      <button class="removeBtn" onclick="removeTodo()">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+      <div class="todoCategory"><i class="fa-solid fa-house"></i></div>
+      <p>Your Todo</p>
+    </div>
+  </div>
+</div>
