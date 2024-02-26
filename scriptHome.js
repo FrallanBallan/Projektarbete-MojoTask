@@ -346,6 +346,7 @@ function showHabits() {
   `;
 
   let habitCardContainer = document.querySelector(".habitCardContainer");
+  console.log(habitList);
 
   habitList.forEach((habitObject) => {
     console.log(habitObject);
