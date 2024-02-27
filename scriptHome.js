@@ -344,6 +344,9 @@ function showHabits() {
     console.log(habitObject.category);
 
     habitCard.append(habitTitle, habitCategory, doneHabit, waitingHabit);
+    //varje gång vi skapar upp så kallar vi på habitCounter. för att inte behöva targeta i funktuionen habitcounter
+    //CALLBACK 582
+    habitCounter(habitCard, doneHabit, waitingHabit);
     habitCardContainer.append(habitCard);
   });
   // add eventlistener for removing habitCards start
@@ -554,12 +557,14 @@ function createHabit() {
       document.querySelector("#categoryChoiceHabit").value &&
       document.querySelector("#categoryChoiceHabit").value !== "Choose one"
     ) {
-      habitObject.id = "testPersone";
+      habitObject.name = "Habit Data Name";
       habitObject.title = document.querySelector("#whatHabit").value;
       habitObject.desc = document.querySelector("#descHabit").value;
       habitObject.category = document.querySelector(
         "#categoryChoiceHabit"
       ).value;
+      habitObject.countNumber = 0;
+      habitObject.id = Date.now().toString();
     }
 
     habitList.push(habitObject);
@@ -572,6 +577,38 @@ function createHabit() {
 }
 
 // Funktioner som genererar content- end
+
+//Funktion som räknar habit streak -start
+//CALLBACK 348
+
+function habitCounter(habitCard, doneHabit, waitingHabit, habitObject) {
+  let countDiv = document.createElement("div");
+  countDiv.classList.add("countDiv");
+  countDiv.innerHTML = `<i class="fa-brands fa-free-code-camp"></i>`;
+
+  let countNumber = 0;
+
+  // let countNumber = 0;
+
+  doneHabit.addEventListener("click", () => {
+    countNumber++;
+    counter.innerText = countNumber;
+    console.log(countNumber);
+  });
+  waitingHabit.addEventListener("click", () => {
+    if (countNumber > 0) {
+      countNumber--;
+      counter.innerText = countNumber;
+    }
+  });
+
+  let counter = document.createElement("p");
+  counter.innerText = countNumber;
+  counter.classList.add("counter");
+  habitCard.append(countDiv, counter);
+}
+
+//Funktion som räknar habit streak -end
 
 // Remove funktion för todoCards
 
@@ -591,7 +628,7 @@ function removeTodo(removeBtn) {
 function removeHabit(removeBtn) {
   habitList.forEach((todoObject) => {
     if (removeBtn.parentElement.innerHTML.includes(todoObject.title)) {
-      let index = todoList.findIndex((todoObject) =>
+      let index = habitList.findIndex((todoObject) =>
         removeBtn.parentElement.innerHTML.includes(todoObject.title)
       );
       habitList.splice(index, 1);
