@@ -510,6 +510,7 @@ function createTodo() {
 }
 
 function createHabit() {
+  //Gör om till create label + input + radio button (Prioritet)
   contentContainer.innerHTML = "";
   contentContainer.innerHTML = `
   <div class = "habitInfo">
