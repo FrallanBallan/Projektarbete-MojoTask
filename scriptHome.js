@@ -466,8 +466,30 @@ function showHabits() {
     });
     // console.log(todoList);
   });
+} // but here
+// Functions for filter and sort habits - start
+function filterPriorites(list, value) {
+  console.log(list, value);
+  let filterList = habitList.filter((object) => object.status == value);
+  console.log(filterList);
+  if (filterList.length) {
+    printHabitsOnPage(filterList);
+  } else {
+    printHabitsOnPage(habitList);
+  }
 }
-
+//Schmeckles are not here
+function sortPriorites(list, value) {
+  let sortList = list;
+  if (value == 'highHabit') {
+    sortList.sort((a, b) => b.countNumber - a.countNumber);
+    printHabitsOnPage(sortList);
+  } else if (value == 'lowestHabit') {
+    sortList.sort((a, b) => a.countNumber - b.countNumber);
+    printHabitsOnPage(sortList);
+  }
+}
+// Functions for filter and sort habits - end
 function showTimer() {
   //removing styles and content
   contentContainer.innerHTML = '';
