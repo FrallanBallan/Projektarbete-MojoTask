@@ -32,25 +32,25 @@ body {
 
 /* Fonts */
 .roboto-regular {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .lato-regular {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .lato-bold {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
 .montserrat-heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -67,7 +67,7 @@ body {
 
 /* Button Styling */
 .btn {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
   border: none;
@@ -133,15 +133,15 @@ body {
   background-color: var(--_bgColor);
 }
 .DaddyBoxjr {
-  width: 100%;
+  width: 50%;
 }
 .DaddyBox .Login-form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 50vh;
-  width: 40%;
+  height: 400px;
+  width: 300px;
   border: solid rgb(223, 223, 223) 1px;
   border-radius: var(--_borderRm);
   padding: 0.3rem;
@@ -206,8 +206,8 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 50vh;
-  width: 40%;
+  height: 400px;
+  width: 300px;
   border: solid rgb(223, 223, 223) 1px;
   border-radius: var(--_borderRm);
   padding: 0.3rem;
@@ -274,6 +274,332 @@ body {
   transform: translateX(190%);
 }
 /*Animation Login styles end Angelo*/
+/*Loading Screen start Angelo*/
+.LoadingScreen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--_primaryColor);
+  z-index: 9999;
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.quot-box {
+  width: 70%;
+}
+.Welcome-Message {
+  font-size: 2.5rem;
+  color: var(--_secondaryColor);
+  margin-bottom: 1rem;
+}
+.quot {
+  color: white;
+  font-size: 2rem;
+}
+.loading .line-box {
+  padding: 2px;
+  width: 40%;
+  height: 28px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+.loading .line-box .line {
+  height: 20px;
+  border-radius: 20px;
+  background: var(--_successColor);
+  animation: loading 4.9s forwards cubic-bezier(0, 0, 0, 0);
+}
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/*Loading Screen end Angelo*/
+/*MediaQuery for animation start Angelo*/
+@media (min-width: 320px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(5%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(-50%);
+  }
+}
+@media (min-width: 365px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(15%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(-40%);
+  }
+}
+@media (min-width: 400px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(25%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(-40%);
+  }
+}
+@media (min-width: 450px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(30%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(-40%);
+  }
+}
+@media (min-width: 500px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(40%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(-20%);
+  }
+}
+@media (min-width: 550px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(50%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(-20%);
+  }
+}
+@media (min-width: 600px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(60%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(0%);
+  }
+}
+@media (min-width: 670px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(70%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(10%);
+  }
+}
+@media (min-width: 740px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(80%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(20%);
+  }
+}
+@media (min-width: 810px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(100%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(30%);
+  }
+}
+@media (min-width: 890px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(110%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(40%);
+  }
+}
+@media (min-width: 960px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(120%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(45%);
+  }
+}
+@media (min-width: 1030px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(130%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+  .hidden {
+    transform: translatex(55%);
+  }
+}
+@media (min-width: 1100px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(140%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1170px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(150%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1230px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(160%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1300px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(165%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1330px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(175%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1390px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(185%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1430px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(190%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1470px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(195%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1505px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(200%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-55%);
+  }
+}
+@media (min-width: 1545px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(205%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+/*MediaQuery for animation end Angelo*/
 
 /* Home page styling start */
 
@@ -318,7 +644,7 @@ body {
 .linkList a {
   text-decoration: none;
   color: var(--_textColor);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -363,7 +689,7 @@ body {
 .tab {
   color: var(--_textColor);
   cursor: pointer;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
   width: 90%;
@@ -505,7 +831,7 @@ body {
 
 .homeTodoTab h2,
 .homeTodoTab h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -519,7 +845,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -538,7 +864,7 @@ body {
 .card {
   height: 150px;
   width: 150px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
   cursor: pointer;
@@ -593,7 +919,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
   background: white;
@@ -669,7 +995,7 @@ padding: 20px;
   flex-direction: column;
   justify-content: space-around;
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
