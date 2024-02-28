@@ -599,6 +599,46 @@ body {
     transform: translateX(-50%);
   }
 }
+@media (min-width: 1645px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(220%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1745px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(240%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1845px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(255%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 1945px) {
+  .focuss {
+    transition: 0.7s ease-in-out;
+    transform: translateX(275%);
+  }
+  .focus {
+    transition: 0.7s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
 /*MediaQuery for animation end Angelo*/
 
 /* Home page styling start */
