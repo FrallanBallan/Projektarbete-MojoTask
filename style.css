@@ -431,6 +431,11 @@ body {
   margin-left: 16px;
 }
 
+.todoTitleFilter > div > select {
+  margin-left: 16px;
+  padding: 4px;
+}
+
 /* Home tab styling start */
 .homeCardContainer {
   min-height: 33%;
