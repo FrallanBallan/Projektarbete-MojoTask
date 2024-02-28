@@ -187,13 +187,53 @@ function renderCategoryFilter(filterTodosContainer) {
     });
   });
 
+  let timeFilters = document.createElement('select');
+  timeFilters.id = 'timeFilter';
+
+  let timeFiltersList = [
+    {
+      icon: `<i class="fa-solid fa-arrow-up"></i>`,
+      value: 'all',
+      text: 'All',
+    },
+    {
+      icon: `<i class="fa-solid fa-arrow-up"></i>`,
+      value: 'deadlineUp',
+      text: 'Deadline Asc',
+    },
+    {
+      icon: `<i class="fa-solid fa-arrow-down"></i>`,
+      value: 'deadlineDown',
+      text: 'Deadline Des',
+    },
+    {
+      icon: `<i class="fa-solid fa-arrow-up"></i>`,
+      value: 'timeUp',
+      text: 'Time Asc',
+    },
+    {
+      icon: `<i class="fa-solid fa-arrow-down"></i>`,
+      value: 'timeDown',
+      text: 'Time Des',
+    },
+  ];
+  timeFiltersList.forEach((optionLi) => {
+    console.log(optionLi);
+    let timeOption = document.createElement('option');
+    timeOption.value = optionLi.value;
+    // let icon = document.createElement('span');
+    // icon.innerHTML = optionLi.icon;
+    timeOption.text = optionLi.text;
+    // timeOption.setAttribute('data-icon', `${optionLi.icon}`);
+    timeFilters.append(timeOption);
+  });
+  filterContainer.append(timeFilters);
   filterTodosContainer.append(filterContainer);
 }
 
 // Render when filterd on category
 
 function renderFilterdSearch(filterArray) {
-  console.log(filterArray);
   let filterdArray = [];
   todoList.forEach((todo) => {
     filterArray.forEach((filter) => {
@@ -214,6 +254,12 @@ function printTodosOnPage(list) {
   );
   todoContainerUnfinished.innerHTML = '';
   todoCardContainerFinished.innerHTML = '';
+
+  document.querySelector('#timeFilter').addEventListener('change', () => {
+    filterOnTimes(list, document.querySelector('#timeFilter').value);
+  });
+
+  console.log(list);
 
   list.forEach((todoObject) => {
     // filterArray.forEach((filter) => {
@@ -248,8 +294,6 @@ function printTodosOnPage(list) {
       todoCard.classList.add('finished');
       todoCardContainerFinished.append(todoCard);
     }
-    //   }
-    // });
 
     //New Verson
   });
@@ -261,6 +305,45 @@ function printTodosOnPage(list) {
     });
     // console.log(todoList);
   });
+}
+
+function filterOnTimes(list, value) {
+  console.log(list, value);
+  let newList = list;
+  console.log(newList);
+
+  if (value === 'deadlineUp') {
+    // Sort the list in deadline highest first
+    newList.sort(function (a, b) {
+      // Convert the date strings to Date objects
+      let dateA = new Date(a.deadline);
+      let dateB = new Date(b.deadline);
+      // Subtract the dates to get a value that is either negative, positive, or zero
+      return dateA - dateB;
+    });
+    printTodosOnPage(newList);
+  } else if (value === 'deadlineDown') {
+    // Sort the list in deadline lowest first
+    newList.sort(function (a, b) {
+      // Convert the date strings to Date objects
+      let dateA = new Date(a.deadline);
+      let dateB = new Date(b.deadline);
+      // Subtract the dates to get a value that is either negative, positive, or zero
+      return dateB - dateA;
+    });
+    printTodosOnPage(newList);
+  } else if (value === 'timeUp') {
+    // Sort with time highest first
+    newList.sort((a, b) => a.timeestimate - b.timeestimate);
+    printTodosOnPage(newList);
+  } else if (value === 'timeDown') {
+    // SOrt time lowest first
+    newList.sort((a, b) => b.timeestimate - a.timeestimate);
+    printTodosOnPage(newList);
+  }
+  // console.log(newList);
+
+  return newList;
 }
 
 function showHabits() {
@@ -480,6 +563,7 @@ function createTodo() {
       todoObject.title = document.querySelector('#whatTodo').value;
       todoObject.desc = document.querySelector('#descTodo').value;
       todoObject.deadline = document.querySelector('#deadlineTodo').value;
+      todoObject.timeestimate = document.querySelector('#timeTodo').value;
       todoObject.category = document.querySelector('#categoryChoice').value;
       todoObject.status = document.querySelector(
         'input[name="TodoChoice"]:checked'
@@ -571,18 +655,25 @@ function removeTodo(removeBtn) {
         removeBtn.parentElement.innerHTML.includes(todoObject.title)
       );
       todoList.splice(index, 1);
+      console.log(index, removeBtn.parentElement.innerHTML, todoObject.title);
     }
     removeBtn.parentElement.remove();
     // console.log(todoObject.index());
     saveTodoData();
   });
 }
+// Remove Funktion för todoCards end
+
+// Remove funktion för habitCars
+
 function removeHabit(removeBtn) {
   habitList.forEach((todoObject) => {
+    console.log(todoObject.title, removeBtn.parentElement.innerHTML);
     if (removeBtn.parentElement.innerHTML.includes(todoObject.title)) {
-      let index = todoList.findIndex((todoObject) =>
+      let index = habitList.findIndex((todoObject) =>
         removeBtn.parentElement.innerHTML.includes(todoObject.title)
       );
+      console.log(index, removeBtn.parentElement.innerHTML, todoObject.title);
       habitList.splice(index, 1);
     }
     removeBtn.parentElement.remove();
@@ -591,7 +682,7 @@ function removeHabit(removeBtn) {
   });
 }
 
-// Remove Funktion för todoCards end
+// Remove Funktion för habitcards end
 
 // Funktioner för att spara i Local Storage
 
