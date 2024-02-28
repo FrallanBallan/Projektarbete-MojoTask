@@ -478,7 +478,7 @@ function printHabitsOnPage(list) {
     });
     // console.log(todoList);
   });
-}
+} // but here
 // Functions for filter and sort habits - start
 function filterPriorites(list, value) {
   console.log(list, value);
@@ -490,7 +490,7 @@ function filterPriorites(list, value) {
     printHabitsOnPage(habitList);
   }
 }
-
+//Schmeckles are not here
 function sortPriorites(list, value) {
   let sortList = list;
   if (value == "highHabit") {
