@@ -92,7 +92,9 @@ AlreadyAccountBtn.addEventListener("click", () => {
 });
 
 LoggainBtn.addEventListener("click", () => {
-  //hämtar sessionstorage med keyn alla users och lägger in detta i en variabel
+  // Rensa session storage för att inte ha flera användares data vid inloggning kvar
+  sessionStorage.clear();
+  //hämtar localestorage med keyn alla users och lägger in detta i en variabel
   let storedUsers = JSON.parse(localStorage.getItem("users"));
   //om storedUsers hadownpropery(kollar så att objektet innehåller en specifik egenskap såg den kollar om storeduser innehåller likadant användarnamn som användaren har stoppat in i inputen)
   if (
@@ -111,6 +113,20 @@ LoggainBtn.addEventListener("click", () => {
     setTimeout(() => {
       window.location.href = "home.html";
     }, 5000); // 5 sekunder
+
+    // Hämtar todoData från local storage
+    let todoData = JSON.parse(localStorage.getItem("todoData"));
+    if (todoData) {
+      // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
+      let userTodoData = todoData.filter((item) => item.id === Namn.value);
+      //nu använd seassion storage istället för att överföra datan känns som en bättre och enklare ide.
+      //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
+      sessionStorage.setItem("userTodoData", JSON.stringify(userTodoData));
+      sessionStorage.setItem("NameUser", Namn.value);
+
+      //meddelar simon som sitter med todo att han måste hämta Nameuser från sessionStorage och dess value ska tilldelas som id vid skapadet av en todo
+      //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
+    }
 
     NollställLogin();
   } else {

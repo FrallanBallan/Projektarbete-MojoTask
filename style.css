@@ -476,6 +476,16 @@ body {
   position: relative;
 }
 
+.todoTitleFilter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todoTitleFilter > div > label {
+  margin-left: 16px;
+}
+
 /* Home tab styling start */
 .homeCardContainer {
   min-height: 33%;
@@ -684,6 +694,7 @@ body {
   padding-block-start: 48px;
 }
 .habitCard {
+  position: relative;
   height: 300px;
   width: 100%;
   background-image: url(https://source.unsplash.com/random);
@@ -703,6 +714,10 @@ body {
   cursor: pointer;
   border-radius: var(--_borderRm);
   box-shadow: var(--_boxShadow);
+}
+
+.habitInfo {
+  border: 2px solid black;
 }
 /* Habit Styiling end */
 
