@@ -25,8 +25,15 @@ function showHome() {
   timerTab.removeAttribute('style');
   calenderTab.removeAttribute('style');
   weatherTab.removeAttribute('style');
+  todoTab.removeAttribute('style');
+  habitsTab.removeAttribute('style');
+  timerTab.removeAttribute('style');
+  calenderTab.removeAttribute('style');
+  weatherTab.removeAttribute('style');
   //removing styles and content
 
+  homeTab.style.width = '110%';
+  homeTab.style.borderRadius = '0% 10% 10% 0%';
   homeTab.style.width = '110%';
   homeTab.style.borderRadius = '0% 10% 10% 0%';
 
@@ -97,7 +104,15 @@ function showTodos() {
   timerTab.removeAttribute('style');
   calenderTab.removeAttribute('style');
   weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = '';
+  homeTab.removeAttribute('style');
+  habitsTab.removeAttribute('style');
+  timerTab.removeAttribute('style');
+  calenderTab.removeAttribute('style');
+  weatherTab.removeAttribute('style');
   //removing styles and content
+  todoTab.style.width = '110%';
+  todoTab.style.borderRadius = '0% 10% 10% 0%';
   todoTab.style.width = '110%';
   todoTab.style.borderRadius = '0% 10% 10% 0%';
   contentContainer.innerHTML = `
@@ -134,6 +149,10 @@ function showTodos() {
 function renderCategoryFilter(filterTodosContainer) {
   let filterContainer = document.createElement('div');
   let filterList = [
+    { icon: `<i class="fa-solid fa-house"></i>`, value: 'Home' },
+    { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
+    { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
+    { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: 'Chores' },
     { icon: `<i class="fa-solid fa-house"></i>`, value: 'Home' },
     { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
     { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
@@ -357,7 +376,15 @@ function showHabits() {
   timerTab.removeAttribute('style');
   calenderTab.removeAttribute('style');
   weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = '';
+  todoTab.removeAttribute('style');
+  homeTab.removeAttribute('style');
+  timerTab.removeAttribute('style');
+  calenderTab.removeAttribute('style');
+  weatherTab.removeAttribute('style');
   //removing styles and content
+  habitsTab.style.width = '110%';
+  habitsTab.style.borderRadius = '0% 10% 10% 0%';
   habitsTab.style.width = '110%';
   habitsTab.style.borderRadius = '0% 10% 10% 0%';
 
@@ -390,11 +417,23 @@ function showHabits() {
     </div>
 </div>
   `;
-
-  let habitCardContainer = document.querySelector('.habitCardContainer');
+  //Se detta Simon HUX
+  printHabitsOnPage(habitList);
+}
+function selectPrios(list) {
+  document.querySelector('#prioFilter').addEventListener('change', () => {
+    filterPriorites(list, document.querySelector('#prioFilter').value);
+  });
+  document.querySelector('#prioSort').addEventListener('change', () => {
+    sortPriorites(list, document.querySelector('#prioSort').value);
+  });
+}
+function printHabitsOnPage(list) {
   console.log(habitList);
 
-  habitList.forEach((habitObject) => {
+  let habitCardContainer = document.querySelector('.habitCardContainer');
+  habitCardContainer.innerHTML = '';
+  list.forEach((habitObject) => {
     console.log(habitObject);
 
     let habitCard = document.createElement('div');
@@ -618,6 +657,10 @@ function createTodo() {
       document.querySelector('#descTodo').value &&
       document.querySelector('#deadlineTodo').value &&
       document.querySelector('#categoryChoice').value &&
+      document.querySelector('#whatTodo').value &&
+      document.querySelector('#descTodo').value &&
+      document.querySelector('#deadlineTodo').value &&
+      document.querySelector('#categoryChoice').value &&
       document.querySelector('input[name="TodoChoice"]:checked').value &&
       document.querySelector('#categoryChoice').value !== 'Choose one'
     ) {
@@ -634,14 +677,17 @@ function createTodo() {
       todoList.push(todoObject);
       saveTodoData();
       alert('A new Todo has been added!');
+      alert('A new Todo has been added!');
       showTodos();
     } else {
+      alert('Check to make sure all fields has been filled!');
       alert('Check to make sure all fields has been filled!');
     }
   });
 }
 
 function createHabit() {
+  contentContainer.innerHTML = '';
   contentContainer.innerHTML = '';
   contentContainer.innerHTML = `
   <div class = "habitInfo">
@@ -798,17 +844,21 @@ function removeHabit(removeBtn) {
 function saveTodoData() {
   // console.log(todoList);
   localStorage.setItem('todoData', JSON.stringify(todoList));
+  localStorage.setItem('todoData', JSON.stringify(todoList));
 }
 
 function getTodoData() {
+  todoList = JSON.parse(localStorage.getItem('todoData'));
   todoList = JSON.parse(localStorage.getItem('todoData'));
 }
 
 function saveHabitData() {
   localStorage.setItem('habitData', JSON.stringify(habitList));
+  localStorage.setItem('habitData', JSON.stringify(habitList));
 }
 
 function getHabitData() {
+  habitList = JSON.parse(localStorage.getItem('habitData'));
   habitList = JSON.parse(localStorage.getItem('habitData'));
 }
 
