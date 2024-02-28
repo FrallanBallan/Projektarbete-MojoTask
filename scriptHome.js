@@ -365,7 +365,25 @@ function showHabits() {
   <div class="habitContainer">
     <div class="habitHeader">
         <h2>Your Habits</h2>
+        <div className="filterHabits">
+          <label for= "prioFilter"> Filter by priority: </label>
+          <select name="prio" id="prioFilter">
+          <option value="all"> All </option>
+          <option value="high"> High </option>
+          <option value="medium"> Medium </option>
+          <option value="low"> Low </option>
+          </select>
+          <label for= "prioSort"> Sort by: </label>
+          <select name="sort" id="prioSort">
+          <option value="all"> All </option>
+          <option value="highHabit"> Highest Habit Streak </option>
+          <option value="lowestHabit"> Lowest Habit Streak </option>
+          <option value="priority"> Priority </option>
+          </select>
+        </div>
         <button class="btn primary" onclick="createHabit()"><i class="fa-solid fa-plus"></i>Add Habits</button>
+        
+
     </div>
     <div class="habitCardContainer">
 
@@ -396,6 +414,16 @@ function showHabits() {
     let habitCategory = document.createElement('p');
     habitCategory.innerText = habitObject.desc;
 
+    let habitPrio = document.createElement('div');
+    habitPrio.classList.add('habitPrio');
+    if (habitObject.status === 'high') {
+      habitPrio.innerHTML = `<i class="fa-solid fa-bread-slice"></i> <i class="fa-solid fa-bread-slice"></i> <i class="fa-solid fa-bread-slice"></i>`;
+    } else if (habitObject.status === 'medium') {
+      habitPrio.innerHTML = `<i class="fa-solid fa-bread-slice"></i> <i class="fa-solid fa-bread-slice"></i>`;
+    } else {
+      habitPrio.innerHTML = `<i class="fa-solid fa-bread-slice"></i>`;
+    }
+
     habitCard.innerHTML += `
             <button class="removeBtn">
             <i class="fa-regular fa-trash-can"></i>
@@ -418,7 +446,16 @@ function showHabits() {
     }
     console.log(habitObject.category);
 
-    habitCard.append(habitTitle, habitCategory, doneHabit, waitingHabit);
+    habitCard.append(
+      habitTitle,
+      habitCategory,
+      doneHabit,
+      waitingHabit,
+      habitPrio
+    );
+    //varje gång vi skapar upp så kallar vi på habitCounter. för att inte behöva targeta i funktuionen habitcounter
+    //CALLBACK 582
+    habitCounter(habitCard, doneHabit, waitingHabit, habitObject);
     habitCardContainer.append(habitCard);
   });
   // add eventlistener for removing habitCards start
@@ -606,7 +643,7 @@ function createHabit() {
   </div>
 
   <div class="categoryInfoHabit">
-    <label for="categoryChoice">Habit type:</label>
+    <label for="categoryChoiceHabit">Habit type:</label>
     <select name="categoryChoiceHabit" id="categoryChoiceHabit">
       <option value="Choose one">Choose one</option>
       <option value="Training">Training</option>
@@ -614,6 +651,14 @@ function createHabit() {
       <option value="Cleaning">Cleaning</option>
       <option value="Ultra masculine workout for dudemen">Ultra masculine workout for dudemen</option>
     </select>
+  </div>
+    <div class="statusHabitInfo">
+    <label for="highHabitChoice">High Priority <input type="radio" name="habitChoice" id="highHabitChoice" value="high" checked/></label>
+    
+    <label for="mediumHabitChoice">Medium Priority <input type="radio" name="habitChoice" id="mediumHabitChoice" value="medium"/></label>
+    
+    <label for="lowHabitChoice">Low Priority <input type="radio" name="habitChoice" id="lowHabitChoice" value="low"/></label>
+    
   </div>
   <button class="btn primary" id="saveBtnHabit" >Save</button>
   `;
@@ -628,14 +673,19 @@ function createHabit() {
       document.querySelector('#whatHabit').value &&
       document.querySelector('#descHabit').value &&
       document.querySelector('#categoryChoiceHabit').value &&
+      document.querySelector('input[name="habitChoice"]:checked').value &&
       document.querySelector('#categoryChoiceHabit').value !== 'Choose one'
     ) {
-      habitObject.id = 'testPersone';
+      habitObject.name = 'Habit Data Name';
       habitObject.title = document.querySelector('#whatHabit').value;
       habitObject.desc = document.querySelector('#descHabit').value;
+      habitObject.status = document.querySelector(
+        'input[name="habitChoice"]:checked'
+      ).value;
       habitObject.category = document.querySelector(
         '#categoryChoiceHabit'
       ).value;
+      habitObject.countNumber = 0;
     }
 
     habitList.push(habitObject);
@@ -648,6 +698,40 @@ function createHabit() {
 }
 
 // Funktioner som genererar content- end
+
+//Funktion som räknar habit streak -start
+//CALLBACK 348
+
+function habitCounter(habitCard, doneHabit, waitingHabit, habitObject) {
+  let countDiv = document.createElement('div');
+  countDiv.classList.add('countDiv');
+  countDiv.innerHTML = `<i class="fa-brands fa-free-code-camp"></i>`;
+
+  // let countNumber = 0;
+
+  doneHabit.addEventListener('click', () => {
+    habitObject.countNumber++;
+    counter.innerText = habitObject.countNumber;
+    saveHabitData();
+    // localStorage.setItem(habitObject.id, countNumber);
+    // console.log(countNumber);
+  });
+  waitingHabit.addEventListener('click', () => {
+    if (countNumber > 0) {
+      habitObject.countNumber--;
+      counter.innerText = habitObject.countNumber;
+      saveHabitData();
+      // localStorage.setItem(habitObject.id, countNumber);
+    }
+  });
+
+  let counter = document.createElement('p');
+  counter.innerText = habitObject.countNumber;
+  counter.classList.add('counter');
+  habitCard.append(countDiv, counter);
+}
+
+//Funktion som räknar habit streak -end
 
 // Remove funktion för todoCards
 
