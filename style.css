@@ -432,8 +432,10 @@ body {
 }
 
 .todoTitleFilter > div > select {
-  margin-left: 16px;
-  padding: 4px;
+  /* margin-left: 16px; */
+  /* height: 100%; */
+  padding: 9px;
+  border-radius: 0 10px 10px 0;
 }
 
 /* Home tab styling start */
@@ -638,7 +640,8 @@ body {
 /* .filterHabits {
 padding: 20px;
 } */
-.habitHeader label {
+.habitHeader label,
+.todoTitleFilter > div > label {
   background: var(--_primaryColor);
   padding: 8px;
   border-radius: 10px 0 0 10px;
@@ -680,28 +683,26 @@ padding: 20px;
 }
 
 .habitInfo {
-    display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 16px;
-      width: 400px;
-      padding: 32px;
-      border-radius: var(--_borderRl);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-      background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 400px;
+  padding: 32px;
+  border-radius: var(--_borderRl);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
 }
 .statusHabitInfo {
   display: flex;
   flex-direction: column;
-
 }
-
 
 .doneHabit {
   width: 24px;
@@ -742,7 +743,7 @@ padding: 20px;
   cursor: pointer;
 }
 
-.waitingHabit:hover{
+.waitingHabit:hover {
   transform: scale(1.2);
 }
 .countDiv {
@@ -758,16 +759,15 @@ padding: 20px;
 }
 .counter {
   color: var(--_textColor);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .habitPrio {
   position: absolute;
   top: 0;
-
 }
 .habitPrio i {
   color: var(--_secondaryColor);
