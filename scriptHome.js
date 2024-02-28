@@ -153,10 +153,6 @@ function renderCategoryFilter(filterTodosContainer) {
     { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
     { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
     { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: 'Chores' },
-    { icon: `<i class="fa-solid fa-house"></i>`, value: 'Home' },
-    { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
-    { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
-    { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: 'Chores' },
   ];
 
   filterList.forEach((category) => {
@@ -658,10 +654,6 @@ function createTodo() {
       document.querySelector('#descTodo').value &&
       document.querySelector('#deadlineTodo').value &&
       document.querySelector('#categoryChoice').value &&
-      document.querySelector('#whatTodo').value &&
-      document.querySelector('#descTodo').value &&
-      document.querySelector('#deadlineTodo').value &&
-      document.querySelector('#categoryChoice').value &&
       document.querySelector('input[name="TodoChoice"]:checked').value &&
       document.querySelector('#categoryChoice').value !== 'Choose one'
     ) {
@@ -678,10 +670,8 @@ function createTodo() {
       todoList.push(todoObject);
       saveTodoData();
       alert('A new Todo has been added!');
-      alert('A new Todo has been added!');
       showTodos();
     } else {
-      alert('Check to make sure all fields has been filled!');
       alert('Check to make sure all fields has been filled!');
     }
   });
