@@ -9,21 +9,11 @@ let habitsTab = document.querySelector('#habitsTab');
 let timerTab = document.querySelector('#timerTab');
 let calenderTab = document.querySelector('#calenderTab');
 let weatherTab = document.querySelector('#weatherTab');
-let habitContainer = document.querySelector('.habitCardContainer');
-let contentContainer = document.querySelector('.contentContainer');
-let homeTab = document.querySelector('#homeTab');
-let todoTab = document.querySelector('#todoTab');
-let habitsTab = document.querySelector('#habitsTab');
-let timerTab = document.querySelector('#timerTab');
-let calenderTab = document.querySelector('#calenderTab');
-let weatherTab = document.querySelector('#weatherTab');
 
 // Global Arrays
 let localTodos = localStorage.getItem('todoData');
-let localTodos = localStorage.getItem('todoData');
 let todoList = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(localStorage.getItem('links'));
 
-let localHabits = localStorage.getItem('habitData');
 let localHabits = localStorage.getItem('habitData');
 let habitList = localHabits ? JSON.parse(localHabits) : [];
 
