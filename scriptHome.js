@@ -389,7 +389,7 @@ function showHabits() {
     </div>
 </div>
   `;
-
+  //Se detta Simon HUX
   printHabitsOnPage(habitList);
 }
 function selectPrios(list) {
