@@ -189,6 +189,9 @@ function renderCategoryFilter(filterTodosContainer) {
 
   let timeFilters = document.createElement('select');
   timeFilters.id = 'timeFilter';
+  let timeFilterLabel = document.createElement('label');
+  timeFilterLabel.setAttribute('for', timeFilters.id);
+  timeFilterLabel.innerHTML = 'Choose your filter';
 
   let timeFiltersList = [
     {
@@ -227,7 +230,7 @@ function renderCategoryFilter(filterTodosContainer) {
     // timeOption.setAttribute('data-icon', `${optionLi.icon}`);
     timeFilters.append(timeOption);
   });
-  filterContainer.append(timeFilters);
+  filterContainer.append(timeFilterLabel, timeFilters);
   filterTodosContainer.append(filterContainer);
 }
 
