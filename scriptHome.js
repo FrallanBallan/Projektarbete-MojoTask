@@ -21,6 +21,7 @@ let todoListUnfilter = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(l
 let todoList = todoListUnfilter.filter(
   (todoObject) => todoObject.id === userName
 );
+console.log(todoList);
 
 let localHabits = localStorage.getItem("habitData");
 let habitListUnfilter = localHabits ? JSON.parse(localHabits) : [];
@@ -629,6 +630,7 @@ function createTodo() {
       ).value;
       console.log(todoObject);
       todoList.push(todoObject);
+      todoListUnfilter.push(todoObject);
       saveTodoData();
       alert("A new Todo has been added!");
       showTodos();
@@ -709,6 +711,7 @@ function createHabit() {
     }
 
     habitList.push(habitObject);
+    habitListUnfilter.push(habitObject);
     saveHabitData();
     alert("A new Habit has been added");
     showHabits();
@@ -795,22 +798,18 @@ function removeHabit(removeBtn) {
 
 function saveTodoData() {
   // console.log(todoList);
-  localStorage.setItem("todoData", JSON.stringify(todoList));
-  localStorage.setItem("todoData", JSON.stringify(todoList));
+  localStorage.setItem("todoData", JSON.stringify(todoListUnfilter));
 }
 
 function getTodoData() {
   todoList = JSON.parse(localStorage.getItem("todoData"));
-  todoList = JSON.parse(localStorage.getItem("todoData"));
 }
 
 function saveHabitData() {
-  localStorage.setItem("habitData", JSON.stringify(habitList));
-  localStorage.setItem("habitData", JSON.stringify(habitList));
+  localStorage.setItem("habitData", JSON.stringify(habitListUnfilter));
 }
 
 function getHabitData() {
-  habitList = JSON.parse(localStorage.getItem("habitData"));
   habitList = JSON.parse(localStorage.getItem("habitData"));
 }
 
