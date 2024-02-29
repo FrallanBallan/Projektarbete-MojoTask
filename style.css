@@ -748,6 +748,56 @@ padding: 20px;
 }
 /* Habit Styiling end */
 
+/* Weather styling - start */
+
+.weatherDiv {
+  background: var(--_primaryColor);
+  border-radius: var(--_borderRm);
+  width: 50%;
+  height: 60vh;
+  padding: 16px;
+  gap: 16px;
+  box-shadow: var(--_boxShadow);
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+  flex-direction: column;
+  min-width: 320px;
+  
+}
+.weatherSearch {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  max-width: 400px;
+}
+.weatherSearch input {
+  border: 0;
+  outline: 0;
+  border-radius: var(--_borderRm);
+  flex: 1;
+  padding: 8px;
+  width: 100%;
+
+
+}
+.weatherSearch .search {
+  background: transparent;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+.weatherSearch .search img {
+  height: 100%;
+}
+
+/* Weather styling - end */
+
+
 /* Main container styling end Frans Simon */
 
 /* main styling end Simon/Frans */
