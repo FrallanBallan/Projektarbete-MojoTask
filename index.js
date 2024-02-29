@@ -2,6 +2,7 @@
 //divarna
 let LoginForm = document.querySelector('.Login-form');
 let CreateForm = document.querySelector('.CreateAccount-form');
+let slider = document.querySelector('.slider');
 //knapparna
 let BtnToCreate = document.querySelector('#CreateBtn');
 let CreateAccountBtn = document.querySelector('#CreateAccountBtn');
@@ -32,20 +33,22 @@ function NollställLogin() {
 }
 //funktionen som öppnar upp create-form och gömmer login-form
 function LoginClose() {
-  LoginForm.classList.add('hidden');
-  LoginForm.classList.remove('focuss');
+  // LoginForm.classList.add('hidden');
+  // LoginForm.classList.remove('focuss');
 
-  CreateForm.classList.add('focus');
-  CreateForm.classList.remove('hidden');
+  // CreateForm.classList.add('focus');
+  // CreateForm.classList.remove('hidden');
+  slider.classList.add('right');
   NollställLogin();
 }
 //funktionen som öppnar tillbaka Login och stänger create
 function LoginOpen() {
-  CreateForm.classList.add('hidden');
-  CreateForm.classList.remove('focus');
+  // CreateForm.classList.add('hidden');
+  // CreateForm.classList.remove('focus');
 
-  LoginForm.classList.add('focuss');
-  LoginForm.classList.remove('hidden');
+  // LoginForm.classList.add('focuss');
+  // LoginForm.classList.remove('hidden');
+  slider.classList.remove('right');
   NollställLogin();
 }
 //fetchar quot api functionen
