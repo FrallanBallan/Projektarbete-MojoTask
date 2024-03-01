@@ -1,4 +1,5 @@
 // -_-
+//FF-BAOM
 
 // Globals
 let habitContainer = document.querySelector(".habitCardContainer");
@@ -30,6 +31,27 @@ let habitList = habitListUnfilter.filter(
 );
 
 function showHome() {
+  //WEATHER TEST START
+  const apiKey = "57a622d1a38b6d1497b9a19a259dfdea";
+  const apiUrlStart =
+    "https://api.openweathermap.org/data/2.5/weather?q=stockholm";
+
+  let getData = async () => {
+    let response = await axios.get(apiUrlStart + `&appid=${apiKey}`);
+    console.log(response);
+    renderLocation(response);
+  };
+  function renderLocation(data) {
+    let city = document.querySelector("#weatherCity");
+    city.innerText = data.data.name;
+
+    let temp = document.querySelector("#weatherTemp");
+    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C";
+  }
+  getData();
+
+  //WEATHER TEST END
+
   //removing styles and content
   // contentContainer.innerHTML = '';
   todoTab.removeAttribute("style");
@@ -63,8 +85,8 @@ function showHome() {
     <div class="weatherIcon">
       <i class="fa-solid fa-cloud-sun-rain"></i>
     </div>
-    <h4 class="montserrat-heading">Temperture:</h4>
-    <h4 class="montserrat-heading">Location:</h4>
+    <h4 id="weatherTemp" class="montserrat-heading">Temperture:</h4>
+    <h4 class="montserrat-heading">Location: <h3 id="weatherCity"></h3></h4>
   </div>
 </div>
 <div class="divider"></div>

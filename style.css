@@ -763,6 +763,7 @@ padding: 20px;
   align-content: space-between;
   flex-direction: column;
   min-width: 320px;
+  text-align: center;
   
 }
 .weatherSearch {
@@ -793,6 +794,11 @@ padding: 20px;
 }
 .weatherSearch .search img {
   height: 100%;
+}
+.weatherResult img {
+  color: white;
+  height: 100%;
+  width: 100%;
 }
 
 /* Weather styling - end */

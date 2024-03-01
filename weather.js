@@ -1,11 +1,33 @@
-d; //API
+//FF_BAOM
+//API
 const apiKey = "57a622d1a38b6d1497b9a19a259dfdea";
-const apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+const apiUrlStart =
+  "https://api.openweathermap.org/data/2.5/weather?q=stockholm";
+// "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 //GLOBALS
+let weatherInput = document.querySelector("#weatherInput");
+let city = document.querySelector("#city");
+let temp = document.querySelector("#temp");
 
-function showWeather() {
+let getData = async () => {
+  if (!document.querySelector("#weatherInput").value) {
+    let response = await axios.get(apiUrlStart + `&appid=${apiKey}`);
+    console.log(response);
+    renderLocation(response);
+  } else {
+    let searchedCity = document.querySelector("#weatherInput").value;
+    let response = await axios.get(apiUrl + `&appid=${apiKey}`, {
+      params: {
+        q: searchedCity,
+      },
+    });
+    renderLocation(response);
+  }
+};
+
+let showWeather = async () => {
   //removing styles and content
   contentContainer.innerHTML = "";
   todoTab.removeAttribute("style");
@@ -25,38 +47,70 @@ function showWeather() {
 
   let weatherSearch = document.createElement("div");
   weatherSearch.classList.add("weatherSearch");
-  weatherSearch.innerHTML = `
-  <input
-      type = "text"
-      name = "cityWeather"
-      id = "weatherInput"
-      placeholder = "Enter city name"
-      />
-  <button class="search"><img src="images/search.png" ></button>
-  `;
+
+  let weatherInput = document.createElement("input");
+  weatherInput.type = "text";
+  weatherInput.id = "weatherInput";
+  weatherInput.placeholder = "Enter city name";
+
+  let weatherBtn = document.createElement("button");
+  weatherBtn.classList.add("search");
+  weatherBtn.id = "searchBtn";
+  weatherBtn.innerHTML = `<img src="images/search.png">`;
 
   let weatherResult = document.createElement("div");
   weatherResult.classList.add("weatherResult");
 
-  weatherResult.innerHTML = `
-    <div class="weatherResult> 
-  <h2 id="city"> Stockholm </h2>
-  <h2 id="temp"> 7°C </h2>
-  </div>
-  
-  `;
+  weatherSearch.append(weatherInput, weatherBtn);
   weatherDiv.append(weatherTitle, weatherSearch, weatherResult);
   contentContainer.append(weatherDiv);
+
+  weatherBtn.addEventListener("click", () => {
+    getData();
+  });
+  let startWeather = await getData();
+};
+
+function renderLocation(data) {
+  let weatherResult = document.querySelector(".weatherResult");
+  weatherResult.innerHTML = "";
+
+  let weatherCity = document.createElement("h2");
+  weatherCity.innerText = data.data.name;
+
+  let weatherIcon = document.createElement("img");
+  weatherIcon.src = "/images/rain.png";
+
+  let weatherTemp = document.createElement("h2");
+  weatherTemp.id = "weatherTemp";
+  weatherTemp.innerText = Math.round(data.data.main.temp - 273.15) + "°C";
+
+  let weatherDesc = document.createElement("p");
+  weatherDesc.innerText = data.data.weather[0].main;
+
+  weatherResult.append(weatherCity, weatherIcon, weatherTemp, weatherDesc);
 }
 
-//  <h1> Weather </h1>
-//   <div class="divider"></div>
-//     <div class="weatherDiv"
-//     <label for= "searchWeather"> Weather forecaste in: </label>
-//     <input type= "text" placeholder= "Sweden, Stockholm"></input>
-//     </div>
-//   `
-{
-  /* <input type="text" placeholder="Enter city name" id="weatherInput" />
-  <button><img src="images/search.png" alt="search"></button>  */
-}
+// weatherBtn.addEventListener("click", async () => {
+
+//   let weatherData = await getData();
+
+// });
+
+// let getData = async () => {
+//   // let city = genderChoices.toString();
+//   // console.log(city);
+//   let weatherInput = document.querySelector("weatherInput").value;
+//   console.log(weatherInput);
+
+//   let response = await axios.get(apiUrl + `&appid=${apiKey}`, {
+//     params: {
+//       country,
+//       id,
+//     },
+//   });
+//   console.log(response);
+//   return response;
+// .data.results;
+
+// getData();
