@@ -78,6 +78,15 @@ function showCalender() {
   addEventInput.type = 'text';
   addEventInput.id = 'txtTitle';
   addEventInput.placeholder = 'Event Title';
+  let timeBox = document.createElement('div');
+  timeBox.id = 'timeBox';
+  let addEventStartTime = document.createElement('input');
+  addEventStartTime.type = 'time';
+  addEventStartTime.id = 'eventStartTime';
+  let addEventStopTime = document.createElement('input');
+  addEventStopTime.type = 'time';
+  addEventStopTime.id = 'eventStopTime';
+  timeBox.append(addEventStartTime, addEventStopTime);
   let saveBtn = document.createElement('button');
   saveBtn.id = 'btnSave';
   saveBtn.innerText = 'Save';
@@ -85,15 +94,17 @@ function showCalender() {
   closeBtn.classList.add('btnClose');
   closeBtn.innerText = 'Close';
 
-  addEvent.append(addEventh2, addEventInput, saveBtn, closeBtn);
+  addEvent.append(addEventh2, addEventInput, timeBox, saveBtn, closeBtn);
 
   let viewEvent = document.createElement('div');
   viewEvent.id = 'viewEvent';
   let viewEventH2 = document.createElement('h2');
-  viewEventH2.innerText = 'Event';
+  // viewEventH2.innerText = 'Event';
   let eventText = document.createElement('p');
   eventText.id = 'eventText';
   eventText.innerText = 'This is a Sample';
+  let eventTime = document.createElement('p');
+  eventTime.id = 'eventTime';
   let deleteBtn = document.createElement('button');
   deleteBtn.id = 'btnDelete';
   deleteBtn.innerText = 'Delete Event';
@@ -101,7 +112,7 @@ function showCalender() {
   closeBtn2.classList.add('btnClose');
   closeBtn2.innerText = 'Close';
 
-  viewEvent.append(viewEventH2, eventText, deleteBtn, closeBtn2);
+  viewEvent.append(viewEventH2, eventText, eventTime, deleteBtn, closeBtn2);
 
   calenderContainer.append(
     calenderHead,
@@ -181,8 +192,11 @@ function showCalender() {
 
         if (eventOfTheDay) {
           let eventDiv = document.createElement('div');
+          let eventTime = document.createElement('div');
+          eventTime.innerText = `${eventOfTheDay.start} - ${eventOfTheDay.stop}`;
           eventDiv.classList.add('event');
           eventDiv.innerText = eventOfTheDay.title;
+          eventDiv.append(eventTime);
           dayBox.appendChild(eventDiv);
         }
         dayBox.addEventListener('click', () => {
@@ -207,6 +221,8 @@ function showCalender() {
       btn.classList.add('btn');
     });
     let txtTitle = document.querySelector('#txtTitle');
+    let startTime = document.querySelector('#eventStartTime');
+    let stopTime = document.querySelector('#eventStopTime');
 
     btnBack.addEventListener('click', () => {
       navigation--;
@@ -234,23 +250,34 @@ function showCalender() {
     });
 
     btnSave.addEventListener('click', function () {
-      if (txtTitle.value) {
+      if (
+        txtTitle.value &&
+        startTime.value &&
+        stopTime.value &&
+        startTime.value < stopTime.value
+      ) {
         txtTitle.classList.remove('error');
         eventsAll.push({
           id: userName,
           date: clicked,
           title: txtTitle.value.trim(),
+          start: startTime.value,
+          stop: stopTime.value,
         });
         events.push({
           id: userName,
           date: clicked,
           title: txtTitle.value.trim(),
+          start: startTime.value,
+          stop: stopTime.value,
         });
         txtTitle.value = '';
         localStorage.setItem('events', JSON.stringify(eventsAll));
         closeModal();
       } else {
         txtTitle.classList.add('error');
+        startTime.classList.add('error');
+        stopTime.classList.add('error');
       }
     });
   }
@@ -265,6 +292,9 @@ function showCalender() {
     if (eventOfTheDay) {
       //Event already Preset
       document.querySelector('#eventText').innerText = eventOfTheDay.title;
+      document.querySelector(
+        '#eventTime'
+      ).innerText = `Start: ${eventOfTheDay.start} - End: ${eventOfTheDay.stop}`;
       viewEventForm.style.display = 'flex';
     } else {
       //Add new Event

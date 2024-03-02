@@ -756,10 +756,12 @@ padding: 20px;
 /* Calender Styling */
 
 .containerCalender {
-  width: 80%;
-  max-width: 770px;
+  /* width: 80%; */
 
-  background-color: #fff;
+  /* background-color: #fff; */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .headerCalender {
@@ -791,7 +793,7 @@ padding: 20px;
 .weekdays {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: stretch;
   background-color: var(--_primaryColor);
   font-size: 17px;
   color: #fff;
@@ -799,7 +801,8 @@ padding: 20px;
 }
 
 .weekdays div {
-  width: 100px;
+  /* width: 100px; */
+  flex-grow: 1;
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
@@ -808,18 +811,19 @@ padding: 20px;
 #something {
   width: 100%;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .day {
-  width: 100px;
+  width: 100%;
   height: 100px;
   padding: 10px;
   cursor: pointer;
+  border-radius: var(--_borderRm);
   margin: 5px;
   box-sizing: border-box;
-  box-shadow: 0px 0px 3px #cbd4c2;
+  box-shadow: var(--_boxShadow);
   color: #7f8fa6;
   font-weight: 500;
   display: flex;
@@ -850,6 +854,8 @@ padding: 20px;
   color: #fff;
   border-radius: 5px;
   max-height: 55px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -868,8 +874,8 @@ padding: 20px;
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -897,6 +903,20 @@ padding: 20px;
 #viewEvent h2 {
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+#timeBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+#eventStartTime:before {
+  content: 'Start';
+  margin-right: 8px;
+}
+#eventStopTime:before {
+  content: 'Stop';
+  margin-inline: 8px;
 }
 
 #txtTitle {
