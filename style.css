@@ -794,7 +794,7 @@ padding: 20px;
   box-shadow: var(--_boxShadow);
   display: flex;
   align-items: center;
-  align-content: space-between;
+  justify-content: center;
   flex-direction: column;
   min-width: 320px;
   text-align: center;
@@ -830,6 +830,13 @@ padding: 20px;
 .weatherSearch .search img {
   height: 100%;
 }
+
+.weatherResultExtra {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .weatherResult img {
   scale: 0.8;
 

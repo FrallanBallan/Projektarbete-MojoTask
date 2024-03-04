@@ -18,12 +18,16 @@ let getData = async () => {
     renderLocation(response);
   } else {
     let searchedCity = document.querySelector("#weatherInput").value;
-    let response = await axios.get(apiUrl + `&appid=${apiKey}`, {
-      params: {
-        q: searchedCity,
-      },
-    });
-    renderLocation(response);
+    try {
+      let response = await axios.get(apiUrl + `&appid=${apiKey}`, {
+        params: {
+          q: searchedCity,
+        },
+      });
+      renderLocation(response);
+    } catch (error) {
+      alert("City not found you dirty loafer wearer");
+    }
   }
 };
 
@@ -40,7 +44,7 @@ let showWeather = async () => {
   weatherTab.style.borderRadius = "0% 10% 10% 0%";
 
   let weatherDiv = document.createElement("div");
-  weatherDiv.classList.add("weatherDiv");
+  weatherDiv.classList.add("weatherDiv", "roboto-regular");
 
   let weatherTitle = document.createElement("h2");
   weatherTitle.innerText = "Weather Forecast";
@@ -122,6 +126,9 @@ function renderLocation(data) {
   let weatherDesc = document.createElement("p");
   weatherDesc.innerText = "Weather: " + data.data.weather[0].main;
 
+  let weatherResultExtra = document.createElement("div");
+  weatherResultExtra.classList.add("weatherResultExtra");
+
   //Ny div borde skapas
   let weatherSunrise = document.createElement("p");
   weatherSunrise.innerText =
@@ -137,8 +144,8 @@ function renderLocation(data) {
     weatherIcon,
     weatherTemp,
     weatherDesc,
-    weatherWind,
-    weatherSunrise,
-    weatherSunset
+
+    weatherResultExtra
   );
+  weatherResultExtra.append(weatherWind, weatherSunrise, weatherSunset);
 }

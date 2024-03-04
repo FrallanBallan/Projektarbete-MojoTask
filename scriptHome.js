@@ -112,13 +112,13 @@ function showHome() {
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
   
-  <div class="homeCard">
+  <div class="homeCard" onclick=showTodos()>
     <i class="fa-solid fa-pen-to-square"></i>
   </div>
-  <div class="homeCard">
+  <div class="homeCard" onclick=showHabits()>
     <i class="fa-solid fa-person-praying"></i>
   </div>
-  <div class="homeCard">
+  <div class="homeCard" onclick=showWeather()>
     <h3 class="montserrat-heading">Todays Weather</h3>
     <div class="weatherIcon" id="weatherIcons">
 
@@ -387,7 +387,7 @@ function printTodosOnPage(list) {
 
     //Click on a todo to get the info
 
-    todoCard.addEventListener('click', () => {
+    todoCard.addEventListener("click", () => {
       showTodoInfo(todoObject);
     });
   });
@@ -402,33 +402,33 @@ function printTodosOnPage(list) {
 }
 
 function showTodoInfo(todo) {
-  let todoPopUp = document.createElement('div');
-  todoPopUp.classList.add('todoOverviewPop');
-  todoPopUp.style.zIndex = '99';
-  let todoTitle = document.createElement('h2');
+  let todoPopUp = document.createElement("div");
+  todoPopUp.classList.add("todoOverviewPop");
+  todoPopUp.style.zIndex = "99";
+  let todoTitle = document.createElement("h2");
   todoTitle.innerText = `Your Todo: ${todo.title}`;
-  let todoDesc = document.createElement('p');
+  let todoDesc = document.createElement("p");
   todoDesc.innerText = `Description: ${todo.desc}`;
-  let todoDeadline = document.createElement('p');
+  let todoDeadline = document.createElement("p");
   todoDeadline.innerText = `Deadline: ${todo.deadline}`;
-  let todoTimeEst = document.createElement('p');
+  let todoTimeEst = document.createElement("p");
   todoTimeEst.innerText = `Estimated time: ${todo.timeestimate}`;
-  let todoCategory = document.createElement('p');
+  let todoCategory = document.createElement("p");
   todoCategory.innerText = `Category: ${todo.category}`;
-  let todoStatus = document.createElement('p');
+  let todoStatus = document.createElement("p");
   todoStatus.innerText = `Status: ${todo.status}`;
-  let btn = document.createElement('button');
-  btn.classList.add('removeBtn');
+  let btn = document.createElement("button");
+  btn.classList.add("removeBtn");
   btn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
 
-  let overLay = document.createElement('div');
-  overLay.style.width = '100vw';
-  overLay.style.height = '100%';
-  overLay.style.zIndex = '10';
-  overLay.style.position = 'absolute';
-  overLay.style.top = '0';
-  overLay.style.left = '0';
-  overLay.style.background = 'rgba(0,0,0,0.4)';
+  let overLay = document.createElement("div");
+  overLay.style.width = "100vw";
+  overLay.style.height = "100%";
+  overLay.style.zIndex = "10";
+  overLay.style.position = "absolute";
+  overLay.style.top = "0";
+  overLay.style.left = "0";
+  overLay.style.background = "rgba(0,0,0,0.4)";
 
   document.body.append(overLay);
 
@@ -441,26 +441,26 @@ function showTodoInfo(todo) {
     todoStatus,
     btn
   );
-  let finishBtn = document.createElement('button');
-  if (todo.status === 'unfinished') {
-    finishBtn.classList.add('btn', 'primary');
-    finishBtn.innerText = 'Finished?';
+  let finishBtn = document.createElement("button");
+  if (todo.status === "unfinished") {
+    finishBtn.classList.add("btn", "primary");
+    finishBtn.innerText = "Finished?";
     todoPopUp.append(finishBtn);
   }
 
   contentContainer.append(todoPopUp);
 
   // Removing the overlay and popUp
-  btn.addEventListener('click', () => {
+  btn.addEventListener("click", () => {
     btn.parentElement.remove();
     overLay.remove();
   });
-  overLay.addEventListener('click', () => {
+  overLay.addEventListener("click", () => {
     btn.parentElement.remove();
     overLay.remove();
   });
-  finishBtn.addEventListener('click', () => {
-    todo.status = 'finished';
+  finishBtn.addEventListener("click", () => {
+    todo.status = "finished";
     btn.parentElement.remove();
     overLay.remove();
     showTodos();
