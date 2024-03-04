@@ -121,7 +121,9 @@ LoggainBtn.addEventListener('click', () => {
     let todoData = JSON.parse(localStorage.getItem('todoData'));
     if (todoData) {
       // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
-      let userTodoData = todoData.filter((item) => item.id === 'testPerson');
+
+      let userTodoData = todoData.filter((item) => item.id === "testPerson");
+
       //nu använd seassion storage istället för att överföra datan känns som en bättre och enklare ide.
       //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
       sessionStorage.setItem('userTodoData', JSON.stringify(userTodoData));
