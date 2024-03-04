@@ -594,6 +594,34 @@ body {
 
 /* Todo Popup End */
 
+/* Todo Overview Start */
+.todoOverviewPop {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  padding: 16px;
+  border-radius: var(--_borderRl);
+  box-shadow: var(--_boxShadow);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 400px;
+}
+
+.todoOverviewPop h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: underline;
+}
+/* Todo Overview ENd */
+
 /* Habit Styiling start */
 .habitContainer {
   display: flex;
