@@ -280,6 +280,14 @@ body {
   background-color: var(--_primaryColor);
   color: rgb(224, 224, 224);
 }
+.felmeddelande {
+  font-size: 0.8rem;
+  color: var(--_alertColor);
+}
+#error {
+  font-size: 0.8rem;
+  color: var(--_alertColor);
+}
 
 /* Home page styling start */
 
