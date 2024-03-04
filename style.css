@@ -432,6 +432,12 @@ body {
   border-radius: var(--_borderRm);
   background: var(--_primaryColor);
   cursor: pointer;
+  padding: 16px;
+    background-size: cover;
+}
+
+.homeCard img {
+  scale: 0.8;
 }
 
 .homeCard i {
@@ -764,6 +770,7 @@ padding: 20px;
   flex-direction: column;
   min-width: 320px;
   text-align: center;
+  background-size: cover;
   
 }
 .weatherSearch {
@@ -796,10 +803,10 @@ padding: 20px;
   height: 100%;
 }
 .weatherResult img {
-  color: white;
-  height: 100%;
-  width: 100%;
+  scale: 0.8;
+
 }
+
 
 /* Weather styling - end */
 

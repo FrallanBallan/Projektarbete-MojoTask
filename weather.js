@@ -72,6 +72,24 @@ let showWeather = async () => {
 };
 
 function renderLocation(data) {
+  console.log(data);
+  let weatherDiv = document.querySelector(".weatherDiv");
+  if (data.data.weather[0].main === "Clouds") {
+    weatherDiv.style.backgroundImage = 'url("/gifs/cloudy - Copy.gif")';
+  } else if (data.data.weather[0].main === "Drizzle") {
+    weatherDiv.style.backgroundImage = 'url("/gifs/drizzle.gif")';
+  } else if (data.data.weather[0].main === "Mist") {
+    weatherDiv.style.backgroundImage = 'url("/gifs/misty.gif")';
+  } else if (data.data.weather[0].main === "Rain") {
+    weatherDiv.style.backgroundImage = 'url("/gifs/rain.gif")';
+  } else if (data.data.weather[0].main === "Snow") {
+    weatherDiv.style.backgroundImage = 'url("/gifs/snow.gif")';
+  } else if (data.data.weather[0].main === "Clear") {
+    weatherDiv.style.backgroundImage = 'url("/gifs/clear.gif")';
+  } else {
+    weatherDiv.style.backgroundImage = 'url("/gifs/weather.gif")';
+  }
+
   let weatherResult = document.querySelector(".weatherResult");
   weatherResult.innerHTML = "";
 
@@ -79,21 +97,40 @@ function renderLocation(data) {
   weatherCity.innerText = data.data.name;
 
   let weatherIcon = document.createElement("img");
-  weatherIcon.src = "/images/rain.png";
+  if (data.data.weather[0].main === "Clouds") {
+    weatherIcon.src = "/images/clouds.png";
+  } else if (data.data.weather[0].main === "Clear") {
+    weatherIcon.src = "/images/clear.png";
+  } else if (data.data.weather[0].main === "Drizzle") {
+    weatherIcon.src = "/images/drizzle.png";
+  } else if (data.data.weather[0].main === "Mist") {
+    weatherIcon.src = "/images/mist.png";
+  } else if (data.data.weather[0].main === "Rain") {
+    weatherIcon.src = "/images/rain.png";
+  } else if (data.data.weather[0].main === "Snow") {
+    weatherIcon.src = "/images/snow.png";
+  } else if (data.data.weather[0].main === "Clear") {
+    weatherIcon.src = "/images/clear.png";
+  } else {
+    weatherIcon.src = "/images/logo.png";
+  }
 
   let weatherTemp = document.createElement("h2");
   weatherTemp.id = "weatherTemp";
   weatherTemp.innerText = Math.round(data.data.main.temp - 273.15) + "°C";
 
   let weatherDesc = document.createElement("p");
-  weatherDesc.innerText = data.data.weather[0].main;
+  weatherDesc.innerText = "Weather: " + data.data.weather[0].main;
 
   //Ny div borde skapas
   let weatherSunrise = document.createElement("p");
-  weatherSunrise.innerText = new Date(data.data.sys.sunrise * 1000);
+  weatherSunrise.innerText =
+    "Sunrise: " + new Date(data.data.sys.sunrise * 1000);
+  let weatherSunset = document.createElement("p");
+  weatherSunset.innerText = "Sunset: " + new Date(data.data.sys.sunset * 1000);
 
   let weatherWind = document.createElement("p");
-  weatherWind.innerText = "Windspeed:" + data.data.wind.speed;
+  weatherWind.innerText = "Windspeed: " + data.data.wind.speed + " m/s";
 
   weatherResult.append(
     weatherCity,
@@ -101,6 +138,7 @@ function renderLocation(data) {
     weatherTemp,
     weatherDesc,
     weatherWind,
-    weatherSunrise
+    weatherSunrise,
+    weatherSunset
   );
 }
