@@ -385,7 +385,11 @@ function printTodosOnPage(list) {
       todoCardContainerFinished.append(todoCard);
     }
 
-    //New Verson
+    //Click on a todo to get the info
+
+    todoCard.addEventListener('click', () => {
+      showTodoInfo(todoObject);
+    });
   });
   // add eventlistener for removing todoCards start
   let removeBtns = document.querySelectorAll(".removeBtn");
@@ -394,6 +398,72 @@ function printTodosOnPage(list) {
       removeTodo(removeBtn);
     });
     // console.log(todoList);
+  });
+}
+
+function showTodoInfo(todo) {
+  let todoPopUp = document.createElement('div');
+  todoPopUp.classList.add('todoOverviewPop');
+  todoPopUp.style.zIndex = '99';
+  let todoTitle = document.createElement('h2');
+  todoTitle.innerText = `Your Todo: ${todo.title}`;
+  let todoDesc = document.createElement('p');
+  todoDesc.innerText = `Description: ${todo.desc}`;
+  let todoDeadline = document.createElement('p');
+  todoDeadline.innerText = `Deadline: ${todo.deadline}`;
+  let todoTimeEst = document.createElement('p');
+  todoTimeEst.innerText = `Estimated time: ${todo.timeestimate}`;
+  let todoCategory = document.createElement('p');
+  todoCategory.innerText = `Category: ${todo.category}`;
+  let todoStatus = document.createElement('p');
+  todoStatus.innerText = `Status: ${todo.status}`;
+  let btn = document.createElement('button');
+  btn.classList.add('removeBtn');
+  btn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
+
+  let overLay = document.createElement('div');
+  overLay.style.width = '100vw';
+  overLay.style.height = '100%';
+  overLay.style.zIndex = '10';
+  overLay.style.position = 'absolute';
+  overLay.style.top = '0';
+  overLay.style.left = '0';
+  overLay.style.background = 'rgba(0,0,0,0.4)';
+
+  document.body.append(overLay);
+
+  todoPopUp.append(
+    todoTitle,
+    todoDesc,
+    todoDeadline,
+    todoTimeEst,
+    todoCategory,
+    todoStatus,
+    btn
+  );
+  let finishBtn = document.createElement('button');
+  if (todo.status === 'unfinished') {
+    finishBtn.classList.add('btn', 'primary');
+    finishBtn.innerText = 'Finished?';
+    todoPopUp.append(finishBtn);
+  }
+
+  contentContainer.append(todoPopUp);
+
+  // Removing the overlay and popUp
+  btn.addEventListener('click', () => {
+    btn.parentElement.remove();
+    overLay.remove();
+  });
+  overLay.addEventListener('click', () => {
+    btn.parentElement.remove();
+    overLay.remove();
+  });
+  finishBtn.addEventListener('click', () => {
+    todo.status = 'finished';
+    btn.parentElement.remove();
+    overLay.remove();
+    showTodos();
   });
 }
 

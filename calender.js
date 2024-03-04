@@ -173,7 +173,9 @@ function showCalender() {
     });
 
     let dayString = dateText.split(', ')[0];
+    console.log(dayString);
     let emptyDays = weekdays.indexOf(dayString);
+    console.log(emptyDays);
 
     for (let i = 1; i <= dayInMonth + emptyDays; i++) {
       let dayBox = document.createElement('div');
