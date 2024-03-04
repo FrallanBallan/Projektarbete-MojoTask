@@ -153,10 +153,6 @@ function renderCategoryFilter(filterTodosContainer) {
     { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
     { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
     { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: 'Chores' },
-    { icon: `<i class="fa-solid fa-house"></i>`, value: 'Home' },
-    { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
-    { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
-    { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: 'Chores' },
   ];
 
   filterList.forEach((category) => {
@@ -392,7 +388,7 @@ function showHabits() {
   <div class="habitContainer">
     <div class="habitHeader">
         <h2>Your Habits</h2>
-        <div class="filterHabits">
+        <div className="filterHabits">
           <label for= "prioFilter"> Filter by priority: </label>
           <select name="prio" id="prioFilter">
           <option value="all"> All </option>
@@ -418,22 +414,20 @@ function showHabits() {
   `;
   //Se detta Simon HUX
   printHabitsOnPage(habitList);
-}
-function selectPrios(list) {
-  document.querySelector('#prioFilter').addEventListener('change', () => {
-    filterPriorites(list, document.querySelector('#prioFilter').value);
-  });
-  document.querySelector('#prioSort').addEventListener('change', () => {
-    sortPriorites(list, document.querySelector('#prioSort').value);
-  });
-}
-function printHabitsOnPage(list) {
-  console.log(habitList);
-  selectPrios(list);
-  // event listener for filter and sort
 
+  document.querySelector('#prioFilter').addEventListener('change', () => {
+    filterPriorites(habitList, document.querySelector('#prioFilter').value);
+  });
+
+  document.querySelector('#prioSort').addEventListener('change', () => {
+    sortPriorites(habitList, document.querySelector('#prioSort').value);
+  });
+}
+
+function printHabitsOnPage(list) {
   let habitCardContainer = document.querySelector('.habitCardContainer');
   habitCardContainer.innerHTML = '';
+  console.log(list);
   list.forEach((habitObject) => {
     console.log(habitObject);
 
@@ -484,6 +478,7 @@ function printHabitsOnPage(list) {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1610312856669-2cee66b2949c?q=80&w=1905&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     }
+    // console.log(habitObject.category);
 
     habitCard.append(
       habitTitle,
@@ -505,6 +500,8 @@ function printHabitsOnPage(list) {
     });
     // console.log(todoList);
   });
+
+  // selectPrios();
 } // but here
 // Functions for filter and sort habits - start
 function filterPriorites(list, value) {
@@ -657,10 +654,6 @@ function createTodo() {
       document.querySelector('#descTodo').value &&
       document.querySelector('#deadlineTodo').value &&
       document.querySelector('#categoryChoice').value &&
-      document.querySelector('#whatTodo').value &&
-      document.querySelector('#descTodo').value &&
-      document.querySelector('#deadlineTodo').value &&
-      document.querySelector('#categoryChoice').value &&
       document.querySelector('input[name="TodoChoice"]:checked').value &&
       document.querySelector('#categoryChoice').value !== 'Choose one'
     ) {
@@ -677,10 +670,8 @@ function createTodo() {
       todoList.push(todoObject);
       saveTodoData();
       alert('A new Todo has been added!');
-      alert('A new Todo has been added!');
       showTodos();
     } else {
-      alert('Check to make sure all fields has been filled!');
       alert('Check to make sure all fields has been filled!');
     }
   });

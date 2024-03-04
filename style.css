@@ -73,13 +73,29 @@ body {
   border: none;
   outline: none;
   border-radius: var(--_borderRm);
-  padding: 16px;
+  padding: 16px 24px;
   cursor: pointer;
 }
 
 .primary {
   background: var(--_primaryColor);
   margin-inline: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.primary:hover {
+  scale: 1.05;
+  box-shadow: var(--_boxShadow);
+}
+
+.secondary {
+  background: var(--_secondaryColor);
+  transition: all 0.2s ease-in-out;
+}
+
+.secondary:hover {
+  scale: 1.05;
+  box-shadow: var(--_boxShadow);
 }
 
 .logOutBtn {
@@ -122,157 +138,7 @@ body {
   right: 0;
   padding: 0.4rem;
 }
-/* Logo Styles end Angelo*/
-/* Login Styles Angelo start */
-.DaddyBox {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--_bgColor);
-}
-.DaddyBoxjr {
-  width: 50%;
-}
-.DaddyBox .Login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 400px;
-  width: 300px;
-  border: solid rgb(223, 223, 223) 1px;
-  border-radius: var(--_borderRm);
-  padding: 0.3rem;
-}
-.DaddyBox .Login-form h1 {
-  font-size: 42px;
-  letter-spacing: 2px;
-  margin: 0;
-}
-.DaddyBox .Login-form h2 {
-  font-size: 28px;
-  margin: 0;
-}
-.DaddyBox .Login-form input {
-  padding: 0.4rem;
-  width: 70%;
-  border: solid rgb(223, 223, 223) 1px;
-}
-.DaddyBox .Login-form input::placeholder {
-  opacity: 0.7;
-}
-.DaddyBox .Login-form #error {
-  color: var(--_alertColor);
-  text-decoration: underline;
-  font-size: 0.8rem;
-  margin: 0;
-}
-.DaddyBox .Login-form button {
-  color: rgb(232, 232, 232);
-  background-color: var(--_primaryColor);
-  border: none;
-  border-radius: var(--_borderRs);
-  padding: 0.6rem;
-  font-size: 1rem;
-}
-.DaddyBox .Login-form button:hover {
-  background-color: #967cff;
-  color: rgb(220, 220, 220);
-  cursor: pointer;
-  scale: 1.02;
-}
-.DaddyBox .Login-form button:active {
-  background-color: #a892ff;
-  color: rgb(220, 220, 220);
-  scale: 0.97;
-}
-.DaddyBox .Login-form #LoginBtn {
-  background-color: black;
-}
-.DaddyBox .Login-form #LoginBtn:hover {
-  background-color: rgb(44, 44, 44);
-  scale: 1.02;
-}
-.DaddyBox .Login-form #LoginBtn:active {
-  background-color: rgb(67, 67, 67);
-  scale: 0.97;
-}
-/* Login Styles end Angelo*/
-/* CreateAccount Styles start Angelo*/
-.DaddyBox .CreateAccount-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 400px;
-  width: 300px;
-  border: solid rgb(223, 223, 223) 1px;
-  border-radius: var(--_borderRm);
-  padding: 0.3rem;
-}
-.DaddyBox .CreateAccount-form h2 {
-  font-size: 28px;
-  margin: 0;
-}
-.DaddyBox .CreateAccount-form input {
-  padding: 0.4rem;
-  width: 70%;
-  border: solid rgb(223, 223, 223) 1px;
-}
-.DaddyBox .CreateAccount-form input.errorInput {
-  border: solid 1px var(--_alertColor);
-}
-.DaddyBox .CreateAccount-form input::placeholder {
-  opacity: 0.7;
-}
-.DaddyBox .CreateAccount-form .felmeddelande {
-  color: var(--_alertColor);
-  text-decoration: underline;
-  font-size: 0.8rem;
-  margin: 0;
-}
-.DaddyBox .CreateAccount-form button {
-  color: rgb(232, 232, 232);
-  background-color: var(--_primaryColor);
-  border: none;
-  border-radius: var(--_borderRs);
-  padding: 0.6rem;
-  font-size: 1rem;
-}
-.DaddyBox .CreateAccount-form button:hover {
-  background-color: #967cff;
-  color: rgb(220, 220, 220);
-  cursor: pointer;
-  scale: 1.02;
-}
-.DaddyBox .CreateAccount-form button:active {
-  background-color: #a892ff;
-  color: rgb(220, 220, 220);
-  scale: 0.97;
-}
-.DaddyBox .CreateAccount-form #alredyaccount {
-  background: none;
-  color: black;
-  text-decoration: underline;
-}
-/* CreateAccount Styles end Angelo*/
-/*Animation Login styles start Angelo*/
-.hidden {
-  transform: translatex(70%);
-  visibility: hidden;
-  transition: 0s ease-in-out;
-}
 
-.focus {
-  transition: 0.7s ease-in-out;
-  transform: translateX(-45%);
-}
-.focuss {
-  transition: 0.7s ease-in-out;
-  transform: translateX(190%);
-}
 /*Animation Login styles end Angelo*/
 /*Loading Screen start Angelo*/
 .LoadingScreen {
@@ -328,318 +194,100 @@ body {
   }
 }
 
-/*Loading Screen end Angelo*/
-/*MediaQuery for animation start Angelo*/
-@media (min-width: 320px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(5%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(-50%);
-  }
+/* Test new Login Style */
+
+.staticSlider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 1px solid black; */
+  padding: 16px;
+  max-width: 482px;
+  display: flex;
+  justify-content: center;
+
+  overflow: hidden;
 }
-@media (min-width: 365px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(15%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(-40%);
-  }
+
+.slider {
+  display: flex;
+  position: relative;
+  transform: translateX(200px);
+  gap: 128px;
+  /* border: 1px solid red; */
+  transition: all 0.7s ease-in-out;
 }
-@media (min-width: 400px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(25%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(-40%);
-  }
+
+.slider.right {
+  transform: translateX(-190px);
 }
-@media (min-width: 450px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(30%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(-40%);
-  }
+
+.CreateAccount-form,
+.Login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 22px;
+  padding: 1.5rem;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: var(--_borderRm);
+  min-height: 400px;
+  min-width: 300px;
 }
-@media (min-width: 500px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(40%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(-20%);
-  }
+
+.Login-form h1 {
+  font-size: 2.63rem;
+  letter-spacing: 2px;
+  margin: 0;
 }
-@media (min-width: 550px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(50%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(-20%);
-  }
+.Login-form h2 {
+  font-size: 1.75rem;
+  margin: 0;
 }
-@media (min-width: 600px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(60%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(0%);
-  }
+.CreateAccount-form h2 {
+  font-size: 1.75rem;
+  margin: 0;
 }
-@media (min-width: 670px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(70%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(10%);
-  }
+.CreateAccount-form #alredyaccount {
+  background: none;
+  color: black;
+  text-decoration: underline;
 }
-@media (min-width: 740px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(80%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(20%);
-  }
+.Login-form #LoginBtn {
+  background-color: black;
 }
-@media (min-width: 810px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(100%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(30%);
-  }
+
+.CreateAccount-form input,
+.Login-form input {
+  width: 85%;
+  padding: 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(223, 223, 223);
 }
-@media (min-width: 890px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(110%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(40%);
-  }
+.CreateAccount-form input,
+.Login-form input::placeholder {
+  opacity: 0.7;
 }
-@media (min-width: 960px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(120%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(45%);
-  }
+
+.CreateAccount-form button,
+.Login-form button {
+  font-size: 1rem;
+  padding: 0.6rem;
+  border-radius: var(--_borderRs);
+  background-color: var(--_primaryColor);
+  color: rgb(224, 224, 224);
 }
-@media (min-width: 1030px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(130%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-  .hidden {
-    transform: translatex(55%);
-  }
+.felmeddelande {
+  font-size: 0.8rem;
+  color: var(--_alertColor);
 }
-@media (min-width: 1100px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(140%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
+#error {
+  font-size: 0.8rem;
+  color: var(--_alertColor);
 }
-@media (min-width: 1170px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(150%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1230px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(160%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1300px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(165%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1330px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(175%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1390px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(185%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1430px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(190%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1470px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(195%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1505px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(200%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-55%);
-  }
-}
-@media (min-width: 1545px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(205%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1645px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(220%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1745px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(240%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1845px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(255%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-@media (min-width: 1945px) {
-  .focuss {
-    transition: 0.7s ease-in-out;
-    transform: translateX(275%);
-  }
-  .focus {
-    transition: 0.7s ease-in-out;
-    transform: translateX(-50%);
-  }
-}
-/*MediaQuery for animation end Angelo*/
 
 /* Home page styling start */
 
@@ -798,8 +446,10 @@ body {
 }
 
 .todoTitleFilter > div > select {
-  margin-left: 16px;
-  padding: 4px;
+  /* margin-left: 16px; */
+  /* height: 100%; */
+  padding: 9px;
+  border-radius: 0 10px 10px 0;
 }
 
 /* Home tab styling start */
@@ -1004,7 +654,8 @@ body {
 /* .filterHabits {
 padding: 20px;
 } */
-.habitHeader label {
+.habitHeader label,
+.todoTitleFilter > div > label {
   background: var(--_primaryColor);
   padding: 8px;
   border-radius: 10px 0 0 10px;
@@ -1046,28 +697,26 @@ padding: 20px;
 }
 
 .habitInfo {
-    display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 16px;
-      width: 400px;
-      padding: 32px;
-      border-radius: var(--_borderRl);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-      background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 400px;
+  padding: 32px;
+  border-radius: var(--_borderRl);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
 }
 .statusHabitInfo {
   display: flex;
   flex-direction: column;
-
 }
-
 
 .doneHabit {
   width: 24px;
@@ -1108,7 +757,7 @@ padding: 20px;
   cursor: pointer;
 }
 
-.waitingHabit:hover{
+.waitingHabit:hover {
   transform: scale(1.2);
 }
 .countDiv {
@@ -1124,16 +773,15 @@ padding: 20px;
 }
 .counter {
   color: var(--_textColor);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .habitPrio {
   position: absolute;
   top: 0;
-
 }
 .habitPrio i {
   color: var(--_secondaryColor);
