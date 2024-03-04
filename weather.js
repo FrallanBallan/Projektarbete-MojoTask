@@ -88,29 +88,19 @@ function renderLocation(data) {
   let weatherDesc = document.createElement("p");
   weatherDesc.innerText = data.data.weather[0].main;
 
-  weatherResult.append(weatherCity, weatherIcon, weatherTemp, weatherDesc);
+  //Ny div borde skapas
+  let weatherSunrise = document.createElement("p");
+  weatherSunrise.innerText = new Date(data.data.sys.sunrise * 1000);
+
+  let weatherWind = document.createElement("p");
+  weatherWind.innerText = "Windspeed:" + data.data.wind.speed;
+
+  weatherResult.append(
+    weatherCity,
+    weatherIcon,
+    weatherTemp,
+    weatherDesc,
+    weatherWind,
+    weatherSunrise
+  );
 }
-
-// weatherBtn.addEventListener("click", async () => {
-
-//   let weatherData = await getData();
-
-// });
-
-// let getData = async () => {
-//   // let city = genderChoices.toString();
-//   // console.log(city);
-//   let weatherInput = document.querySelector("weatherInput").value;
-//   console.log(weatherInput);
-
-//   let response = await axios.get(apiUrl + `&appid=${apiKey}`, {
-//     params: {
-//       country,
-//       id,
-//     },
-//   });
-//   console.log(response);
-//   return response;
-// .data.results;
-
-// getData();
