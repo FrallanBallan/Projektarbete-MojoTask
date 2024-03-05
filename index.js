@@ -83,7 +83,6 @@ CreateAccountBtn.addEventListener("click", () => {
 
       storeUsersLocal();
 
-      LoginOpen();
       //annars skriv ut felmeddelande
     } else {
       felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
@@ -99,11 +98,17 @@ function storeUsersLocal() {
   // Retrieve existing user data from localStorage
   let storedUsers = JSON.parse(localStorage.getItem("users")) || [];
   // Push new user data into the existing array
-  storedUsers.push(users);
-  // Store the updated array back into localStorage
-  localStorage.setItem("users", JSON.stringify(storedUsers));
-  // Reset the users object
-  users = {};
+
+  if (storedUsers.some((user) => user.id === users.id)) {
+    felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
+  } else {
+    storedUsers.push(users);
+    // Store the updated array back into localStorage
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+    // Reset the users object
+    users = {};
+    LoginOpen();
+  }
 }
 //knappen jag har redan ett konto stänger createAccount och öppnar login
 AlreadyAccountBtn.addEventListener("click", () => {
@@ -140,17 +145,17 @@ LoggainBtn.addEventListener("click", () => {
     // let todoData = JSON.parse(localStorage.getItem('todoData'));
     sessionStorage.setItem("NameUser", Namn.value);
 
-    if (todoData) {
-      // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
-      // let userTodoData = todoData.filter((item) => item.id === 'testPerson');
-      //nu använd seassion storage istället för att överföra datan känns som en bättre och enklare ide.
-      //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
-      // sessionStorage.setItem('userTodoData', JSON.stringify(userTodoData));
-      //meddelar simon som sitter med todo att han måste hämta Nameuser från sessionStorage och dess value ska tilldelas som id vid skapadet av en todo
-      //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
-    }
+    //   if (todoData) {
+    //     // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
+    //     // let userTodoData = todoData.filter((item) => item.id === 'testPerson');
+    //     //nu använd seassion storage istället för att överföra datan känns som en bättre och enklare ide.
+    //     //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
+    //     // sessionStorage.setItem('userTodoData', JSON.stringify(userTodoData));
+    //     //meddelar simon som sitter med todo att han måste hämta Nameuser från sessionStorage och dess value ska tilldelas som id vid skapadet av en todo
+    //     //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
+    //   }
 
-    NollställLogin();
+    //   NollställLogin();
   } else {
     //misslyckades att logga in
     p.innerText = "Felaktigt användarnamn eller lösenord!";

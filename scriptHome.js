@@ -410,16 +410,45 @@ function showTodoInfo(todo) {
   let todoPopUp = document.createElement("div");
   todoPopUp.classList.add("todoOverviewPop");
   todoPopUp.style.zIndex = "99";
-  let todoTitle = document.createElement("h2");
-  todoTitle.innerText = `Your Todo: ${todo.title}`;
-  let todoDesc = document.createElement("p");
-  todoDesc.innerText = `Description: ${todo.desc}`;
-  let todoDeadline = document.createElement("p");
-  todoDeadline.innerText = `Deadline: ${todo.deadline}`;
-  let todoTimeEst = document.createElement("p");
-  todoTimeEst.innerText = `Estimated time: ${todo.timeestimate}`;
+
+  let cardInfo = document.createElement("h2");
+  cardInfo.innerText = "Your todo:";
+
+  let todoTitle = document.createElement("input");
+  todoTitle.type = "text";
+  todoTitle.name = "todoTitle";
+  todoTitle.value = `${todo.title}`;
+  let todoTitleLabel = document.createElement("label");
+  todoTitleLabel.innerText = "Todo title:";
+
+  let todoDesc = document.createElement("input");
+  todoDesc.type = "text";
+  todoDesc.value = `${todo.desc}`;
+  let todoDescLabel = document.createElement("label");
+  todoDescLabel.innerText = "Todo Description:";
+
+  let todoDeadline = document.createElement("input");
+  todoDeadline.type = "date";
+  todoDeadline.value = `${todo.deadline}`;
+
+  let todoTimeEst = document.createElement("input");
+  todoTimeEst.type = "number";
+  todoTimeEst.value = `${todo.timeestimate}`;
+
   let todoCategory = document.createElement("p");
-  todoCategory.innerText = `Category: ${todo.category}`;
+  todoCategory.innerText = `Current Category: ${todo.category}`;
+
+  let todoReSelect = document.createElement("select");
+  todoReSelect.name = "categoryChoice";
+  todoReSelect.id = "categoryChoice";
+  todoReSelect.innerHTML = `
+  <option value="Choose one">Choose one</option>
+  <option value="Home">Home</option>
+  <option value="Training">Training</option>
+  <option value="School">School</option>
+  <option value="Chores">Chores</option>
+  `;
+
   let todoStatus = document.createElement("p");
   todoStatus.innerText = `Status: ${todo.status}`;
   let btn = document.createElement("button");
@@ -436,25 +465,45 @@ function showTodoInfo(todo) {
   overLay.style.background = "rgba(0,0,0,0.4)";
 
   document.body.append(overLay);
+  let editBtn = document.createElement("button");
+  editBtn.classList.add("btn", "primary");
+  editBtn.innerText = "Edit Todo?";
 
   todoPopUp.append(
+    cardInfo,
+    todoTitleLabel,
     todoTitle,
+    todoDescLabel,
     todoDesc,
     todoDeadline,
     todoTimeEst,
     todoCategory,
+    todoReSelect,
     todoStatus,
+    editBtn,
     btn
   );
   let finishBtn = document.createElement("button");
+
   if (todo.status === "unfinished") {
-    finishBtn.classList.add("btn", "primary");
+    finishBtn.classList.add("btn", "secondary");
     finishBtn.innerText = "Finished?";
     todoPopUp.append(finishBtn);
   }
 
   contentContainer.append(todoPopUp);
 
+  //Editng the Todo Card
+  editBtn.addEventListener("click", () => {
+    todo.title = todoTitle.value;
+    todo.desc = todoDesc.value;
+    todo.deadline = todoDeadline.value;
+    todo.timeestimate = todoTimeEst.value;
+    todo.category = todoReSelect.value;
+    overLay.remove();
+    saveTodoData();
+    showTodos();
+  });
   // Removing the overlay and popUp
   btn.addEventListener("click", () => {
     btn.parentElement.remove();
@@ -464,10 +513,14 @@ function showTodoInfo(todo) {
     btn.parentElement.remove();
     overLay.remove();
   });
+
+  // Click to save Edited todos
   finishBtn.addEventListener("click", () => {
     todo.status = "finished";
+    todo.desc = todoDesc.value;
     btn.parentElement.remove();
     overLay.remove();
+    saveTodoData();
     showTodos();
   });
 }
