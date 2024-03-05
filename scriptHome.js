@@ -112,13 +112,14 @@ function showHome() {
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
   
-  <div class="homeCard">
+  <div class="homeCard" onclick=showTodos()>
     <i class="fa-solid fa-pen-to-square"></i>
   </div>
-  <div class="homeCard">
+  <div class="homeCard" onclick=showHabits()>
+  
     <i class="fa-solid fa-person-praying"></i>
   </div>
-  <div class="homeCard">
+  <div class="homeCard" onclick=showWeather()>
     <h3 class="montserrat-heading">Todays Weather</h3>
     <div class="weatherIcon" id="weatherIcons">
 
@@ -665,10 +666,10 @@ function printHabitsOnPage(list) {
         "url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else if (habitObject.category === 'Mindfullness') {
       habitCard.style.backgroundImage =
-        "url('https://images.unsplash.com/photo-1611800065908-233b597db552?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+        "url('https://images.unsplash.com/photo-1621228720536-e27ba8f4d363?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else if (habitObject.category === 'Cleaning') {
       habitCard.style.backgroundImage =
-        "url('https://plus.unsplash.com/premium_photo-1661662917928-b1a42a08d094?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+        "url('https://images.unsplash.com/photo-1529220502050-f15e570c634e?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1610312856669-2cee66b2949c?q=80&w=1905&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
