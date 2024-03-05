@@ -46,7 +46,10 @@ function showHome() {
     city.innerText = data.data.name;
 
     let temp = document.querySelector("#weatherTemp");
-    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C";
+    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C ";
+
+    let weather = document.querySelector("#weatherWeather");
+    weather.innerText = data.data.weather[0].main;
 
     let weatherIcons = document.querySelector("#weatherIcons");
     let weatherIcon = document.createElement("img");
@@ -124,8 +127,9 @@ function showHome() {
     <div class="weatherIcon" id="weatherIcons">
 
     </div>
-    <h4 id="weatherTemp" class="montserrat-heading">Temperture:</h4>
-    <h4 class="montserrat-heading">Location: <h3 id="weatherCity"></h3></h4>
+    <h2 id="weatherTemp" class="montserrat-heading">Temperture:</h2>
+    <h3 id="weatherWeather">Weather: </h3>
+    <h3 id="weatherCity"></h3>
   </div>
 </div>
 <div class="divider"></div>
