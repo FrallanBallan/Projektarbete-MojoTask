@@ -388,8 +388,11 @@ function printTodosOnPage(list) {
 
     //Click on a todo to get the info
 
-    todoCard.addEventListener('click', () => {
-      showTodoInfo(todoObject);
+    todoCard.addEventListener('click', (e) => {
+      if (e.target.innerHTML.includes('trash')) {
+        console.log(e.target);
+        showTodoInfo(todoObject);
+      }
     });
   });
   // add eventlistener for removing todoCards start
