@@ -433,7 +433,7 @@ body {
   background: var(--_primaryColor);
   cursor: pointer;
   padding: 16px;
-    background-size: cover;
+  background-size: cover;
 }
 
 .homeCard img {
@@ -626,6 +626,15 @@ body {
   font-style: normal;
   text-decoration: underline;
 }
+
+.todoOverviewPop input,
+.todoOverviewPop select {
+  background: var(--_primaryColor);
+  padding: 8px 4px;
+  border-radius: var(--_borderRs);
+  font-size: 16px;
+  color: #fff;
+}
 /* Todo Overview ENd */
 
 /* Habit Styiling start */
@@ -799,7 +808,6 @@ padding: 20px;
   min-width: 320px;
   text-align: center;
   background-size: cover;
-  
 }
 .weatherSearch {
   width: 100%;
@@ -816,8 +824,6 @@ padding: 20px;
   flex: 1;
   padding: 8px;
   width: 100%;
-
-
 }
 .weatherSearch .search {
   background: transparent;
@@ -832,12 +838,9 @@ padding: 20px;
 }
 .weatherResult img {
   scale: 0.8;
-
 }
 
-
 /* Weather styling - end */
-
 
 /* Main container styling end Frans Simon */
 
