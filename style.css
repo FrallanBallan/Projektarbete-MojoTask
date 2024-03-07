@@ -203,11 +203,16 @@ body {
   transform: translate(-50%, -50%);
   /* border: 1px solid black; */
   padding: 16px;
-  max-width: 482px;
+  max-width: 480px;
   display: flex;
   justify-content: center;
 
   overflow: hidden;
+}
+@media (max-width: 480px) {
+  .staticSlider {
+    max-width: 375px;
+  }
 }
 
 .slider {
@@ -792,3 +797,68 @@ padding: 20px;
 
 /* main styling end Simon/Frans */
 /* Homepage stylijg end */
+/* Timer styling start - Angelo */
+#timer {
+  font-size: 6rem;
+  margin-bottom: 2rem;
+}
+.TimerContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.TimerBox {
+  width: 45%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 60%;
+  background-color: var(--_primaryColor);
+  border-radius: 1rem;
+  color: var(--_textColor);
+  padding: 0.5rem;
+  box-shadow: var(--_boxShadow);
+}
+.TimerBox button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  background-color: var(--_secondaryColor);
+  border: none;
+  color: var(--_textColor);
+  border-radius: 4px;
+  margin: 0.8rem;
+  width: 10rem;
+  height: 3.5rem;
+  text-align: center;
+}
+.TimerBox button:hover {
+  cursor: pointer;
+  scale: 1.05;
+  background-color: rgb(252, 213, 69);
+}
+.TimerBox input {
+  height: 1.65rem;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem;
+  color: var(--_textColor);
+  background: var(--_secondaryColor);
+  margin: 0.5rem;
+}
+.setTime {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.blur {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(5px);
+}
+/* Timer styling end - Angelo */
