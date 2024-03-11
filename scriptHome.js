@@ -1,4 +1,5 @@
 // -_-
+//FF-BAOM
 
 // Globals
 let habitContainer = document.querySelector(".habitCardContainer");
@@ -10,6 +11,11 @@ let timerTab = document.querySelector("#timerTab");
 let calenderTab = document.querySelector("#calenderTab");
 let weatherTab = document.querySelector("#weatherTab");
 
+//User
+let sessionUser = sessionStorage.getItem("NameUser");
+let userName = sessionUser ? sessionUser : "failed";
+console.log(userName);
+
 // Global Arrays
 let localTodos = localStorage.getItem("todoData");
 let todoList = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(localStorage.getItem('links'));
@@ -18,6 +24,65 @@ let localHabits = localStorage.getItem("habitData");
 let habitList = localHabits ? JSON.parse(localHabits) : [];
 
 function showHome() {
+  //WEATHER TEST START
+  const apiKey = "57a622d1a38b6d1497b9a19a259dfdea";
+  const apiUrlStart =
+    "https://api.openweathermap.org/data/2.5/weather?q=stockholm";
+
+  let getData = async () => {
+    let response = await axios.get(apiUrlStart + `&appid=${apiKey}`);
+    console.log(response);
+    renderLocation(response);
+  };
+  function renderLocation(data) {
+    let city = document.querySelector("#weatherCity");
+    city.innerText = data.data.name;
+
+    let temp = document.querySelector("#weatherTemp");
+    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C";
+
+    let weatherIcons = document.querySelector("#weatherIcons");
+    let weatherIcon = document.createElement("img");
+    if (data.data.weather[0].main === "Clouds") {
+      weatherIcon.src = "/images/clouds.png";
+    } else if (data.data.weather[0].main === "Clear") {
+      weatherIcon.src = "/images/clear.png";
+    } else if (data.data.weather[0].main === "Drizzle") {
+      weatherIcon.src = "/images/drizzle.png";
+    } else if (data.data.weather[0].main === "Mist") {
+      weatherIcon.src = "/images/mist.png";
+    } else if (data.data.weather[0].main === "Rain") {
+      weatherIcon.src = "/images/rain.png";
+    } else if (data.data.weather[0].main === "Snow") {
+      weatherIcon.src = "/images/snow.png";
+    } else if (data.data.weather[0].main === "Clear") {
+      weatherIcon.src = "/images/clear.png";
+    } else {
+      weatherIcon.src = "/images/logo.png";
+    }
+
+    weatherIcons.append(weatherIcon);
+    let weatherDiv = document.querySelector(".homeCard:nth-of-type(3)");
+    if (data.data.weather[0].main === "Clouds") {
+      weatherDiv.style.backgroundImage = 'url("/gifs/cloudy - Copy.gif")';
+    } else if (data.data.weather[0].main === "Drizzle") {
+      weatherDiv.style.backgroundImage = 'url("/gifs/drizzle.gif")';
+    } else if (data.data.weather[0].main === "Mist") {
+      weatherDiv.style.backgroundImage = 'url("/gifs/misty.gif")';
+    } else if (data.data.weather[0].main === "Rain") {
+      weatherDiv.style.backgroundImage = 'url("/gifs/rain.gif")';
+    } else if (data.data.weather[0].main === "Snow") {
+      weatherDiv.style.backgroundImage = 'url("/gifs/snow.gif")';
+    } else if (data.data.weather[0].main === "Clear") {
+      weatherDiv.style.backgroundImage = 'url("/gifs/clear.gif")';
+    } else {
+      weatherDiv.style.backgroundImage = 'url("/gifs/weather.gif")';
+    }
+  }
+  getData();
+
+  //WEATHER TEST END
+
   //removing styles and content
   // contentContainer.innerHTML = '';
   todoTab.removeAttribute("style");
@@ -40,19 +105,20 @@ function showHome() {
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
   
-  <div class="homeCard">
+  <div class="homeCard" onclick=showTodos()>
     <i class="fa-solid fa-pen-to-square"></i>
   </div>
-  <div class="homeCard">
+  <div class="homeCard" onclick=showHabits()>
+  
     <i class="fa-solid fa-person-praying"></i>
   </div>
-  <div class="homeCard">
+  <div class="homeCard" onclick=showWeather()>
     <h3 class="montserrat-heading">Todays Weather</h3>
-    <div class="weatherIcon">
-      <i class="fa-solid fa-cloud-sun-rain"></i>
+    <div class="weatherIcon" id="weatherIcons">
+
     </div>
-    <h4 class="montserrat-heading">Temperture:</h4>
-    <h4 class="montserrat-heading">Location:</h4>
+    <h4 id="weatherTemp" class="montserrat-heading">Temperture:</h4>
+    <h4 class="montserrat-heading">Location: <h3 id="weatherCity"></h3></h4>
   </div>
 </div>
 <div class="divider"></div>
@@ -313,7 +379,14 @@ function printTodosOnPage(list) {
       todoCardContainerFinished.append(todoCard);
     }
 
-    //New Verson
+    //Click on a todo to get the info
+
+    todoCard.addEventListener("click", (e) => {
+      if (e.target.innerHTML.includes("trash")) {
+        console.log(e.target);
+        showTodoInfo(todoObject);
+      }
+    });
   });
   // add eventlistener for removing todoCards start
   let removeBtns = document.querySelectorAll(".removeBtn");
@@ -322,6 +395,125 @@ function printTodosOnPage(list) {
       removeTodo(removeBtn);
     });
     // console.log(todoList);
+  });
+}
+
+function showTodoInfo(todo) {
+  let todoPopUp = document.createElement("div");
+  todoPopUp.classList.add("todoOverviewPop");
+  todoPopUp.style.zIndex = "99";
+
+  let cardInfo = document.createElement("h2");
+  cardInfo.innerText = "Your todo:";
+
+  let todoTitle = document.createElement("input");
+  todoTitle.type = "text";
+  todoTitle.name = "todoTitle";
+  todoTitle.value = `${todo.title}`;
+  let todoTitleLabel = document.createElement("label");
+  todoTitleLabel.innerText = "Todo title:";
+
+  let todoDesc = document.createElement("input");
+  todoDesc.type = "text";
+  todoDesc.value = `${todo.desc}`;
+  let todoDescLabel = document.createElement("label");
+  todoDescLabel.innerText = "Todo Description:";
+
+  let todoDeadline = document.createElement("input");
+  todoDeadline.type = "date";
+  todoDeadline.value = `${todo.deadline}`;
+
+  let todoTimeEst = document.createElement("input");
+  todoTimeEst.type = "number";
+  todoTimeEst.value = `${todo.timeestimate}`;
+
+  let todoCategory = document.createElement("p");
+  todoCategory.innerText = `Current Category: ${todo.category}`;
+
+  let todoReSelect = document.createElement("select");
+  todoReSelect.name = "categoryChoice";
+  todoReSelect.id = "categoryChoice";
+  todoReSelect.innerHTML = `
+  <option value="Choose one">Choose one</option>
+  <option value="Home">Home</option>
+  <option value="Training">Training</option>
+  <option value="School">School</option>
+  <option value="Chores">Chores</option>
+  `;
+
+  let todoStatus = document.createElement("p");
+  todoStatus.innerText = `Status: ${todo.status}`;
+  let btn = document.createElement("button");
+  btn.classList.add("removeBtn");
+  btn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
+
+  let overLay = document.createElement("div");
+  overLay.style.width = "100vw";
+  overLay.style.height = "100%";
+  overLay.style.zIndex = "10";
+  overLay.style.position = "absolute";
+  overLay.style.top = "0";
+  overLay.style.left = "0";
+  overLay.style.background = "rgba(0,0,0,0.4)";
+
+  document.body.append(overLay);
+  let editBtn = document.createElement("button");
+  editBtn.classList.add("btn", "primary");
+  editBtn.innerText = "Edit Todo?";
+
+  todoPopUp.append(
+    cardInfo,
+    todoTitleLabel,
+    todoTitle,
+    todoDescLabel,
+    todoDesc,
+    todoDeadline,
+    todoTimeEst,
+    todoCategory,
+    todoReSelect,
+    todoStatus,
+    editBtn,
+    btn
+  );
+  let finishBtn = document.createElement("button");
+
+  if (todo.status === "unfinished") {
+    finishBtn.classList.add("btn", "secondary");
+    finishBtn.innerText = "Finished?";
+    todoPopUp.append(finishBtn);
+  }
+
+  contentContainer.append(todoPopUp);
+
+  //Editng the Todo Card
+  editBtn.addEventListener("click", () => {
+    todo.title = todoTitle.value;
+    todo.desc = todoDesc.value;
+    todo.deadline = todoDeadline.value;
+    todo.timeestimate = todoTimeEst.value;
+    todo.category = todoReSelect.value;
+    overLay.remove();
+    saveTodoData();
+    showTodos();
+  });
+  // Removing the overlay and popUp
+  btn.addEventListener("click", () => {
+    btn.parentElement.remove();
+    overLay.remove();
+  });
+  overLay.addEventListener("click", () => {
+    btn.parentElement.remove();
+    overLay.remove();
+  });
+
+  // Click to save Edited todos
+  finishBtn.addEventListener("click", () => {
+    todo.status = "finished";
+    todo.desc = todoDesc.value;
+    btn.parentElement.remove();
+    overLay.remove();
+    saveTodoData();
+    showTodos();
   });
 }
 
@@ -473,7 +665,7 @@ function printHabitsOnPage(list) {
         "url('https://images.unsplash.com/photo-1611800065908-233b597db552?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else if (habitObject.category === "Cleaning") {
       habitCard.style.backgroundImage =
-        "url('https://plus.unsplash.com/premium_photo-1661662917928-b1a42a08d094?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+        "url('https://images.unsplash.com/photo-1529220502050-f15e570c634e?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1610312856669-2cee66b2949c?q=80&w=1905&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
@@ -537,23 +729,23 @@ function showTimer() {
   //removing styles and content
   timerTab.style.width = "110%";
   timerTab.style.borderRadius = "0% 10% 10% 0%";
-  contentContainer.innerHTML = `
 
-   <div class="TimerContainer">
-   <div class="TimerBox">
-      <div class="setTime lato-bold">
-        <label for="timeInput">Set time (minutes):</label> 
-        <input type="number" id="timeInput" min="1" value="1" />
-      </div>
-      <div class="lato-bold" id="timer">00:00</div>
-      <div>
-        <button class="lato-bold" id="StartTimerbtn" onclick="startTimer()">Start</button>
-        <button class="lato-bold" id="PauseTimerbtn" style="display: none" onclick="pauseTimer()">Pause</button>
-        <button class="lato-bold" id="ResetTimerbtn" style="display: none" onclick="resetTimer()">Reset</button>
-      </div>
-    </div>
-    </div>
-  `;
+  contentContainer.innerHTML = `
+    <div class="TimerContainer">
+    <div class="TimerBox">
+       <div class="setTime lato-bold">
+         <label id="timelabel" for="timeInput">Set time (minutes)</label> 
+         <input type="number" id="timeInput" min="1" value="1" />
+       </div>
+       <div class="lato-bold" id="timer">00:00</div>
+       <div>
+         <button class="lato-bold" id="StartTimerbtn" onclick="startTimer()">Start</button>
+         <button class="lato-bold" id="PauseTimerbtn" style="display: none" onclick="pauseTimer()">Pause</button>
+         <button class="lato-bold" id="ResetTimerbtn" style="display: none" onclick="resetTimer()">Reset</button>
+       </div>
+     </div>
+     </div>
+   `;
 }
 
 function showCalender() {
@@ -681,6 +873,7 @@ function createTodo() {
       ).value;
       console.log(todoObject);
       todoList.push(todoObject);
+      todoListUnfilter.push(todoObject);
       saveTodoData();
       alert("A new Todo has been added!");
       showTodos();
@@ -761,6 +954,7 @@ function createHabit() {
     }
 
     habitList.push(habitObject);
+    habitListUnfilter.push(habitObject);
     saveHabitData();
     alert("A new Habit has been added");
     showHabits();
@@ -813,7 +1007,12 @@ function removeTodo(removeBtn) {
       let index = todoList.findIndex((todoObject) =>
         removeBtn.parentElement.innerHTML.includes(todoObject.title)
       );
+      let indexUnf = todoList.findIndex((todoObject) =>
+        removeBtn.parentElement.innerHTML.includes(todoObject.title)
+      );
       todoList.splice(index, 1);
+      todoListUnfilter.splice(indexUnf, 1);
+      console.log(indexUnf);
       console.log(index, removeBtn.parentElement.innerHTML, todoObject.title);
     }
     removeBtn.parentElement.remove();

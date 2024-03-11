@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mojo Home</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="styleCalender.css"> -->
     <!-- <script src="index.js" defer></script> -->
     <script src="scriptHome.js" defer></script>
-    <script src="Timer.js" defer></script>
+    <script src="timer.js" defer></script>
+    <script src="weather.js" defer></script>
+    <script src="calender.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +26,7 @@
 <body>
     <header>
         <nav>
+
             <div class="navContainer">
                 <div class="navLogo">
                     <img src="images/Logo.svg" alt="" />
@@ -61,6 +66,7 @@
                     <h3>Todo's</h3>
                 </div>
                 <div class="tab" id="habitsTab" onclick="showHabits()">
+
                     <i class="fa-solid fa-person-praying"></i>
                     <h3>Habits</h3>
                 </div>
