@@ -729,7 +729,7 @@ function showTimer() {
   timerTab.style.borderRadius = "0% 10% 10% 0%";
   contentContainer.innerHTML = `
 
-   <div class="TimerContainer">
+  <div class="TimerContainer">
    <div class="TimerBox">
       <div class="setTime lato-bold">
         <label id= "timelabel" for="timeInput">Set time (minutes)</label> 
@@ -743,6 +743,7 @@ function showTimer() {
       </div>
     </div>
     </div>
+
   `;
 }
 
