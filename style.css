@@ -1,0 +1,1198 @@
+/* ROOT STYLES Start */
+:root {
+  --_primaryColor: #876af8;
+  --_secondaryColor: #fec20d;
+  --_alertColor: #ec4c73;
+  --_successColor: #a3da5d;
+  --_warningColor: #ff7a00;
+  --_bgColor: #f2f2f3;
+  --_blueishColor: #46a2ff;
+  --_textColor: rgb(28, 28, 28);
+
+  /* Box shadown */
+  --_boxShadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  --_spreadShadow: 0 0 6px rgba(0, 0, 0, 0.2);
+
+  /* BorderRadius */
+  --_borderRs: 4px;
+  --_borderRm: 8px;
+  --_borderRl: 16px;
+}
+body {
+  background: var(--_bgColor);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+/* Fonts */
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lato-regular {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lato-bold {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.montserrat-heading {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+/* Root Styles end */
+body {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+}
+/* Root Styles end */
+
+/* Button Styling */
+.btn {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border: none;
+  outline: none;
+  border-radius: var(--_borderRm);
+  padding: 16px 24px;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--_primaryColor);
+  margin-inline: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.primary:hover {
+  scale: 1.05;
+  box-shadow: var(--_boxShadow);
+}
+
+.secondary {
+  background: var(--_secondaryColor);
+  transition: all 0.2s ease-in-out;
+}
+
+.secondary:hover {
+  scale: 1.05;
+  box-shadow: var(--_boxShadow);
+}
+
+.logOutBtn {
+  margin-top: 16px;
+  /* transform: translateY(-16px); */
+}
+
+.logOutBtn:hover {
+  box-shadow: var(--_spreadShadow);
+}
+
+.removeBtn {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  color: var(--_alertColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-10%, 10%);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  scale: 1.1;
+}
+/* Button Styling */
+
+/* Logo Styles Angelo start */
+#Layer_2 {
+  background-color: var(--_successColor);
+  width: 150px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.4rem;
+}
+
+/*Animation Login styles end Angelo*/
+/*Loading Screen start Angelo*/
+.LoadingScreen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--_primaryColor);
+  z-index: 9999;
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.quot-box {
+  width: 70%;
+}
+.Welcome-Message {
+  font-size: 2.5rem;
+  color: var(--_secondaryColor);
+  margin-bottom: 1rem;
+}
+.quot {
+  color: white;
+  font-size: 2rem;
+}
+.loading .line-box {
+  padding: 2px;
+  width: 40%;
+  height: 28px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+.loading .line-box .line {
+  height: 20px;
+  border-radius: 20px;
+  background: var(--_successColor);
+  animation: loading 4.9s forwards cubic-bezier(0, 0, 0, 0);
+}
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Test new Login Style */
+
+.staticSlider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 1px solid black; */
+  padding: 16px;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .staticSlider {
+    max-width: 375px;
+  }
+}
+
+.slider {
+  display: flex;
+  position: relative;
+  transform: translateX(200px);
+  gap: 128px;
+  /* border: 1px solid red; */
+  transition: all 0.7s ease-in-out;
+}
+
+.slider.right {
+  transform: translateX(-190px);
+}
+
+.CreateAccount-form,
+.Login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 17px;
+  padding: 1.5rem;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: var(--_borderRm);
+  min-height: 400px;
+  min-width: 300px;
+}
+#countrySelect {
+  width: 85%;
+  padding: 0.3rem;
+}
+.Login-form h1 {
+  font-size: 2.63rem;
+  letter-spacing: 2px;
+  margin: 0;
+}
+.Login-form h2 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+.CreateAccount-form h2 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+.CreateAccount-form #alredyaccount {
+  background: none;
+  color: black;
+  text-decoration: underline;
+}
+.Login-form #LoginBtn {
+  background-color: black;
+}
+
+.CreateAccount-form input,
+.Login-form input {
+  width: 85%;
+  padding: 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(223, 223, 223);
+}
+.CreateAccount-form input,
+.Login-form input::placeholder {
+  opacity: 0.7;
+}
+
+.CreateAccount-form button,
+.Login-form button {
+  font-size: 1rem;
+  padding: 0.6rem;
+  border-radius: var(--_borderRs);
+  background-color: var(--_primaryColor);
+  color: rgb(224, 224, 224);
+}
+.felmeddelande {
+  font-size: 0.8rem;
+  color: var(--_alertColor);
+}
+#error {
+  font-size: 0.8rem;
+  color: var(--_alertColor);
+}
+
+/* Home page styling start */
+
+/* Navbar Simon/frans start */
+.navContainer {
+  width: 100%;
+  min-height: 100px;
+  background: white;
+  box-shadow: var(--_boxShadow);
+  display: flex;
+  align-items: center;
+  padding-inline: 48px;
+  justify-content: space-between;
+}
+
+.navLogo {
+  width: 20%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: ceter;
+  padding: 8px 16px;
+  border-radius: var(--_borderRm);
+  border: 0px transparent solid;
+  transition: all 0.2s ease-in-out;
+}
+
+.navLogo:hover {
+  border-bottom: 10px var(--_primaryColor) solid;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+.linkList li:last-child {
+  margin-left: 32px;
+}
+
+.linkList a {
+  text-decoration: none;
+  color: var(--_textColor);
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.linkList i {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.navlink {
+  color: var(--_textColor);
+  transition: all 0.8s ease-in-out;
+}
+
+.navLink:hover i {
+  color: var(--_primaryColor);
+}
+
+/* Navbar Simon/frans end */
+
+/* main styling start Simon/Frans */
+
+/* Tab Styling start Frans/simon */
+.gridContainer {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  height: calc(100vh - 100px);
+  /* grid-template-rows: 1fr; */
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: var(--_boxShadow);
+  height: 100%;
+  gap: 4px;
+  padding-block: 32px 12px;
+  justify-items: stretch;
+}
+
+.tab {
+  color: var(--_textColor);
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 90%;
+  flex-grow: 1;
+  /* height: 20%; */
+
+  background: var(--_primaryColor);
+  border-radius: 0 20% 20% 0;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 4px;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--_boxShadow);
+  transition: all 0.3s ease-in-out;
+}
+
+.tab:first-of-type {
+  background: var(--_secondaryColor);
+}
+.tab:nth-of-type(2) {
+  background: var(--_alertColor);
+}
+.tab:nth-of-type(4) {
+  background: var(--_warningColor);
+}
+.tab:nth-of-type(5) {
+  background: var(--_successColor);
+}
+.tab:nth-of-type(6) {
+  background: var(--_blueishColor);
+}
+
+.tab:hover {
+  width: 100%;
+  border-radius: 0 10% 10% 0;
+}
+
+.tab i {
+  font-size: 24px;
+}
+
+/* Tab Styling end Frans/simon */
+
+/* Main container styling start Frans Simon */
+
+.contentContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  /* border: solid black 1px; */
+  padding: 32px 32px 32px 56px;
+  position: relative;
+}
+
+.todoTitleFilter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todoTitleFilter > div > label {
+  margin-left: 16px;
+}
+
+.todoTitleFilter > div > select {
+  /* margin-left: 16px; */
+  /* height: 100%; */
+  padding: 9px;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Home tab styling start */
+.homeCardContainer {
+  min-height: 33%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.homeCard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--_secondaryColor);
+  justify-content: center;
+  border-radius: var(--_borderRm);
+  background: var(--_primaryColor);
+  cursor: pointer;
+  padding: 16px;
+  background-size: cover;
+  box-shadow: var(--_boxShadow);
+}
+.homeCard {
+  background-image: url(https://images.unsplash.com/photo-1593987011155-542d44e8660e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+.homeCard:nth-last-of-type(2) {
+  background-image: url(https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2720&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.homeCard img {
+  scale: 0.8;
+}
+
+.homeCard i {
+  font-size: 64px;
+}
+.divider {
+  width: 100%;
+  background: var(--_textColor);
+  opacity: 0.6;
+  height: 1px;
+}
+
+.homeOverviewContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  min-height: 33%;
+  /* padding: 32px; */
+
+  place-content: center;
+  align-content: center;
+}
+
+.homeOverviewContainer .btn {
+  min-width: 40%;
+}
+
+.overviewList {
+  list-style: circle;
+  margin-top: 24px;
+  margin-left: 24px;
+}
+
+.overviewList li {
+  margin-bottom: 16px;
+}
+/* Home tab styling end */
+
+/* Todo tab styling start */
+
+.homeTodoTab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.homeTodoTab h2,
+.homeTodoTab h3 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.createTodo {
+  position: relative;
+  top: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.createTodo p {
+  font-size: 12px;
+  color: var(--_textColor);
+  margin-top: 12px;
+}
+
+.createTodo i {
+  color: var(--_primaryColor);
+  font-size: 32px;
+}
+
+.card {
+  height: 150px;
+  width: 150px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+  border-radius: var(--_borderRm);
+  box-shadow: var(--_boxShadow);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  text-align: center;
+}
+
+.todoCategory {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translate(20%, 20%);
+  background: var(--_primaryColor);
+  color: var(--_textColor);
+}
+
+.todoCardContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.unfinished {
+  background: var(--_secondaryColor);
+}
+
+.finished {
+  background: var(--_successColor);
+}
+
+/* Todo tab styling end */
+
+/* Todo Popup start */
+.todoInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 400px;
+  padding: 32px;
+  border-radius: var(--_borderRl);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
+}
+
+.todoInfo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.todoInfo input,
+.todoInfo select {
+  padding: 8px 16px;
+  border-radius: var(--_borderRs);
+  background: var(--_bgColor);
+}
+
+.todoInfo .statusTodoInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* Todo Popup End */
+
+/* Todo Overview Start */
+
+.todoOverview {
+  display: flex;
+  flex-direction: column;
+  border: var(--_primaryColor) 1px solid;
+  font-family: "Roboto", sans-serif;
+  padding: 16px;
+  justify-content: space-between;
+}
+.habitOverview {
+  display: flex;
+  flex-direction: column;
+  border: var(--_primaryColor) 1px solid;
+  font-family: "Roboto", sans-serif;
+  padding: 16px;
+  justify-content: space-between;
+}
+
+.todoOverviewPop {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  padding: 16px;
+  border-radius: var(--_borderRl);
+  box-shadow: var(--_boxShadow);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 400px;
+}
+
+.todoOverviewPop h2 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: underline;
+}
+
+.todoOverviewPop input,
+.todoOverviewPop select {
+  background: var(--_primaryColor);
+  padding: 8px 4px;
+  border-radius: var(--_borderRs);
+  font-size: 16px;
+  color: #fff;
+}
+/* Todo Overview ENd */
+
+/* Habit Styiling start */
+.habitContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.habitHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-right: 148px;
+  border-bottom: 1px solid var(--_textColor);
+  padding-block: 16px;
+}
+/* .filterHabits {
+padding: 20px;
+} */
+.habitHeader label,
+.todoTitleFilter > div > label {
+  background: var(--_primaryColor);
+  padding: 8px;
+  border-radius: 10px 0 0 10px;
+}
+.habitHeader select {
+  background: var(#fff);
+  padding: 9px;
+  border-radius: 0 10px 10px 0;
+}
+
+.habitCardContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 20%);
+  width: 100%;
+  gap: 32px;
+  padding-block-start: 48px;
+}
+.habitCard {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background-image: url(https://source.unsplash.com/random);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  text-align: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: var(--_borderRm);
+  box-shadow: var(--_boxShadow);
+}
+
+.habitInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 400px;
+  padding: 32px;
+  border-radius: var(--_borderRl);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
+}
+.statusHabitInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.doneHabit {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  color: var(--_successColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  transform: translate(-10%, 10%);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  transform-origin: bottom right;
+}
+.doneHabit:hover {
+  transform: scale(1.2);
+}
+.waitingHabit {
+  width: 24px;
+  height: 24px;
+  /* -webkit-transform: scaleX(-1);
+  transform: scaleX(-1); */
+  background: transparent;
+  color: var(--_alertColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 1;
+  bottom: 5px;
+  transform: translate(-10%, 10%);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.waitingHabit:hover {
+  transform: scale(1.2);
+}
+.countDiv {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.countDiv i {
+  color: var(--_secondaryColor);
+  font-size: 56px;
+  stroke-width: 8px;
+}
+.counter {
+  color: var(--_textColor);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.habitPrio {
+  position: absolute;
+  top: 0;
+}
+.habitPrio i {
+  color: var(--_secondaryColor);
+}
+/* Habit Styiling end */
+
+/* Weather styling - start */
+
+.weatherDiv {
+  background: var(--_primaryColor);
+  border-radius: var(--_borderRm);
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  gap: 16px;
+  box-shadow: var(--_boxShadow);
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 320px;
+  text-align: center;
+  background-size: cover;
+  color: #fff;
+  font-weight: 600;
+}
+.weatherSearch {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  max-width: 400px;
+}
+.weatherSearch input {
+  border: 0;
+  outline: 0;
+  border-radius: var(--_borderRm);
+  flex: 1;
+  padding: 8px;
+  width: 100%;
+}
+.weatherSearch .search {
+  background: transparent;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+.weatherSearch .search img {
+  height: 100%;
+}
+
+.weatherResultExtra {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.weatherResult img {
+  scale: 0.8;
+}
+
+/* Weather styling - end */
+
+/* Main container styling end Frans Simon */
+
+/* main styling end Simon/Frans */
+/* Homepage stylijg end */
+
+/* Calender Styling */
+
+.containerCalender {
+  /* width: 80%; */
+
+  /* background-color: #fff; */
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.headerCalender {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerCalender #month {
+  color: var(--_primaryColor);
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.buttonCalender {
+  width: 75px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+}
+
+.headerCalender .buttonCalender {
+  background-color: var(--_primaryColor);
+  margin-left: 16px;
+}
+.weekdays {
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  background-color: var(--_primaryColor);
+  font-size: 17px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.weekdays div {
+  /* width: 100px; */
+  flex-grow: 1;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#something {
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: var(--_borderRm);
+  margin: 5px;
+  box-sizing: border-box;
+  box-shadow: var(--_boxShadow);
+  color: #7f8fa6;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.day:hover {
+  background-color: rgba(112, 111, 211, 0.1);
+  color: var(--_secondaryColor);
+}
+
+@media screen and (max-width: 800px) {
+  .day {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+#currentDay {
+  background-color: var(--_primaryColor);
+  color: #fff;
+}
+
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-color: var(--_alertColor);
+  color: #fff;
+  border-radius: 5px;
+  max-height: 55px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.event.holiday {
+  background-color: palegreen;
+  color: #3d3d3d;
+}
+
+.plain {
+  cursor: default;
+  box-shadow: none;
+}
+
+#modal {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#addEvent,
+#viewEvent {
+  display: none;
+  flex-direction: column;
+  width: 350px;
+  background-color: #fff;
+  padding: 25px;
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#addEvent button,
+#viewEvent button {
+  margin-top: 16px;
+}
+
+#addEvent h2,
+#viewEvent h2 {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#timeBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+#eventStartTime:before {
+  content: "Start";
+  margin-right: 8px;
+}
+#eventStopTime:before {
+  content: "Stop";
+  margin-inline: 8px;
+}
+
+#txtTitle {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #cbd4c2;
+  font-size: 16px;
+}
+
+#btnSave {
+  background-color: var(--_successColor);
+}
+
+.btnClose {
+  background-color: var(--_secondaryColor);
+}
+
+#viewEvent p {
+  margin-bottom: 20px;
+}
+
+#btnDelete {
+  background-color: var(--_alertColor);
+}
+
+.error {
+  border-color: #ea2027 !important;
+}
+/* Timer styling start - Angelo */
+#timer {
+  font-size: 6rem;
+  margin-bottom: 2rem;
+}
+.TimerContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.TimerBox {
+  width: 45%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 60%;
+  background-color: var(--_primaryColor);
+  border-radius: 1rem;
+  color: var(--_textColor);
+  padding: 0.5rem;
+  box-shadow: var(--_boxShadow);
+}
+.TimerBox button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  background-color: var(--_secondaryColor);
+  border: none;
+  color: var(--_textColor);
+  border-radius: 4px;
+  margin: 0.8rem;
+  width: 10rem;
+  height: 3.5rem;
+  text-align: center;
+}
+.TimerBox button:hover {
+  cursor: pointer;
+  scale: 1.05;
+  background-color: rgb(252, 213, 69);
+}
+.TimerBox input {
+  height: 1.65rem;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem;
+  color: var(--_textColor);
+  background: var(--_secondaryColor);
+  margin: 0.5rem;
+}
+.setTime {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.blur {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(5px);
+}
+/* Timer styling end - Angelo */
+

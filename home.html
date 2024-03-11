@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mojo Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="styleCalender.css"> -->
+    <!-- <script src="index.js" defer></script> -->
+    <script src="scriptHome.js" defer></script>
+    <!-- <script src="timer.js" defer></script> -->
+    <script src="weather.js" defer></script>
+    <script src="calender.js" defer></script>
+    <script src="Timer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/1fa94f2f1a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <div class="navContainer">
+                <div class="navLogo">
+                    <img src="images/Logo.svg" alt="" />
+                </div>
+                <div class="linkContainer">
+                    <ul class="linkList">
+                        <li>
+                            <a href="#" class="navLink" onclick="showHome()">
+                                <i class="fa-solid fa-house"></i>Home</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navLink" onclick="showTodos()"><i
+                                    class="fa-solid fa-pen-to-square"></i>Todo's</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navLink" onclick="showHabits()"><i
+                                    class="fa-solid fa-person-praying"></i>Habits</a>
+                        </li>
+                        <li>
+                            <a href="index.html" onclick="showLogout()" class="navLink"><i
+                                    class="fa-solid fa-arrow-right-from-bracket"></i>Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="gridContainer">
+            <div class="tabContainer">
+                <div class="tab" id="homeTab" onclick="showHome()">
+                    <i class="fa-solid fa-house"></i>
+                    <h3>Home</h3>
+                </div>
+                <div class="tab" id="todoTab" onclick="showTodos()">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <h3>Todo's</h3>
+                </div>
+                <div class="tab" id="habitsTab" onclick="showHabits()">
+                    <i class="fa-solid fa-person-praying"></i>
+                    <h3>Habits</h3>
+                </div>
+                <div class="tab" id="timerTab" onclick="showTimer()">
+                    <i class="fa-solid fa-stopwatch-20"></i>
+                    <h3>Timer</h3>
+                </div>
+                <div class="tab" id="calenderTab" onclick="showCalender()">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <h3>Calender</h3>
+                </div>
+                <div class="tab" id="weatherTab" onclick="showWeather()">
+                    <i class="fa-solid fa-cloud-sun-rain"></i>
+                    <h3>Weather</h3>
+                </div>
+                <!-- <button class="btn primary logOutBtn" onclick="showLogout()">Log out</button> -->
+            </div>
+            <div class="contentContainer">
+
+
+            </div>
+        </div>
+        </div>
+    </main>
+</body>
+
+</html>

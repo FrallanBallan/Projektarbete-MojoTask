@@ -1,0 +1,53 @@
+<div class="todoInfo">
+  <div>
+    <label for="whatTodo">What is your Todo?</label>
+    <input
+      type="text"
+      name="whatTodo"
+      id="whatTodo"
+      placeholder="Write your todo!"
+    />
+  </div>
+  <div>
+    <label for="descTodo">Describe it</label>
+    <input
+      type="text"
+      name="descTodo"
+      id="descTodo"
+      placeholder="Describe your todo"
+    />
+  </div>
+  <div>
+    <label for="deadlineTodo">Deadline?</label>
+    <input type="date" name="deadlineTodo" id="deadlineTodo" />
+  </div>
+  <div>
+    <label for="timeTodo">Time estimate?</label>
+    <input
+      type="number"
+      name="timeTodo"
+      id="timeTodo"
+      placeholder="Write in minutes!"
+    />
+  </div>
+
+  <div class="categoryInfoTodo">
+    <label for="categoryChoice">Category</label>
+    <select name="categoryChoice" id="categoryChoice">
+      <option value="Choose one">Choose one</option>
+      <option value="Home">Choose one</option>
+      <option value="Training">Training</option>
+      <option value="School">School</option>
+      <option value="Chores">Chores</option>
+    </select>
+  </div>
+
+  <div class="statusTodoInfo">
+    <label for="unfinishedTodoChoice">Unfinished</label>
+    <input type="radio" name="TodoChoice" id="unfinishedTodoChoice" />
+    <label for="finishedTodoChoice">Finished</label>
+    <input type="radio" name="TodoChoice" id="finishedTodoChoice" />
+  </div>
+
+  <button class="btn primary">Save</button>
+</div>
