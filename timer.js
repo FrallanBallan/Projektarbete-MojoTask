@@ -1,11 +1,5 @@
 let remainingTime = 0;
 let timerInterval;
-//hämtar ljudet
-let audio = new Audio("images/heMan.mp3");
-//kollar om audio ljudet har nåt slutet av sig isåfall starta den igen
-audio.addEventListener("ended", function () {
-  audio.play(); // Spela ljudet igen när det är slut
-});
 //funktionen kollar input om de är en valid value och om de är det körs updatetimerdisplay
 function startTimer() {
   if (!timerInterval) {
@@ -28,13 +22,8 @@ function startTimer() {
     document.getElementById("StartTimerbtn").style.display = "none";
     document.getElementById("PauseTimerbtn").style.display = "inline";
     document.getElementById("ResetTimerbtn").style.display = "inline";
-    document.getElementById("timeInput").style.display = "none";
-    document.getElementById("timelabel").style.display = "none";
     let TimerBox = document.querySelector(".TimerContainer");
     TimerBox.classList.add("blur");
-    if (audio.paused) {
-      audio.play();
-    }
   }
 }
 //funktionen pausar timern
@@ -46,9 +35,6 @@ function pauseTimer() {
   document.getElementById("StartTimerbtn").style.display = "inline";
   let TimerBox = document.getElementsByClassName("TimerContainer")[0];
   TimerBox.classList.remove("blur");
-  if (!audio.paused) {
-    audio.pause();
-  }
 }
 //funktionen nollställer timern
 function resetTimer() {
@@ -59,10 +45,6 @@ function resetTimer() {
   document.getElementById("ResetTimerbtn").style.display = "none";
   let TimerBox = document.getElementsByClassName("TimerContainer")[0];
   TimerBox.classList.remove("blur");
-  document.getElementById("timeInput").style.display = "inline";
-  document.getElementById("timelabel").style.display = "inline";
-
-  audio.currentTime = 0;
 }
 //funktionen updaterar timern och kollar om den blir klar så skriv ut meddelande
 function updateTimer() {
