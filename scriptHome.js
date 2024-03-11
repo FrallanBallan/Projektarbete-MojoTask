@@ -974,7 +974,9 @@ function removeTodo(removeBtn) {
         removeBtn.parentElement.innerHTML.includes(todoObject.title)
       );
       todoList.splice(index, 1);
+      console.log(todoListUnfilter);
       todoListUnfilter.splice(indexUnf, 1);
+      console.log(todoListUnfilter);
       console.log(indexUnf);
       console.log(index, removeBtn.parentElement.innerHTML, todoObject.title);
     }
