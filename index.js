@@ -281,6 +281,7 @@ let Lösenord = document.querySelector("#password");
 
 //objekt users som lagrar alla users
 let users = {};
+let userList = [];
 //felmeddelande p-tagar
 let p = document.querySelector("#error");
 let felmessage = document.querySelector(".felmeddelande");
@@ -324,6 +325,7 @@ BtnToCreate.addEventListener("click", () => {
   LoginClose();
 });
 //knappen som man skapar ett konto på
+
 CreateAccountBtn.addEventListener("click", () => {
   //om lösen input och reapeatlösen input matchar gå vidare
   if (NewLösen.value === RepeatLösen.value) {
@@ -335,19 +337,39 @@ CreateAccountBtn.addEventListener("click", () => {
       !users.hasOwnProperty(Newuser.value)
     ) {
       //spara i localstorage
-      users[Newuser.value] = NewLösen.value;
-      localStorage.setItem("users", JSON.stringify(users));
-      LoginOpen();
+      users.id = Newuser.value;
+      users.pass = NewLösen.value;
+      console.log(users);
+
+      storeUsersLocal();
+
       //annars skriv ut felmeddelande
     } else {
       felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
     }
+    //annars om lösenorden inte matchar varandra skriv ut error meddelande
   } else {
     RepeatLösen.classList.add("errorInput");
     felmessage.innerText = "Lösenordet matchar inte";
   }
 });
 
+function storeUsersLocal() {
+  // Retrieve existing user data from localStorage
+  let storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+  // Push new user data into the existing array
+
+  if (storedUsers.some((user) => user.id === users.id)) {
+    felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
+  } else {
+    storedUsers.push(users);
+    // Store the updated array back into localStorage
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+    // Reset the users object
+    users = {};
+    LoginOpen();
+  }
+}
 //knappen jag har redan ett konto stänger createAccount och öppnar login
 
 AlreadyAccountBtn.addEventListener("click", () => {
@@ -359,10 +381,13 @@ LoggainBtn.addEventListener("click", () => {
   sessionStorage.clear();
   //hämtar localestorage med keyn alla users och lägger in detta i en variabel
   let storedUsers = JSON.parse(localStorage.getItem("users"));
+  console.log(storedUsers);
   //om storedUsers hadownpropery(kollar så att objektet innehåller en specifik egenskap såg den kollar om storeduser innehåller likadant användarnamn som användaren har stoppat in i inputen)
   if (
-    storedUsers.hasOwnProperty(Namn.value) &&
-    storedUsers[Namn.value] === Lösenord.value
+    storedUsers.some(
+      (storedUser) =>
+        storedUser.id === Namn.value && storedUser.pass === Lösenord.value
+    )
   ) {
     //inloggningen lyckades
     //laddningsidan startar tills man skickas vidare
@@ -380,24 +405,26 @@ LoggainBtn.addEventListener("click", () => {
     }, 5000); // 5 sekunder
 
     // Hämtar todoData från local storage
-    let todoData = JSON.parse(localStorage.getItem("todoData"));
-    if (todoData) {
-      // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
+    // let todoData = JSON.parse(localStorage.getItem('todoData'));
+    sessionStorage.setItem("NameUser", Namn.value);
 
-      let userTodoData = todoData.filter((item) => item.id === Namn.value);
+    //   if (todoData) {
+    //     // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
+    //     // let userTodoData = todoData.filter((item) => item.id === 'testPerson');
+    //     //nu använd seassion storage istället för att överföra datan känns som en bättre och enklare ide.
+    //     //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
+    //     // sessionStorage.setItem('userTodoData', JSON.stringify(userTodoData));
+    //     //meddelar simon som sitter med todo att han måste hämta Nameuser från sessionStorage och dess value ska tilldelas som id vid skapadet av en todo
+    //     //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
+    //   }
 
-      //nu använd seassion storage istället för att överföra datan känns som en bättre och enklare ide.
-      //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
-      sessionStorage.setItem("userTodoData", JSON.stringify(userTodoData));
-      sessionStorage.setItem("NameUser", Namn.value);
-      //meddelar simon som sitter med todo att han måste hämta Nameuser från sessionStorage och dess value ska tilldelas som id vid skapadet av en todo
-      //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
-    }
-
-    NollställLogin();
+    //   NollställLogin();
   } else {
     //misslyckades att logga in
     p.innerText = "Felaktigt användarnamn eller lösenord!";
+    storedUsers.forEach((storedUser) => {
+      console.log(storedUser.id, storedUser.pass);
+    });
   }
 });
 
