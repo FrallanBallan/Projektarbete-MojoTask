@@ -196,13 +196,6 @@ body {
 
 /* Test new Login Style */
 
-#countrySelect {
-  width: 85%;
-  color: var(--_textColor);
-  padding: 0.4rem;
-  border: 1px solid rgb(223, 223, 223);
-}
-
 .staticSlider {
   position: absolute;
   top: 50%;
@@ -248,7 +241,10 @@ body {
   min-height: 400px;
   min-width: 300px;
 }
-
+#countrySelect {
+  width: 85%;
+  padding: 0.3rem;
+}
 .Login-form h1 {
   font-size: 2.63rem;
   letter-spacing: 2px;
@@ -1184,7 +1180,6 @@ padding: 20px;
   color: var(--_textColor);
   background: var(--_secondaryColor);
   margin: 0.5rem;
-  text-align: center;
 }
 .setTime {
   display: flex;
@@ -1200,3 +1195,4 @@ padding: 20px;
   backdrop-filter: blur(5px);
 }
 /* Timer styling end - Angelo */
+

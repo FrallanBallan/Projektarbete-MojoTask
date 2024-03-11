@@ -149,3 +149,4 @@ function renderLocation(data) {
   );
   weatherResultExtra.append(weatherWind, weatherSunrise, weatherSunset);
 }
+
