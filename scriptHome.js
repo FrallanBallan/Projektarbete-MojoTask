@@ -727,23 +727,23 @@ function showTimer() {
   //removing styles and content
   timerTab.style.width = "110%";
   timerTab.style.borderRadius = "0% 10% 10% 0%";
-
   contentContainer.innerHTML = `
-    <div class="TimerContainer">
-    <div class="TimerBox">
-       <div class="setTime lato-bold">
-         <label id="timelabel" for="timeInput">Set time (minutes)</label> 
-         <input type="number" id="timeInput" min="1" value="1" />
-       </div>
-       <div class="lato-bold" id="timer">00:00</div>
-       <div>
-         <button class="lato-bold" id="StartTimerbtn" onclick="startTimer()">Start</button>
-         <button class="lato-bold" id="PauseTimerbtn" style="display: none" onclick="pauseTimer()">Pause</button>
-         <button class="lato-bold" id="ResetTimerbtn" style="display: none" onclick="resetTimer()">Reset</button>
-       </div>
-     </div>
-     </div>
-   `;
+
+   <div class="TimerContainer">
+   <div class="TimerBox">
+      <div class="setTime lato-bold">
+        <label for="timeInput">Set time (minutes):</label> 
+        <input type="number" id="timeInput" min="1" value="1" />
+      </div>
+      <div class="lato-bold" id="timer">00:00</div>
+      <div>
+        <button class="lato-bold" id="StartTimerbtn" onclick="startTimer()">Start</button>
+        <button class="lato-bold" id="PauseTimerbtn" style="display: none" onclick="pauseTimer()">Pause</button>
+        <button class="lato-bold" id="ResetTimerbtn" style="display: none" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+    </div>
+  `;
 }
 
 function showLogout() {}
