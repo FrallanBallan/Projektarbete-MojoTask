@@ -2,29 +2,29 @@
 //FF-BAOM
 
 // Globals
-let habitContainer = document.querySelector('.habitCardContainer');
-let contentContainer = document.querySelector('.contentContainer');
-let homeTab = document.querySelector('#homeTab');
-let todoTab = document.querySelector('#todoTab');
-let habitsTab = document.querySelector('#habitsTab');
-let timerTab = document.querySelector('#timerTab');
-let calenderTab = document.querySelector('#calenderTab');
-let weatherTab = document.querySelector('#weatherTab');
+let habitContainer = document.querySelector(".habitCardContainer");
+let contentContainer = document.querySelector(".contentContainer");
+let homeTab = document.querySelector("#homeTab");
+let todoTab = document.querySelector("#todoTab");
+let habitsTab = document.querySelector("#habitsTab");
+let timerTab = document.querySelector("#timerTab");
+let calenderTab = document.querySelector("#calenderTab");
+let weatherTab = document.querySelector("#weatherTab");
 
 //User
-let sessionUser = sessionStorage.getItem('NameUser');
-let userName = sessionUser ? sessionUser : 'failed';
+let sessionUser = sessionStorage.getItem("NameUser");
+let userName = sessionUser ? sessionUser : "failed";
 console.log(userName);
 
 // Global Arrays
-let localTodos = localStorage.getItem('todoData');
+let localTodos = localStorage.getItem("todoData");
 let todoListUnfilter = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(localStorage.getItem('links'));
 let todoList = todoListUnfilter.filter(
   (todoObject) => todoObject.id === userName
 );
 console.log(todoList);
 
-let localHabits = localStorage.getItem('habitData');
+let localHabits = localStorage.getItem("habitData");
 let habitListUnfilter = localHabits ? JSON.parse(localHabits) : [];
 let habitList = habitListUnfilter.filter(
   (habitObject) => habitObject.id === userName
@@ -32,9 +32,9 @@ let habitList = habitListUnfilter.filter(
 
 function showHome() {
   //WEATHER TEST START
-  const apiKey = '57a622d1a38b6d1497b9a19a259dfdea';
+  const apiKey = "57a622d1a38b6d1497b9a19a259dfdea";
   const apiUrlStart =
-    'https://api.openweathermap.org/data/2.5/weather?q=stockholm';
+    "https://api.openweathermap.org/data/2.5/weather?q=stockholm";
 
   let getData = async () => {
     let response = await axios.get(apiUrlStart + `&appid=${apiKey}`);
@@ -44,48 +44,48 @@ function showHome() {
 
   // Weather for home tab
   function renderLocation(data) {
-    let city = document.querySelector('#weatherCity');
+    let city = document.querySelector("#weatherCity");
     city.innerText = data.data.name;
 
-    let temp = document.querySelector('#weatherTemp');
-    temp.innerText = Math.round(data.data.main.temp - 273.15) + '°C ';
+    let temp = document.querySelector("#weatherTemp");
+    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C ";
 
-    let weather = document.querySelector('#weatherWeather');
+    let weather = document.querySelector("#weatherWeather");
     weather.innerText = data.data.weather[0].main;
 
-    let weatherIcons = document.querySelector('#weatherIcons');
-    let weatherIcon = document.createElement('img');
-    if (data.data.weather[0].main === 'Clouds') {
-      weatherIcon.src = '/images/clouds.png';
-    } else if (data.data.weather[0].main === 'Clear') {
-      weatherIcon.src = '/images/clear.png';
-    } else if (data.data.weather[0].main === 'Drizzle') {
-      weatherIcon.src = '/images/drizzle.png';
-    } else if (data.data.weather[0].main === 'Mist') {
-      weatherIcon.src = '/images/mist.png';
-    } else if (data.data.weather[0].main === 'Rain') {
-      weatherIcon.src = '/images/rain.png';
-    } else if (data.data.weather[0].main === 'Snow') {
-      weatherIcon.src = '/images/snow.png';
-    } else if (data.data.weather[0].main === 'Clear') {
-      weatherIcon.src = '/images/clear.png';
+    let weatherIcons = document.querySelector("#weatherIcons");
+    let weatherIcon = document.createElement("img");
+    if (data.data.weather[0].main === "Clouds") {
+      weatherIcon.src = "/images/clouds.png";
+    } else if (data.data.weather[0].main === "Clear") {
+      weatherIcon.src = "/images/clear.png";
+    } else if (data.data.weather[0].main === "Drizzle") {
+      weatherIcon.src = "/images/drizzle.png";
+    } else if (data.data.weather[0].main === "Mist") {
+      weatherIcon.src = "/images/mist.png";
+    } else if (data.data.weather[0].main === "Rain") {
+      weatherIcon.src = "/images/rain.png";
+    } else if (data.data.weather[0].main === "Snow") {
+      weatherIcon.src = "/images/snow.png";
+    } else if (data.data.weather[0].main === "Clear") {
+      weatherIcon.src = "/images/clear.png";
     } else {
-      weatherIcon.src = '/images/logo.png';
+      weatherIcon.src = "/images/logo.png";
     }
 
     weatherIcons.append(weatherIcon);
-    let weatherDiv = document.querySelector('.homeCard:nth-of-type(3)');
-    if (data.data.weather[0].main === 'Clouds') {
+    let weatherDiv = document.querySelector(".homeCard:nth-of-type(3)");
+    if (data.data.weather[0].main === "Clouds") {
       weatherDiv.style.backgroundImage = 'url("/gifs/cloudy - Copy.gif")';
-    } else if (data.data.weather[0].main === 'Drizzle') {
+    } else if (data.data.weather[0].main === "Drizzle") {
       weatherDiv.style.backgroundImage = 'url("/gifs/drizzle.gif")';
-    } else if (data.data.weather[0].main === 'Mist') {
+    } else if (data.data.weather[0].main === "Mist") {
       weatherDiv.style.backgroundImage = 'url("/gifs/misty.gif")';
-    } else if (data.data.weather[0].main === 'Rain') {
+    } else if (data.data.weather[0].main === "Rain") {
       weatherDiv.style.backgroundImage = 'url("/gifs/rain.gif")';
-    } else if (data.data.weather[0].main === 'Snow') {
+    } else if (data.data.weather[0].main === "Snow") {
       weatherDiv.style.backgroundImage = 'url("/gifs/snow.gif")';
-    } else if (data.data.weather[0].main === 'Clear') {
+    } else if (data.data.weather[0].main === "Clear") {
       weatherDiv.style.backgroundImage = 'url("/gifs/clear.gif")';
     } else {
       weatherDiv.style.backgroundImage = 'url("/gifs/weather.gif")';
@@ -97,20 +97,20 @@ function showHome() {
 
   //removing styles and content
   // contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
 
-  homeTab.style.width = '110%';
-  homeTab.style.borderRadius = '0% 10% 10% 0%';
+  homeTab.style.width = "110%";
+  homeTab.style.borderRadius = "0% 10% 10% 0%";
 
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
@@ -151,11 +151,11 @@ function showHome() {
 </div>
   `;
   // Render li from todoList and show on home page -start
-  let todoUl = document.querySelector('#todoOverviewUl');
+  let todoUl = document.querySelector("#todoOverviewUl");
   todoList.forEach((todo) => {
     console.log(todo);
 
-    let todoLi = document.createElement('li');
+    let todoLi = document.createElement("li");
     todoLi.innerText = todo.title;
     todoUl.append(todoLi);
   });
@@ -163,9 +163,9 @@ function showHome() {
 
   //render li from HabitList and show on home page -start
 
-  let habitUl = document.querySelector('#habitOverviewUl');
+  let habitUl = document.querySelector("#habitOverviewUl");
   habitList.forEach((habit) => {
-    let habitLi = document.createElement('li');
+    let habitLi = document.createElement("li");
     habitLi.innerText = habit.title;
     habitUl.append(habitLi);
   });
@@ -175,16 +175,16 @@ function showHome() {
 
 function showTodos() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  homeTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  homeTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
 
   //removing styles and content
-  todoTab.style.width = '110%';
-  todoTab.style.borderRadius = '0% 10% 10% 0%';
+  todoTab.style.width = "110%";
+  todoTab.style.borderRadius = "0% 10% 10% 0%";
 
   contentContainer.innerHTML = `
   <div class="homeTodoTab">
@@ -207,7 +207,7 @@ function showTodos() {
   </div>
 </div>
 `;
-  let filterTodosContainer = document.querySelector('.todoTitleFilter');
+  let filterTodosContainer = document.querySelector(".todoTitleFilter");
   // Create filter categorys
   renderCategoryFilter(filterTodosContainer);
   // Create filter categorys end.
@@ -218,23 +218,23 @@ function showTodos() {
 
 //Render categorys
 function renderCategoryFilter(filterTodosContainer) {
-  let filterContainer = document.createElement('div');
+  let filterContainer = document.createElement("div");
   let filterList = [
-    { icon: `<i class="fa-solid fa-house"></i>`, value: 'Home' },
-    { icon: `<i class="fa-solid fa-school"></i>`, value: 'School' },
-    { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: 'Training' },
-    { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: 'Chores' },
+    { icon: `<i class="fa-solid fa-house"></i>`, value: "Home" },
+    { icon: `<i class="fa-solid fa-school"></i>`, value: "School" },
+    { icon: `<i class="fa-solid fa-dumbbell"></i>`, value: "Training" },
+    { icon: `<i class="fa-solid fa-hand-sparkles"></i>`, value: "Chores" },
   ];
 
   filterList.forEach((category) => {
-    let input = document.createElement('input');
-    input.type = 'checkbox';
+    let input = document.createElement("input");
+    input.type = "checkbox";
 
     input.value = `${category.value}`;
     input.id = `${category.value}`;
-    input.setAttribute('name', 'filterTodos');
+    input.setAttribute("name", "filterTodos");
     // creating label for checkbox
-    let label = document.createElement('label');
+    let label = document.createElement("label");
 
     // assigning attributes for the created label tag
     label.htmlFor = `${category.value}`;
@@ -245,9 +245,9 @@ function renderCategoryFilter(filterTodosContainer) {
     label.append(input);
     filterContainer.append(label);
 
-    input.addEventListener('change', () => {
+    input.addEventListener("change", () => {
       let catergoryChoices = Array.from(
-        document.getElementsByName('filterTodos')
+        document.getElementsByName("filterTodos")
       );
       let filterArray = [];
       catergoryChoices.forEach((category) => {
@@ -257,7 +257,7 @@ function renderCategoryFilter(filterTodosContainer) {
         }
       });
       console.log(filterArray);
-      let todoLists = document.querySelectorAll('.todoCategory');
+      let todoLists = document.querySelectorAll(".todoCategory");
       console.log(todoLists);
       if (filterArray.length > 0) {
         filterArray.forEach((filter) => {
@@ -273,42 +273,42 @@ function renderCategoryFilter(filterTodosContainer) {
     });
   });
 
-  let timeFilters = document.createElement('select');
-  timeFilters.id = 'timeFilter';
-  let timeFilterLabel = document.createElement('label');
-  timeFilterLabel.setAttribute('for', timeFilters.id);
-  timeFilterLabel.innerHTML = 'Choose your filter';
+  let timeFilters = document.createElement("select");
+  timeFilters.id = "timeFilter";
+  let timeFilterLabel = document.createElement("label");
+  timeFilterLabel.setAttribute("for", timeFilters.id);
+  timeFilterLabel.innerHTML = "Choose your filter";
 
   let timeFiltersList = [
     {
       icon: `<i class="fa-solid fa-arrow-up"></i>`,
-      value: 'all',
-      text: 'All',
+      value: "all",
+      text: "All",
     },
     {
       icon: `<i class="fa-solid fa-arrow-up"></i>`,
-      value: 'deadlineUp',
-      text: 'Deadline Asc',
+      value: "deadlineUp",
+      text: "Deadline Asc",
     },
     {
       icon: `<i class="fa-solid fa-arrow-down"></i>`,
-      value: 'deadlineDown',
-      text: 'Deadline Des',
+      value: "deadlineDown",
+      text: "Deadline Des",
     },
     {
       icon: `<i class="fa-solid fa-arrow-up"></i>`,
-      value: 'timeUp',
-      text: 'Time Asc',
+      value: "timeUp",
+      text: "Time Asc",
     },
     {
       icon: `<i class="fa-solid fa-arrow-down"></i>`,
-      value: 'timeDown',
-      text: 'Time Des',
+      value: "timeDown",
+      text: "Time Des",
     },
   ];
   timeFiltersList.forEach((optionLi) => {
     console.log(optionLi);
-    let timeOption = document.createElement('option');
+    let timeOption = document.createElement("option");
     timeOption.value = optionLi.value;
     // let icon = document.createElement('span');
     // icon.innerHTML = optionLi.icon;
@@ -336,16 +336,16 @@ function renderFilterdSearch(filterArray) {
 
 function printTodosOnPage(list) {
   let todoContainerUnfinished = document.querySelector(
-    '#todoContainerUnfinished'
+    "#todoContainerUnfinished"
   );
   let todoCardContainerFinished = document.querySelector(
-    '#todoCardContainerFinished'
+    "#todoCardContainerFinished"
   );
-  todoContainerUnfinished.innerHTML = '';
-  todoCardContainerFinished.innerHTML = '';
+  todoContainerUnfinished.innerHTML = "";
+  todoCardContainerFinished.innerHTML = "";
 
-  document.querySelector('#timeFilter').addEventListener('change', () => {
-    filterOnTimes(list, document.querySelector('#timeFilter').value);
+  document.querySelector("#timeFilter").addEventListener("change", () => {
+    filterOnTimes(list, document.querySelector("#timeFilter").value);
   });
 
   console.log(list);
@@ -353,17 +353,17 @@ function printTodosOnPage(list) {
   list.forEach((todoObject) => {
     // filterArray.forEach((filter) => {
     //   if (todoObject.category.includes(filter)) {
-    let todoCard = document.createElement('div');
-    todoCard.classList.add('card');
-    let todoTitle = document.createElement('p');
+    let todoCard = document.createElement("div");
+    todoCard.classList.add("card");
+    let todoTitle = document.createElement("p");
     todoTitle.innerText = todoObject.title;
-    let todoCategory = document.createElement('div');
-    todoCategory.classList.add('todoCategory');
-    if (todoObject.category === 'Home') {
+    let todoCategory = document.createElement("div");
+    todoCategory.classList.add("todoCategory");
+    if (todoObject.category === "Home") {
       todoCategory.innerHTML = `<i class="fa-solid fa-house"></i>`;
-    } else if (todoObject.category === 'School') {
+    } else if (todoObject.category === "School") {
       todoCategory.innerHTML = `<i class="fa-solid fa-school"></i>`;
-    } else if (todoObject.category === 'Training') {
+    } else if (todoObject.category === "Training") {
       todoCategory.innerHTML = `<i class="fa-solid fa-dumbbell"></i>`;
     } else {
       todoCategory.innerHTML = `<i class="fa-solid fa-hand-sparkles"></i>`;
@@ -376,27 +376,27 @@ function printTodosOnPage(list) {
 
     todoCard.append(todoTitle, todoCategory);
 
-    if (todoObject.status === 'unfinished') {
-      todoCard.classList.add('unfinished');
+    if (todoObject.status === "unfinished") {
+      todoCard.classList.add("unfinished");
       todoContainerUnfinished.append(todoCard);
     } else {
-      todoCard.classList.add('finished');
+      todoCard.classList.add("finished");
       todoCardContainerFinished.append(todoCard);
     }
 
     //Click on a todo to get the info
 
-    todoCard.addEventListener('click', (e) => {
-      if (e.target.innerHTML.includes('trash')) {
+    todoCard.addEventListener("click", (e) => {
+      if (e.target.innerHTML.includes("trash")) {
         console.log(e.target);
         showTodoInfo(todoObject);
       }
     });
   });
   // add eventlistener for removing todoCards start
-  let removeBtns = document.querySelectorAll('.removeBtn');
+  let removeBtns = document.querySelectorAll(".removeBtn");
   Array.from(removeBtns).forEach((removeBtn) => {
-    removeBtn.addEventListener('click', () => {
+    removeBtn.addEventListener("click", () => {
       removeTodo(removeBtn);
     });
     // console.log(todoList);
@@ -404,40 +404,40 @@ function printTodosOnPage(list) {
 }
 
 function showTodoInfo(todo) {
-  let todoPopUp = document.createElement('div');
-  todoPopUp.classList.add('todoOverviewPop');
-  todoPopUp.style.zIndex = '99';
+  let todoPopUp = document.createElement("div");
+  todoPopUp.classList.add("todoOverviewPop");
+  todoPopUp.style.zIndex = "99";
 
-  let cardInfo = document.createElement('h2');
-  cardInfo.innerText = 'Your todo:';
+  let cardInfo = document.createElement("h2");
+  cardInfo.innerText = "Your todo:";
 
-  let todoTitle = document.createElement('input');
-  todoTitle.type = 'text';
-  todoTitle.name = 'todoTitle';
+  let todoTitle = document.createElement("input");
+  todoTitle.type = "text";
+  todoTitle.name = "todoTitle";
   todoTitle.value = `${todo.title}`;
-  let todoTitleLabel = document.createElement('label');
-  todoTitleLabel.innerText = 'Todo title:';
+  let todoTitleLabel = document.createElement("label");
+  todoTitleLabel.innerText = "Todo title:";
 
-  let todoDesc = document.createElement('input');
-  todoDesc.type = 'text';
+  let todoDesc = document.createElement("input");
+  todoDesc.type = "text";
   todoDesc.value = `${todo.desc}`;
-  let todoDescLabel = document.createElement('label');
-  todoDescLabel.innerText = 'Todo Description:';
+  let todoDescLabel = document.createElement("label");
+  todoDescLabel.innerText = "Todo Description:";
 
-  let todoDeadline = document.createElement('input');
-  todoDeadline.type = 'date';
+  let todoDeadline = document.createElement("input");
+  todoDeadline.type = "date";
   todoDeadline.value = `${todo.deadline}`;
 
-  let todoTimeEst = document.createElement('input');
-  todoTimeEst.type = 'number';
+  let todoTimeEst = document.createElement("input");
+  todoTimeEst.type = "number";
   todoTimeEst.value = `${todo.timeestimate}`;
 
-  let todoCategory = document.createElement('p');
+  let todoCategory = document.createElement("p");
   todoCategory.innerText = `Current Category: ${todo.category}`;
 
-  let todoReSelect = document.createElement('select');
-  todoReSelect.name = 'categoryChoice';
-  todoReSelect.id = 'categoryChoice';
+  let todoReSelect = document.createElement("select");
+  todoReSelect.name = "categoryChoice";
+  todoReSelect.id = "categoryChoice";
   todoReSelect.innerHTML = `
   <option value="Choose one">Choose one</option>
   <option value="Home">Home</option>
@@ -446,25 +446,25 @@ function showTodoInfo(todo) {
   <option value="Chores">Chores</option>
   `;
 
-  let todoStatus = document.createElement('p');
+  let todoStatus = document.createElement("p");
   todoStatus.innerText = `Status: ${todo.status}`;
-  let btn = document.createElement('button');
-  btn.classList.add('removeBtn');
+  let btn = document.createElement("button");
+  btn.classList.add("removeBtn");
   btn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
 
-  let overLay = document.createElement('div');
-  overLay.style.width = '100vw';
-  overLay.style.height = '100%';
-  overLay.style.zIndex = '10';
-  overLay.style.position = 'absolute';
-  overLay.style.top = '0';
-  overLay.style.left = '0';
-  overLay.style.background = 'rgba(0,0,0,0.4)';
+  let overLay = document.createElement("div");
+  overLay.style.width = "100vw";
+  overLay.style.height = "100%";
+  overLay.style.zIndex = "10";
+  overLay.style.position = "absolute";
+  overLay.style.top = "0";
+  overLay.style.left = "0";
+  overLay.style.background = "rgba(0,0,0,0.4)";
 
   document.body.append(overLay);
-  let editBtn = document.createElement('button');
-  editBtn.classList.add('btn', 'primary');
-  editBtn.innerText = 'Edit Todo?';
+  let editBtn = document.createElement("button");
+  editBtn.classList.add("btn", "primary");
+  editBtn.innerText = "Edit Todo?";
 
   todoPopUp.append(
     cardInfo,
@@ -480,18 +480,18 @@ function showTodoInfo(todo) {
     editBtn,
     btn
   );
-  let finishBtn = document.createElement('button');
+  let finishBtn = document.createElement("button");
 
-  if (todo.status === 'unfinished') {
-    finishBtn.classList.add('btn', 'secondary');
-    finishBtn.innerText = 'Finished?';
+  if (todo.status === "unfinished") {
+    finishBtn.classList.add("btn", "secondary");
+    finishBtn.innerText = "Finished?";
     todoPopUp.append(finishBtn);
   }
 
   contentContainer.append(todoPopUp);
 
   //Editng the Todo Card
-  editBtn.addEventListener('click', () => {
+  editBtn.addEventListener("click", () => {
     todo.title = todoTitle.value;
     todo.desc = todoDesc.value;
     todo.deadline = todoDeadline.value;
@@ -502,18 +502,18 @@ function showTodoInfo(todo) {
     showTodos();
   });
   // Removing the overlay and popUp
-  btn.addEventListener('click', () => {
+  btn.addEventListener("click", () => {
     btn.parentElement.remove();
     overLay.remove();
   });
-  overLay.addEventListener('click', () => {
+  overLay.addEventListener("click", () => {
     btn.parentElement.remove();
     overLay.remove();
   });
 
   // Click to save Edited todos
-  finishBtn.addEventListener('click', () => {
-    todo.status = 'finished';
+  finishBtn.addEventListener("click", () => {
+    todo.status = "finished";
     todo.desc = todoDesc.value;
     btn.parentElement.remove();
     overLay.remove();
@@ -527,7 +527,7 @@ function filterOnTimes(list, value) {
   let newList = list;
   console.log(newList);
 
-  if (value === 'deadlineUp') {
+  if (value === "deadlineUp") {
     // Sort the list in deadline highest first
     newList.sort(function (a, b) {
       // Convert the date strings to Date objects
@@ -537,7 +537,7 @@ function filterOnTimes(list, value) {
       return dateA - dateB;
     });
     printTodosOnPage(newList);
-  } else if (value === 'deadlineDown') {
+  } else if (value === "deadlineDown") {
     // Sort the list in deadline lowest first
     newList.sort(function (a, b) {
       // Convert the date strings to Date objects
@@ -547,11 +547,11 @@ function filterOnTimes(list, value) {
       return dateB - dateA;
     });
     printTodosOnPage(newList);
-  } else if (value === 'timeUp') {
+  } else if (value === "timeUp") {
     // Sort with time highest first
     newList.sort((a, b) => a.timeestimate - b.timeestimate);
     printTodosOnPage(newList);
-  } else if (value === 'timeDown') {
+  } else if (value === "timeDown") {
     // SOrt time lowest first
     newList.sort((a, b) => b.timeestimate - a.timeestimate);
     printTodosOnPage(newList);
@@ -563,16 +563,16 @@ function filterOnTimes(list, value) {
 
 function showHabits() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  homeTab.removeAttribute("style");
+  timerTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
 
   //removing styles and content
-  habitsTab.style.width = '110%';
-  habitsTab.style.borderRadius = '0% 10% 10% 0%';
+  habitsTab.style.width = "110%";
+  habitsTab.style.borderRadius = "0% 10% 10% 0%";
 
   contentContainer.innerHTML = `
   <div class="habitContainer">
@@ -605,44 +605,44 @@ function showHabits() {
   //Se detta Simon HUX
   printHabitsOnPage(habitList);
 
-  document.querySelector('#prioFilter').addEventListener('change', () => {
-    filterPriorites(habitList, document.querySelector('#prioFilter').value);
+  document.querySelector("#prioFilter").addEventListener("change", () => {
+    filterPriorites(habitList, document.querySelector("#prioFilter").value);
   });
 
-  document.querySelector('#prioSort').addEventListener('change', () => {
-    sortPriorites(habitList, document.querySelector('#prioSort').value);
+  document.querySelector("#prioSort").addEventListener("change", () => {
+    sortPriorites(habitList, document.querySelector("#prioSort").value);
   });
 }
 
 function printHabitsOnPage(list) {
-  let habitCardContainer = document.querySelector('.habitCardContainer');
-  habitCardContainer.innerHTML = '';
+  let habitCardContainer = document.querySelector(".habitCardContainer");
+  habitCardContainer.innerHTML = "";
   console.log(list);
   list.forEach((habitObject) => {
     console.log(habitObject);
 
-    let habitCard = document.createElement('div');
-    habitCard.classList.add('habitCard');
+    let habitCard = document.createElement("div");
+    habitCard.classList.add("habitCard");
 
-    let doneHabit = document.createElement('div');
-    doneHabit.classList.add('doneHabit');
+    let doneHabit = document.createElement("div");
+    doneHabit.classList.add("doneHabit");
     doneHabit.innerHTML = `<i class="fa-solid fa-thumbs-up"></i>`;
 
-    let waitingHabit = document.createElement('div');
-    waitingHabit.classList.add('waitingHabit');
+    let waitingHabit = document.createElement("div");
+    waitingHabit.classList.add("waitingHabit");
     waitingHabit.innerHTML = `<i class="fa-solid fa-thumbs-down"></i>`;
 
-    let habitTitle = document.createElement('p');
+    let habitTitle = document.createElement("p");
     habitTitle.innerText = habitObject.title;
 
-    let habitCategory = document.createElement('p');
+    let habitCategory = document.createElement("p");
     habitCategory.innerText = habitObject.desc;
 
-    let habitPrio = document.createElement('div');
-    habitPrio.classList.add('habitPrio');
-    if (habitObject.status === 'high') {
+    let habitPrio = document.createElement("div");
+    habitPrio.classList.add("habitPrio");
+    if (habitObject.status === "high") {
       habitPrio.innerHTML = `<i class="fa-solid fa-bread-slice"></i> <i class="fa-solid fa-bread-slice"></i> <i class="fa-solid fa-bread-slice"></i>`;
-    } else if (habitObject.status === 'medium') {
+    } else if (habitObject.status === "medium") {
       habitPrio.innerHTML = `<i class="fa-solid fa-bread-slice"></i> <i class="fa-solid fa-bread-slice"></i>`;
     } else {
       habitPrio.innerHTML = `<i class="fa-solid fa-bread-slice"></i>`;
@@ -655,13 +655,13 @@ function printHabitsOnPage(list) {
 
     habitCard.style.backgroundImage = habitObject.background;
 
-    if (habitObject.category === 'Training') {
+    if (habitObject.category === "Training") {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
-    } else if (habitObject.category === 'Mindfullness') {
+    } else if (habitObject.category === "Mindfullness") {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1621228720536-e27ba8f4d363?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
-    } else if (habitObject.category === 'Cleaning') {
+    } else if (habitObject.category === "Cleaning") {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1529220502050-f15e570c634e?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else {
@@ -683,9 +683,9 @@ function printHabitsOnPage(list) {
     habitCardContainer.append(habitCard);
   });
   // add eventlistener for removing habitCards start
-  let removeBtns = document.querySelectorAll('.removeBtn');
+  let removeBtns = document.querySelectorAll(".removeBtn");
   Array.from(removeBtns).forEach((removeBtn) => {
-    removeBtn.addEventListener('click', () => {
+    removeBtn.addEventListener("click", () => {
       removeHabit(removeBtn);
     });
     // console.log(todoList);
@@ -707,10 +707,10 @@ function filterPriorites(list, value) {
 //Schmeckles are not here
 function sortPriorites(list, value) {
   let sortList = list;
-  if (value == 'highHabit') {
+  if (value == "highHabit") {
     sortList.sort((a, b) => b.countNumber - a.countNumber);
     printHabitsOnPage(sortList);
-  } else if (value == 'lowestHabit') {
+  } else if (value == "lowestHabit") {
     sortList.sort((a, b) => a.countNumber - b.countNumber);
     printHabitsOnPage(sortList);
   }
@@ -718,15 +718,15 @@ function sortPriorites(list, value) {
 // Functions for filter and sort habits - end
 function showTimer() {
   //removing styles and content
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+  contentContainer.innerHTML = "";
+  todoTab.removeAttribute("style");
+  habitsTab.removeAttribute("style");
+  homeTab.removeAttribute("style");
+  calenderTab.removeAttribute("style");
+  weatherTab.removeAttribute("style");
   //removing styles and content
-  timerTab.style.width = '110%';
-  timerTab.style.borderRadius = '0% 10% 10% 0%';
+  timerTab.style.width = "110%";
+  timerTab.style.borderRadius = "0% 10% 10% 0%";
   contentContainer.innerHTML = `
 
    <div class="TimerContainer">
@@ -752,7 +752,7 @@ function showLogout() {}
 
 // Funktioner som genererar content- start
 function createTodo() {
-  contentContainer.innerHTML = '';
+  contentContainer.innerHTML = "";
 
   contentContainer.innerHTML = `
   <div class="todoInfo">
@@ -811,27 +811,27 @@ function createTodo() {
 
   `;
 
-  let categoryChoice = document.querySelector('#categoryChoice');
+  let categoryChoice = document.querySelector("#categoryChoice");
   console.log(categoryChoice);
 
-  let saveBtn = document.querySelector('#saveBtn');
+  let saveBtn = document.querySelector("#saveBtn");
 
-  saveBtn.addEventListener('click', () => {
+  saveBtn.addEventListener("click", () => {
     let todoObject = {};
     if (
-      document.querySelector('#whatTodo').value &&
-      document.querySelector('#descTodo').value &&
-      document.querySelector('#deadlineTodo').value &&
-      document.querySelector('#categoryChoice').value &&
+      document.querySelector("#whatTodo").value &&
+      document.querySelector("#descTodo").value &&
+      document.querySelector("#deadlineTodo").value &&
+      document.querySelector("#categoryChoice").value &&
       document.querySelector('input[name="TodoChoice"]:checked').value &&
-      document.querySelector('#categoryChoice').value !== 'Choose one'
+      document.querySelector("#categoryChoice").value !== "Choose one"
     ) {
       todoObject.id = userName;
-      todoObject.title = document.querySelector('#whatTodo').value;
-      todoObject.desc = document.querySelector('#descTodo').value;
-      todoObject.deadline = document.querySelector('#deadlineTodo').value;
-      todoObject.timeestimate = document.querySelector('#timeTodo').value;
-      todoObject.category = document.querySelector('#categoryChoice').value;
+      todoObject.title = document.querySelector("#whatTodo").value;
+      todoObject.desc = document.querySelector("#descTodo").value;
+      todoObject.deadline = document.querySelector("#deadlineTodo").value;
+      todoObject.timeestimate = document.querySelector("#timeTodo").value;
+      todoObject.category = document.querySelector("#categoryChoice").value;
       todoObject.status = document.querySelector(
         'input[name="TodoChoice"]:checked'
       ).value;
@@ -839,16 +839,16 @@ function createTodo() {
       todoList.push(todoObject);
       todoListUnfilter.push(todoObject);
       saveTodoData();
-      alert('A new Todo has been added!');
+      alert("A new Todo has been added!");
       showTodos();
     } else {
-      alert('Check to make sure all fields has been filled!');
+      alert("Check to make sure all fields has been filled!");
     }
   });
 }
 
 function createHabit() {
-  contentContainer.innerHTML = '';
+  contentContainer.innerHTML = "";
   contentContainer.innerHTML = `
   <div class = "habitInfo">
   <div> 
@@ -893,25 +893,25 @@ function createHabit() {
 
   // let categoryChoiceHabit = document.querySelector("#categoryChoiceHabit");
 
-  let saveBtn = document.querySelector('#saveBtnHabit');
+  let saveBtn = document.querySelector("#saveBtnHabit");
 
-  saveBtn.addEventListener('click', () => {
+  saveBtn.addEventListener("click", () => {
     let habitObject = {};
     if (
-      document.querySelector('#whatHabit').value &&
-      document.querySelector('#descHabit').value &&
-      document.querySelector('#categoryChoiceHabit').value &&
+      document.querySelector("#whatHabit").value &&
+      document.querySelector("#descHabit").value &&
+      document.querySelector("#categoryChoiceHabit").value &&
       document.querySelector('input[name="habitChoice"]:checked').value &&
-      document.querySelector('#categoryChoiceHabit').value !== 'Choose one'
+      document.querySelector("#categoryChoiceHabit").value !== "Choose one"
     ) {
       habitObject.id = userName;
-      habitObject.title = document.querySelector('#whatHabit').value;
-      habitObject.desc = document.querySelector('#descHabit').value;
+      habitObject.title = document.querySelector("#whatHabit").value;
+      habitObject.desc = document.querySelector("#descHabit").value;
       habitObject.status = document.querySelector(
         'input[name="habitChoice"]:checked'
       ).value;
       habitObject.category = document.querySelector(
-        '#categoryChoiceHabit'
+        "#categoryChoiceHabit"
       ).value;
       habitObject.countNumber = 0;
     }
@@ -919,7 +919,7 @@ function createHabit() {
     habitList.push(habitObject);
     habitListUnfilter.push(habitObject);
     saveHabitData();
-    alert('A new Habit has been added');
+    alert("A new Habit has been added");
     showHabits();
 
     console.log(habitObject, habitList);
@@ -932,20 +932,20 @@ function createHabit() {
 //CALLBACK 348
 
 function habitCounter(habitCard, doneHabit, waitingHabit, habitObject) {
-  let countDiv = document.createElement('div');
-  countDiv.classList.add('countDiv');
+  let countDiv = document.createElement("div");
+  countDiv.classList.add("countDiv");
   countDiv.innerHTML = `<i class="fa-brands fa-free-code-camp"></i>`;
 
   // let countNumber = 0;
 
-  doneHabit.addEventListener('click', () => {
+  doneHabit.addEventListener("click", () => {
     habitObject.countNumber++;
     counter.innerText = habitObject.countNumber;
     saveHabitData();
     // localStorage.setItem(habitObject.id, countNumber);
     // console.log(countNumber);
   });
-  waitingHabit.addEventListener('click', () => {
+  waitingHabit.addEventListener("click", () => {
     if (habitObject.countNumber > 0) {
       habitObject.countNumber--;
       counter.innerText = habitObject.countNumber;
@@ -954,9 +954,9 @@ function habitCounter(habitCard, doneHabit, waitingHabit, habitObject) {
     }
   });
 
-  let counter = document.createElement('p');
+  let counter = document.createElement("p");
   counter.innerText = habitObject.countNumber;
-  counter.classList.add('counter');
+  counter.classList.add("counter");
   habitCard.append(countDiv, counter);
 }
 
@@ -1011,19 +1011,19 @@ function removeHabit(removeBtn) {
 
 function saveTodoData() {
   // console.log(todoList);
-  localStorage.setItem('todoData', JSON.stringify(todoListUnfilter));
+  localStorage.setItem("todoData", JSON.stringify(todoListUnfilter));
 }
 
 function getTodoData() {
-  todoList = JSON.parse(localStorage.getItem('todoData'));
+  todoList = JSON.parse(localStorage.getItem("todoData"));
 }
 
 function saveHabitData() {
-  localStorage.setItem('habitData', JSON.stringify(habitListUnfilter));
+  localStorage.setItem("habitData", JSON.stringify(habitListUnfilter));
 }
 
 function getHabitData() {
-  habitList = JSON.parse(localStorage.getItem('habitData'));
+  habitList = JSON.parse(localStorage.getItem("habitData"));
 }
 
 // getHabitData();
