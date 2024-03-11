@@ -729,6 +729,69 @@ function sortPriorites(list, value) {
   }
 }
 // Functions for filter and sort habits - end
+function showTimer() {
+  //removing styles and content
+  contentContainer.innerHTML = '';
+  todoTab.removeAttribute('style');
+  habitsTab.removeAttribute('style');
+  homeTab.removeAttribute('style');
+  calenderTab.removeAttribute('style');
+  weatherTab.removeAttribute('style');
+  //removing styles and content
+  timerTab.style.width = '110%';
+  timerTab.style.borderRadius = '0% 10% 10% 0%';
+  contentContainer.innerHTML = `
+
+   <div class="TimerContainer">
+   <div class="TimerBox">
+      <div class="setTime lato-bold">
+        <label for="timeInput">Set time (minutes):</label> 
+        <input type="number" id="timeInput" min="1" value="1" />
+      </div>
+      <div class="lato-bold" id="timer">00:00</div>
+      <div>
+        <button class="lato-bold" id="StartTimerbtn" onclick="startTimer()">Start</button>
+        <button class="lato-bold" id="PauseTimerbtn" style="display: none" onclick="pauseTimer()">Pause</button>
+        <button class="lato-bold" id="ResetTimerbtn" style="display: none" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+    </div>
+  `;
+}
+
+function showCalender() {
+  //removing styles and content
+  contentContainer.innerHTML = '';
+  todoTab.removeAttribute('style');
+  habitsTab.removeAttribute('style');
+  timerTab.removeAttribute('style');
+  homeTab.removeAttribute('style');
+  weatherTab.removeAttribute('style');
+  //removing styles and content
+  calenderTab.style.width = '110%';
+  calenderTab.style.borderRadius = '0% 10% 10% 0%';
+  let test = document.createElement('h1');
+  test.innerHTML = 'estoy testo caldendoro';
+
+  contentContainer.append(test);
+}
+
+function showWeather() {
+  //removing styles and content
+  contentContainer.innerHTML = '';
+  todoTab.removeAttribute('style');
+  habitsTab.removeAttribute('style');
+  timerTab.removeAttribute('style');
+  calenderTab.removeAttribute('style');
+  homeTab.removeAttribute('style');
+  //removing styles and content
+  weatherTab.style.width = '110%';
+  weatherTab.style.borderRadius = '0% 10% 10% 0%';
+  let test = document.createElement('h1');
+  test.innerHTML = 'estoy testo hace calor?';
+
+  contentContainer.append(test);
+}
 
 function showLogout() {}
 

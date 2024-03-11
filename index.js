@@ -3,12 +3,24 @@
 let LoginForm = document.querySelector(".Login-form");
 let CreateForm = document.querySelector(".CreateAccount-form");
 let slider = document.querySelector(".slider");
+let LoginForm = document.querySelector(".Login-form");
+let CreateForm = document.querySelector(".CreateAccount-form");
+let slider = document.querySelector(".slider");
 //knapparna
 let BtnToCreate = document.querySelector("#CreateBtn");
 let CreateAccountBtn = document.querySelector("#CreateAccountBtn");
 let AlreadyAccountBtn = document.querySelector("#alredyaccount");
 let LoggainBtn = document.querySelector("#LoginBtn");
+let BtnToCreate = document.querySelector("#CreateBtn");
+let CreateAccountBtn = document.querySelector("#CreateAccountBtn");
+let AlreadyAccountBtn = document.querySelector("#alredyaccount");
+let LoggainBtn = document.querySelector("#LoginBtn");
 //inputs
+let Newuser = document.querySelector("#Createusername");
+let NewLösen = document.querySelector("#Createpassword");
+let RepeatLösen = document.querySelector("#repeatpassword");
+let Namn = document.querySelector("#username");
+let Lösenord = document.querySelector("#password");
 let Newuser = document.querySelector("#Createusername");
 let NewLösen = document.querySelector("#Createpassword");
 let RepeatLösen = document.querySelector("#repeatpassword");
@@ -20,9 +32,19 @@ let userList = [];
 //felmeddelande p-tagar
 let p = document.querySelector("#error");
 let felmessage = document.querySelector(".felmeddelande");
+let p = document.querySelector("#error");
+let felmessage = document.querySelector(".felmeddelande");
 //nollställer alla inputs fält och tagar
 function NollställLogin() {
   //nollställer inputsfälten
+  Newuser.value = "";
+  NewLösen.value = "";
+  RepeatLösen.value = "";
+  Namn.value = "";
+  Lösenord.value = "";
+  p.innerText = "";
+  felmessage.innerText = "";
+  RepeatLösen.classList.remove("errorInput");
   Newuser.value = "";
   NewLösen.value = "";
   RepeatLösen.value = "";
@@ -55,7 +77,9 @@ function LoginOpen() {
 //fetchar quot api functionen
 let getQuat = async () => {
   let response = await fetch("https://api.quotable.io/random");
+  let response = await fetch("https://api.quotable.io/random");
   let json = await response.json();
+  let quatText = document.querySelector(".quot");
   let quatText = document.querySelector(".quot");
 
   quatText.innerText = json.content;
@@ -63,14 +87,18 @@ let getQuat = async () => {
 
 //knappen som man går till CreateAccountform för att skapa ett konto
 BtnToCreate.addEventListener("click", () => {
+BtnToCreate.addEventListener("click", () => {
   LoginClose();
 });
 //knappen som man skapar ett konto på
+CreateAccountBtn.addEventListener("click", () => {
 CreateAccountBtn.addEventListener("click", () => {
   //om lösen input och reapeatlösen input matchar gå vidare
   if (NewLösen.value === RepeatLösen.value) {
     if (
       //om användarnamnetin har onödiga mellanslag i sig ta bort dom trim()
+      Newuser.value.trim() !== "" &&
+      NewLösen.value.trim() !== "" &&
       Newuser.value.trim() !== "" &&
       NewLösen.value.trim() !== "" &&
       //kolla så att users inte redan har ett value med samma användarnamn value
@@ -86,9 +114,12 @@ CreateAccountBtn.addEventListener("click", () => {
       //annars skriv ut felmeddelande
     } else {
       felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
+      felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
     }
     //annars om lösenorden inte matchar varandra skriv ut error meddelande
   } else {
+    RepeatLösen.classList.add("errorInput");
+    felmessage.innerText = "Lösenordet matchar inte";
     RepeatLösen.classList.add("errorInput");
     felmessage.innerText = "Lösenordet matchar inte";
   }
@@ -112,9 +143,11 @@ function storeUsersLocal() {
 }
 //knappen jag har redan ett konto stänger createAccount och öppnar login
 AlreadyAccountBtn.addEventListener("click", () => {
+AlreadyAccountBtn.addEventListener("click", () => {
   LoginOpen();
 });
 
+LoggainBtn.addEventListener("click", () => {
 LoggainBtn.addEventListener("click", () => {
   // Rensa session storage för att inte ha flera användares data vid inloggning kvar
   sessionStorage.clear();
@@ -131,13 +164,16 @@ LoggainBtn.addEventListener("click", () => {
     //inloggningen lyckades
     //laddningsidan startar tills man skickas vidare
     document.getElementById("LoadScreen").style.display = "block";
+    document.getElementById("LoadScreen").style.display = "block";
     //välkomst meddelandet
+    let WelcomeMessage = document.querySelector(".Welcome-Message");
     let WelcomeMessage = document.querySelector(".Welcome-Message");
     WelcomeMessage.innerText = `Welcome back ${Namn.value}`;
     //hämtar quats funktionen
     getQuat();
     //sätter en timeout på 5 sekunder tills man rör sig till home.html
     setTimeout(() => {
+      window.location.href = "home.html";
       window.location.href = "home.html";
     }, 5000); // 5 sekunder
 
