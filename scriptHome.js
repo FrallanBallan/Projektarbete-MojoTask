@@ -732,7 +732,7 @@ function showTimer() {
    <div class="TimerContainer">
    <div class="TimerBox">
       <div class="setTime lato-bold">
-        <label for="timeInput">Set time (minutes):</label> 
+        <label id= "timelabel" for="timeInput">Set time (minutes)</label> 
         <input type="number" id="timeInput" min="1" value="1" />
       </div>
       <div class="lato-bold" id="timer">00:00</div>
