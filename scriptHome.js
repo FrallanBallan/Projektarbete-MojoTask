@@ -18,10 +18,17 @@ console.log(userName);
 
 // Global Arrays
 let localTodos = localStorage.getItem("todoData");
-let todoList = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(localStorage.getItem('links'));
+let todoListUnfilter = localTodos ? JSON.parse(localTodos) : []; // JSON.parse(localStorage.getItem('links'));
+let todoList = todoListUnfilter.filter(
+  (todoObject) => todoObject.id === userName
+);
+console.log(todoList);
 
 let localHabits = localStorage.getItem("habitData");
-let habitList = localHabits ? JSON.parse(localHabits) : [];
+let habitListUnfilter = localHabits ? JSON.parse(localHabits) : [];
+let habitList = habitListUnfilter.filter(
+  (habitObject) => habitObject.id === userName
+);
 
 function showHome() {
   //WEATHER TEST START
@@ -34,12 +41,17 @@ function showHome() {
     console.log(response);
     renderLocation(response);
   };
+
+  // Weather for home tab
   function renderLocation(data) {
     let city = document.querySelector("#weatherCity");
     city.innerText = data.data.name;
 
     let temp = document.querySelector("#weatherTemp");
-    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C";
+    temp.innerText = Math.round(data.data.main.temp - 273.15) + "°C ";
+
+    let weather = document.querySelector("#weatherWeather");
+    weather.innerText = data.data.weather[0].main;
 
     let weatherIcons = document.querySelector("#weatherIcons");
     let weatherIcon = document.createElement("img");
@@ -99,8 +111,6 @@ function showHome() {
 
   homeTab.style.width = "110%";
   homeTab.style.borderRadius = "0% 10% 10% 0%";
-  homeTab.style.width = "110%";
-  homeTab.style.borderRadius = "0% 10% 10% 0%";
 
   contentContainer.innerHTML = `
   <div class="homeCardContainer">
@@ -117,8 +127,9 @@ function showHome() {
     <div class="weatherIcon" id="weatherIcons">
 
     </div>
-    <h4 id="weatherTemp" class="montserrat-heading">Temperture:</h4>
-    <h4 class="montserrat-heading">Location: <h3 id="weatherCity"></h3></h4>
+    <h2 id="weatherTemp" class="montserrat-heading">Temperture:</h2>
+    <h3 id="weatherWeather">Weather: </h3>
+    <h3 id="weatherCity"></h3>
   </div>
 </div>
 <div class="divider"></div>
@@ -170,17 +181,11 @@ function showTodos() {
   timerTab.removeAttribute("style");
   calenderTab.removeAttribute("style");
   weatherTab.removeAttribute("style");
-  contentContainer.innerHTML = "";
-  homeTab.removeAttribute("style");
-  habitsTab.removeAttribute("style");
-  timerTab.removeAttribute("style");
-  calenderTab.removeAttribute("style");
-  weatherTab.removeAttribute("style");
+
   //removing styles and content
   todoTab.style.width = "110%";
   todoTab.style.borderRadius = "0% 10% 10% 0%";
-  todoTab.style.width = "110%";
-  todoTab.style.borderRadius = "0% 10% 10% 0%";
+
   contentContainer.innerHTML = `
   <div class="homeTodoTab">
   <div class="todoTitleFilter">
@@ -564,15 +569,8 @@ function showHabits() {
   timerTab.removeAttribute("style");
   calenderTab.removeAttribute("style");
   weatherTab.removeAttribute("style");
-  contentContainer.innerHTML = "";
-  todoTab.removeAttribute("style");
-  homeTab.removeAttribute("style");
-  timerTab.removeAttribute("style");
-  calenderTab.removeAttribute("style");
-  weatherTab.removeAttribute("style");
+
   //removing styles and content
-  habitsTab.style.width = "110%";
-  habitsTab.style.borderRadius = "0% 10% 10% 0%";
   habitsTab.style.width = "110%";
   habitsTab.style.borderRadius = "0% 10% 10% 0%";
 
@@ -662,7 +660,7 @@ function printHabitsOnPage(list) {
         "url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else if (habitObject.category === "Mindfullness") {
       habitCard.style.backgroundImage =
-        "url('https://images.unsplash.com/photo-1611800065908-233b597db552?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
+        "url('https://images.unsplash.com/photo-1621228720536-e27ba8f4d363?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
     } else if (habitObject.category === "Cleaning") {
       habitCard.style.backgroundImage =
         "url('https://images.unsplash.com/photo-1529220502050-f15e570c634e?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')";
@@ -748,40 +746,6 @@ function showTimer() {
    `;
 }
 
-function showCalender() {
-  //removing styles and content
-  contentContainer.innerHTML = "";
-  todoTab.removeAttribute("style");
-  habitsTab.removeAttribute("style");
-  timerTab.removeAttribute("style");
-  homeTab.removeAttribute("style");
-  weatherTab.removeAttribute("style");
-  //removing styles and content
-  calenderTab.style.width = "110%";
-  calenderTab.style.borderRadius = "0% 10% 10% 0%";
-  let test = document.createElement("h1");
-  test.innerHTML = "estoy testo caldendoro";
-
-  contentContainer.append(test);
-}
-
-function showWeather() {
-  //removing styles and content
-  contentContainer.innerHTML = "";
-  todoTab.removeAttribute("style");
-  habitsTab.removeAttribute("style");
-  timerTab.removeAttribute("style");
-  calenderTab.removeAttribute("style");
-  homeTab.removeAttribute("style");
-  //removing styles and content
-  weatherTab.style.width = "110%";
-  weatherTab.style.borderRadius = "0% 10% 10% 0%";
-  let test = document.createElement("h1");
-  test.innerHTML = "estoy testo hace calor?";
-
-  contentContainer.append(test);
-}
-
 function showLogout() {}
 
 // Funktioner för sidorientering - End Frans
@@ -862,7 +826,7 @@ function createTodo() {
       document.querySelector('input[name="TodoChoice"]:checked').value &&
       document.querySelector("#categoryChoice").value !== "Choose one"
     ) {
-      todoObject.id = "testPerson";
+      todoObject.id = userName;
       todoObject.title = document.querySelector("#whatTodo").value;
       todoObject.desc = document.querySelector("#descTodo").value;
       todoObject.deadline = document.querySelector("#deadlineTodo").value;
@@ -884,7 +848,6 @@ function createTodo() {
 }
 
 function createHabit() {
-  contentContainer.innerHTML = "";
   contentContainer.innerHTML = "";
   contentContainer.innerHTML = `
   <div class = "habitInfo">
@@ -941,7 +904,7 @@ function createHabit() {
       document.querySelector('input[name="habitChoice"]:checked').value &&
       document.querySelector("#categoryChoiceHabit").value !== "Choose one"
     ) {
-      habitObject.name = "Habit Data Name";
+      habitObject.id = userName;
       habitObject.title = document.querySelector("#whatHabit").value;
       habitObject.desc = document.querySelector("#descHabit").value;
       habitObject.status = document.querySelector(
@@ -983,7 +946,7 @@ function habitCounter(habitCard, doneHabit, waitingHabit, habitObject) {
     // console.log(countNumber);
   });
   waitingHabit.addEventListener("click", () => {
-    if (countNumber > 0) {
+    if (habitObject.countNumber > 0) {
       habitObject.countNumber--;
       counter.innerText = habitObject.countNumber;
       saveHabitData();
@@ -1046,22 +1009,18 @@ function removeHabit(removeBtn) {
 
 function saveTodoData() {
   // console.log(todoList);
-  localStorage.setItem("todoData", JSON.stringify(todoList));
-  localStorage.setItem("todoData", JSON.stringify(todoList));
+  localStorage.setItem("todoData", JSON.stringify(todoListUnfilter));
 }
 
 function getTodoData() {
   todoList = JSON.parse(localStorage.getItem("todoData"));
-  todoList = JSON.parse(localStorage.getItem("todoData"));
 }
 
 function saveHabitData() {
-  localStorage.setItem("habitData", JSON.stringify(habitList));
-  localStorage.setItem("habitData", JSON.stringify(habitList));
+  localStorage.setItem("habitData", JSON.stringify(habitListUnfilter));
 }
 
 function getHabitData() {
-  habitList = JSON.parse(localStorage.getItem("habitData"));
   habitList = JSON.parse(localStorage.getItem("habitData"));
 }
 

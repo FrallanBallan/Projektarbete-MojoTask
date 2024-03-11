@@ -262,104 +262,117 @@ countries.forEach(function (country) {
 
 //Login - createAccount start - Angelo
 //divarna
-let LoginForm = document.querySelector(".Login-form");
-let CreateForm = document.querySelector(".CreateAccount-form");
-let slider = document.querySelector(".slider");
+let LoginForm = document.querySelector('.Login-form');
+let CreateForm = document.querySelector('.CreateAccount-form');
+let slider = document.querySelector('.slider');
+
 //knapparna
-let BtnToCreate = document.querySelector("#CreateBtn");
-let CreateAccountBtn = document.querySelector("#CreateAccountBtn");
-let AlreadyAccountBtn = document.querySelector("#alredyaccount");
-let LoggainBtn = document.querySelector("#LoginBtn");
+let BtnToCreate = document.querySelector('#CreateBtn');
+let CreateAccountBtn = document.querySelector('#CreateAccountBtn');
+let AlreadyAccountBtn = document.querySelector('#alredyaccount');
+let LoggainBtn = document.querySelector('#LoginBtn');
+
 //inputs
-let Newuser = document.querySelector("#Createusername");
-let NewLösen = document.querySelector("#Createpassword");
-let RepeatLösen = document.querySelector("#repeatpassword");
-let Namn = document.querySelector("#username");
-let Lösenord = document.querySelector("#password");
+let Newuser = document.querySelector('#Createusername');
+let NewLösen = document.querySelector('#Createpassword');
+let RepeatLösen = document.querySelector('#repeatpassword');
+let Namn = document.querySelector('#username');
+let Lösenord = document.querySelector('#password');
+
 //objekt users som lagrar alla users
 let users = {};
 //felmeddelande p-tagar
-let p = document.querySelector("#error");
-let felmessage = document.querySelector(".felmeddelande");
+let p = document.querySelector('#error');
+let felmessage = document.querySelector('.felmeddelande');
+
 //nollställer alla inputs fält och tagar
 function NollställLogin() {
   //nollställer inputsfälten
-  Newuser.value = "";
-  NewLösen.value = "";
-  RepeatLösen.value = "";
-  Namn.value = "";
-  Lösenord.value = "";
-  p.innerText = "";
-  felmessage.innerText = "";
-  RepeatLösen.classList.remove("errorInput");
-  select.selectedIndex = 0;
+  Newuser.value = '';
+  NewLösen.value = '';
+  RepeatLösen.value = '';
+  Namn.value = '';
+  Lösenord.value = '';
+  p.innerText = '';
+  felmessage.innerText = '';
+  RepeatLösen.classList.remove('errorInput');
 }
 //funktionen som öppnar upp create-form och gömmer login-form
 function LoginClose() {
-  slider.classList.add("right");
+  slider.classList.add('right');
   NollställLogin();
 }
 //funktionen som öppnar tillbaka Login och stänger create
 function LoginOpen() {
-  slider.classList.remove("right");
+  slider.classList.remove('right');
   NollställLogin();
 }
 //fetchar quot api functionen
 let getQuat = async () => {
-  let response = await fetch("https://api.quotable.io/random");
+  let response = await fetch('https://api.quotable.io/random');
+
   let json = await response.json();
-  let quatText = document.querySelector(".quot");
+
+  let quatText = document.querySelector('.quot');
 
   quatText.innerText = json.content;
 };
 
 //knappen som man går till CreateAccountform för att skapa ett konto
-BtnToCreate.addEventListener("click", () => {
+
+BtnToCreate.addEventListener('click', () => {
   LoginClose();
 });
 //knappen som man skapar ett konto på
 CreateAccountBtn.addEventListener("click", () => {
-  //om lösen input och repeat lösen input matchar gå vidare
-  let selectedCountry = document.getElementById("countrySelect").value;
-  console.log(selectedCountry);
+  //om lösen input och reapeatlösen input matchar gå vidare
   if (NewLösen.value === RepeatLösen.value) {
     if (
-      //om användarnamnet har onödiga mellanslag i sig, ta bort dem med trim()
+      //om användarnamnetin har onödiga mellanslag i sig ta bort dom trim()
       Newuser.value.trim() !== "" &&
       NewLösen.value.trim() !== "" &&
-      //kolla så att användarnamnet inte redan finns
-      !users.hasOwnProperty(Newuser.value) &&
-      //kontrollera om ett land har valts
-      selectedCountry !== "Country"
+      //kolla så att users inte redan har ett value med samma användarnamn value
+      !users.hasOwnProperty(Newuser.value)
     ) {
-      //spara användaren i local storage
+      //spara i localstorage
+<<<<<<<<< Temporary merge branch 1
+      users.id = Newuser.value;
+      users.pass = NewLösen.value;
+      console.log(users);
+
+      storeUsersLocal();
+
+=========
       users[Newuser.value] = NewLösen.value;
       localStorage.setItem("users", JSON.stringify(users));
-
-      // spara även landet tillsammans med användaren i local storage
-      localStorage.setItem(Newuser.value + "_country", selectedCountry);
-
-      LoginOpen(); //öppna inloggningssidan
+      LoginOpen();
+>>>>>>>>> Temporary merge branch 2
+      //annars skriv ut felmeddelande
     } else {
-      felmessage.innerText =
-        "Användarnamnet är upptaget eller ett fält är tomt!";
+      felmessage.innerText = "Användarnamn upptaget eller fältet tomt!";
     }
   } else {
     RepeatLösen.classList.add("errorInput");
-    felmessage.innerText = "Lösenorden matchar inte";
+    felmessage.innerText = "Lösenordet matchar inte";
   }
 });
 
 //knappen jag har redan ett konto stänger createAccount och öppnar login
-AlreadyAccountBtn.addEventListener("click", () => {
+
+AlreadyAccountBtn.addEventListener('click', () => {
   LoginOpen();
 });
 
-LoggainBtn.addEventListener("click", () => {
+LoggainBtn.addEventListener('click', () => {
   // Rensa session storage för att inte ha flera användares data vid inloggning kvar
   sessionStorage.clear();
   //hämtar localestorage med keyn alla users och lägger in detta i en variabel
+<<<<<<<<< Temporary merge branch 1
+  let storedUsers = JSON.parse(localStorage.getItem('users'));
+  console.log(storedUsers);
+=========
   let storedUsers = JSON.parse(localStorage.getItem("users"));
+>>>>>>>>> Temporary merge branch 2
   //om storedUsers hadownpropery(kollar så att objektet innehåller en specifik egenskap såg den kollar om storeduser innehåller likadant användarnamn som användaren har stoppat in i inputen)
   if (
     storedUsers.hasOwnProperty(Namn.value) &&
@@ -367,18 +380,24 @@ LoggainBtn.addEventListener("click", () => {
   ) {
     //inloggningen lyckades
     //laddningsidan startar tills man skickas vidare
-    document.getElementById("LoadScreen").style.display = "block";
+    document.getElementById('LoadScreen').style.display = 'block';
+
     //välkomst meddelandet
-    let WelcomeMessage = document.querySelector(".Welcome-Message");
+
+    let WelcomeMessage = document.querySelector('.Welcome-Message');
     WelcomeMessage.innerText = `Welcome back ${Namn.value}`;
     //hämtar quats funktionen
     getQuat();
     //sätter en timeout på 5 sekunder tills man rör sig till home.html
     setTimeout(() => {
-      window.location.href = "home.html";
+      window.location.href = 'home.html';
     }, 5000); // 5 sekunder
 
     // Hämtar todoData från local storage
+<<<<<<<<< Temporary merge branch 1
+    // let todoData = JSON.parse(localStorage.getItem('todoData'));
+    sessionStorage.setItem('NameUser', Namn.value);
+=========
     let todoData = JSON.parse(localStorage.getItem("todoData"));
     if (todoData) {
       // Filtrerar todoData för att få endast de objekt där objekt keyn id matchar användarens namn
@@ -389,6 +408,7 @@ LoggainBtn.addEventListener("click", () => {
       //problemet här är att om jag loggar in på en användare o sedan loggar direkt in på en annan utan att stänga fliken så finns all data kvar så jag måste rensa seassion storage vid början av klick vid inloggning
       sessionStorage.setItem("userTodoData", JSON.stringify(userTodoData));
       sessionStorage.setItem("NameUser", Namn.value);
+>>>>>>>>> Temporary merge branch 2
 
       //meddelar simon som sitter med todo att han måste hämta Nameuser från sessionStorage och dess value ska tilldelas som id vid skapadet av en todo
       //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
@@ -397,7 +417,14 @@ LoggainBtn.addEventListener("click", () => {
     NollställLogin();
   } else {
     //misslyckades att logga in
+<<<<<<<<< Temporary merge branch 1
+    p.innerText = 'Felaktigt användarnamn eller lösenord!';
+    storedUsers.forEach((storedUser) => {
+      console.log(storedUser.id, storedUser.pass);
+    });
+=========
     p.innerText = "Felaktigt användarnamn eller lösenord!";
+>>>>>>>>> Temporary merge branch 2
   }
 });
 
