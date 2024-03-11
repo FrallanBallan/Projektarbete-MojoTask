@@ -41,6 +41,8 @@ function showHome() {
     console.log(response);
     renderLocation(response);
   };
+
+  // Weather for home tab
   function renderLocation(data) {
     let city = document.querySelector('#weatherCity');
     city.innerText = data.data.name;
@@ -107,8 +109,6 @@ function showHome() {
   weatherTab.removeAttribute('style');
   //removing styles and content
 
-  homeTab.style.width = '110%';
-  homeTab.style.borderRadius = '0% 10% 10% 0%';
   homeTab.style.width = '110%';
   homeTab.style.borderRadius = '0% 10% 10% 0%';
 
@@ -181,17 +181,11 @@ function showTodos() {
   timerTab.removeAttribute('style');
   calenderTab.removeAttribute('style');
   weatherTab.removeAttribute('style');
-  contentContainer.innerHTML = '';
-  homeTab.removeAttribute('style');
-  habitsTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+
   //removing styles and content
   todoTab.style.width = '110%';
   todoTab.style.borderRadius = '0% 10% 10% 0%';
-  todoTab.style.width = '110%';
-  todoTab.style.borderRadius = '0% 10% 10% 0%';
+
   contentContainer.innerHTML = `
   <div class="homeTodoTab">
   <div class="todoTitleFilter">
@@ -575,15 +569,8 @@ function showHabits() {
   timerTab.removeAttribute('style');
   calenderTab.removeAttribute('style');
   weatherTab.removeAttribute('style');
-  contentContainer.innerHTML = '';
-  todoTab.removeAttribute('style');
-  homeTab.removeAttribute('style');
-  timerTab.removeAttribute('style');
-  calenderTab.removeAttribute('style');
-  weatherTab.removeAttribute('style');
+
   //removing styles and content
-  habitsTab.style.width = '110%';
-  habitsTab.style.borderRadius = '0% 10% 10% 0%';
   habitsTab.style.width = '110%';
   habitsTab.style.borderRadius = '0% 10% 10% 0%';
 
@@ -895,7 +882,6 @@ function createTodo() {
 }
 
 function createHabit() {
-  contentContainer.innerHTML = '';
   contentContainer.innerHTML = '';
   contentContainer.innerHTML = `
   <div class = "habitInfo">
