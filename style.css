@@ -868,14 +868,16 @@ padding: 20px;
 /* Weather styling - start */
 
 .weatherDiv {
+  
   background: var(--_primaryColor);
   border-radius: var(--_borderRm);
-  width: 50%;
-  height: 60vh;
+  width: 100%;
+  height: 100%;
   padding: 16px;
   gap: 16px;
   box-shadow: var(--_boxShadow);
   display: flex;
+  
   align-items: center;
   justify-content: center;
   flex-direction: column;
