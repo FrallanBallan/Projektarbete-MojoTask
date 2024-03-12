@@ -422,6 +422,7 @@ LoggainBtn.addEventListener("click", () => {
       console.log(storedUser.id, storedUser.pass);
     });
   }
+  NollställLogin();
 });
 
 //Login - CreateAccount End Angelo
