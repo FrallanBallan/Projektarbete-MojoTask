@@ -277,6 +277,7 @@ let Lösenord = document.querySelector('#password');
 
 //objekt users som lagrar alla users
 let users = {};
+let userList = [];
 //felmeddelande p-tagar
 let p = document.querySelector('#error');
 let felmessage = document.querySelector('.felmeddelande');
@@ -331,17 +332,18 @@ CreateAccountBtn.addEventListener('click', () => {
       //kolla så att users inte redan har ett value med samma användarnamn value
       !users.hasOwnProperty(Newuser.value)
     ) {
-      //spara användaren i local storage
-      users[Newuser.value] = NewLösen.value;
-      localStorage.setItem('users', JSON.stringify(users));
+      //spara i localstorage
+      users.id = Newuser.value;
+      users.pass = NewLösen.value;
+      console.log(users);
 
-      // spara även landet tillsammans med användaren i local storage
-      // localStorage.setItem(Newuser.value + '_country', selectedCountry);
+      storeUsersLocal();
 
-      LoginOpen(); //öppna inloggningssidan
+      //annars skriv ut felmeddelande
     } else {
       felmessage.innerText = 'Användarnamn upptaget eller fältet tomt!';
     }
+    //annars om lösenorden inte matchar varandra skriv ut error meddelande
   } else {
     RepeatLösen.classList.add('errorInput');
     felmessage.innerText = 'Lösenordet matchar inte';
@@ -379,8 +381,10 @@ LoggainBtn.addEventListener('click', () => {
   console.log(storedUsers);
   //om storedUsers hadownpropery(kollar så att objektet innehåller en specifik egenskap såg den kollar om storeduser innehåller likadant användarnamn som användaren har stoppat in i inputen)
   if (
-    storedUsers.hasOwnProperty(Namn.value) &&
-    storedUsers[Namn.value] === Lösenord.value
+    storedUsers.some(
+      (storedUser) =>
+        storedUser.id === Namn.value && storedUser.pass === Lösenord.value
+    )
   ) {
     //inloggningen lyckades
     //laddningsidan startar tills man skickas vidare
@@ -411,7 +415,7 @@ LoggainBtn.addEventListener('click', () => {
     //     //meddelar även simon om att personen som loggar in får alla sina todos som finns sparade i localestorage filterade i seassion storage så att användaren endast har sina egna todos så allt han ska behöva göra nu är att hämta datan från seassions
     //   }
 
-    NollställLogin();
+    //   NollställLogin();
   } else {
     //misslyckades att logga in
     p.innerText = 'Felaktigt användarnamn eller lösenord!';
@@ -419,6 +423,7 @@ LoggainBtn.addEventListener('click', () => {
       console.log(storedUser.id, storedUser.pass);
     });
   }
+  NollställLogin();
 });
 
 //Login - CreateAccount End Angelo
