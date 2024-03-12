@@ -336,7 +336,7 @@ CreateAccountBtn.addEventListener('click', () => {
       localStorage.setItem('users', JSON.stringify(users));
 
       // spara även landet tillsammans med användaren i local storage
-      localStorage.setItem(Newuser.value + '_country', selectedCountry);
+      // localStorage.setItem(Newuser.value + '_country', selectedCountry);
 
       LoginOpen(); //öppna inloggningssidan
     } else {
@@ -352,6 +352,7 @@ function storeUsersLocal() {
   // Retrieve existing user data from localStorage
   let storedUsers = JSON.parse(localStorage.getItem('users')) || [];
   // Push new user data into the existing array
+  console.log('Bla');
 
   if (storedUsers.some((user) => user.id === users.id)) {
     felmessage.innerText = 'Användarnamn upptaget eller fältet tomt!';
